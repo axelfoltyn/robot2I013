@@ -4,7 +4,7 @@ import numpy as np
 
 class Robot:
 
-    def __init__(self,acceleration, x=0, y=0):  # x et y sont labscisse et lordonné
+    def __init__(self,acceleration, x=0, y=0, z=0):  # x et y sont labscisse et lordonné
                 """self*int*int*int->none"""
           fichier=open("robot.txt","r")
           f=fichier.readlines()
@@ -20,7 +20,7 @@ class Robot:
 
 
     #a mettre dans la classe robot
-    def val_accelerometre():
+    def val_accelerometre(self):
         MIN = 0
         MAX = 3
         res = [0,1,2]#self.acceleration;
@@ -30,7 +30,7 @@ class Robot:
         res[2] += r[2] * (MAX-MIN) + MIN
         return res
 
-    def update(dt = 1):
+    def update(self, dt = 1):
         self._acceleration[0] = self._acceleration[0] * self._direction[0]
         self._acceleration[1] = self._acceleration[1] * self._direction[1]
         self._acceleration[2] = self._acceleration[2] * self._direction[2]
