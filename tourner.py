@@ -1,5 +1,7 @@
 import math
 
+#a mettre dans la classe robot
+
 def tourner(teta=90):
 	trad = math.radian(teta)
 	dx = self.direction[0]
