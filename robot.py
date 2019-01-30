@@ -31,13 +31,13 @@ class Robot:
         return res
 
     def update(dt = 1):
-        self.acceleration[0] = self.acceleration[0] * self.direction[0]
-        self.acceleration[1] = self.acceleration[1] * self.direction[1]
-        self.acceleration[2] = self.acceleration[2] * self.direction[2]
-        self.vitesse[0] = self.vitesse[0] * self.direction[0] + dt * self.acceleration[0]
-        self.vitesse[1] = self.vitesse[1] * self.direction[1] + dt * self.acceleration[1]
-        self.vitesse[2] = self.vitesse[2] * self.direction[2] + dt * self.acceleration[2]
-        self.position[0] = self.position[0] * self.direction[0] + dt * self.vitesse[0]
-        self.position[1] = self.position[1] * self.direction[1] + dt * self.vitesse[1]
-        self.position[2] = self.position[2] * self.direction[2] + dt * self.vitesse[2]
+        self._acceleration[0] = self._acceleration[0] * self._direction[0]
+        self._acceleration[1] = self._acceleration[1] * self._direction[1]
+        self._acceleration[2] = self._acceleration[2] * self._direction[2]
+        self._vitesse[0] = self._vitesse[0] * self._direction[0] + dt * self._acceleration[0]
+        self._vitesse[1] = self._vitesse[1] * self._direction[1] + dt * self._acceleration[1]
+        self._vitesse[2] = self._vitesse[2] * self._direction[2] + dt * self._acceleration[2]
+        self._position[0] = self._position[0] * self._direction[0] + dt * self._vitesse[0]
+        self._position[1] = self._position[1] * self._direction[1] + dt * self._vitesse[1]
+        self._position[2] = self._position[2] * self._direction[2] + dt * self._vitesse[2]
         
