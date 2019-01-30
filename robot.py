@@ -29,3 +29,15 @@ class Robot:
         res[1] += r[1] * (MAX-MIN) + MIN
         res[2] += r[2] * (MAX-MIN) + MIN
         return res
+
+    def update(dt = 1):
+        self.acceleration[0] = self.acceleration[0] * self.direction[0]
+        self.acceleration[1] = self.acceleration[1] * self.direction[1]
+        self.acceleration[2] = self.acceleration[2] * self.direction[2]
+        self.vitesse[0] = self.vitesse[0] * self.direction[0] + dt * self.acceleration[0]
+        self.vitesse[1] = self.vitesse[1] * self.direction[1] + dt * self.acceleration[1]
+        self.vitesse[2] = self.vitesse[2] * self.direction[2] + dt * self.acceleration[2]
+        self.position[0] = self.position[0] * self.direction[0] + dt * self.vitesse[0]
+        self.position[1] = self.position[1] * self.direction[1] + dt * self.vitesse[1]
+        self.position[2] = self.position[2] * self.direction[2] + dt * self.vitesse[2]
+        
