@@ -4,8 +4,12 @@ import numpy as np
 
 class Robot:
 
-    def __init__(self,position=[0.0,0.0,0.0],acceleration=[0.0,0.0,0.0],vitesse=[0.0,0.0,0.0],direction[1.0,0.0,0.0],old_dirrection=[1.0,0.0,0.0]):
-        
+    def __init__(self,position=[0.0,0.0,0.0],acceleration=[0.0,0.0,0.0],vitesse=[0.0,0.0,0.0],direction[1.0,0.0,0.0]):
+        self._position=position
+        self._acceleration=acceleration
+        self._vistesse=vitesse
+        self._direction=direction
+        self._old_direction=direction
 
 
     #a mettre dans la classe robot
@@ -43,7 +47,7 @@ class Robot:
         self._direction[1] = dx*math.sin(trad) + dy*math.sin(trad)
         
     def acceleratioon(acceleration):
-        self._acceleration[0]+=acceleration*direction[0]
-        self._acceleration[1]+=acceleration*direction[1]
-        self._acceleration[2]+=acceleration*direction[2]
+        self._acceleration[0]+=acceleration[0]*direction[0]
+        self._acceleration[1]+=acceleration[1]*direction[1]
+        self._acceleration[2]+=acceleration[2]*direction[2]
 
