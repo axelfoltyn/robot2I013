@@ -44,7 +44,7 @@ print("Ma direction passée est : " , robot._old_direction)
 
 
 print("accelerer")
-robot.acceleration([1,1,1])
+robot.acceleration(1)
 robot.update()
 print("Mon accéleration est : " , robot._acceleration)
 print("Ma position en x est : " , robot._position[0])
