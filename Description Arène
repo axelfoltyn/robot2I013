@@ -1,5 +1,0 @@
-L’arène va être représentée en deux dimensions dans un premier temps.
-Ce sera une classe indépendante, qui nous servira à l’affichage.  
-Les obstacles seront dans une autre classe que l’on pourra faire interagir avec l’arène.  
-Le robot devra pouvoir se déplacer dans l’arène, et uniquement dans l’arène. Cela veut donc dire qu’une fois les limites de l’arène atteinte, le robot ne pourra plus avancer.
-Le robot aura le même comportement face à des obstacles.
