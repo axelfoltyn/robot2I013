@@ -14,7 +14,7 @@ class Robot:
         self._vitesse=[0.0,0.0,0.0]
         self._direction=[1.0,0.0,0.0]
         self._old_direction=[0.0,0.0,0.0]
-        fichier.close()
+        #fichier.close()
 
 
     #a mettre dans la classe robot
