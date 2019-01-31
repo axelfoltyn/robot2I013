@@ -44,6 +44,7 @@ class Robot:
     #a mettre dans la classe robot
 
     def tourner(self, teta=90):
+        # la rotation s'effectue vers la gauche
         trad = math.radians(teta)
         dx = self._direction[0]
         dy = self._direction[1]
