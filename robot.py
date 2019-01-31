@@ -4,11 +4,7 @@ import numpy as np
 
 class Robot:
 
-    def __init__(self):
-        #fichier=open("robot.txt","r")
-        #f=fichier.readlines()
-        #f=f.strip() #suppression du retour a la ligne
-        #self._position =[int(elt) for elt in f.split(";",";")]
+    def __init__(self,position=[0.0,0.0,0.0],acceleration=[0.0,0.0,0.0],vitesse=[0.0,0.0,0.0],direction[1.0,0.0,0.0],old_dirrection=[1.0,0.0,0.0]):
         self._position = [0,0,0]
         self._acceleration=[0.0,0.0,0.0]   #on initialise acceleration a la vitesse max que l'on lui attribue
         self._vitesse=[0.0,0.0,0.0]
