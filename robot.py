@@ -59,7 +59,7 @@ class Robot:
         self._acceleration[1] = ax*math.sin(trad) + ay*math.sin(trad)
 
     def acceleration(self, acceleration):
-        self._acceleration[0]+=acceleration[0]
-        self._acceleration[1]+=acceleration[1]
-        self._acceleration[2]+=acceleration[2]
+        self._acceleration[0]+=acceleration
+        self._acceleration[1]+=acceleration
+        self._acceleration[2]+=acceleration
 
