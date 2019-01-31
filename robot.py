@@ -8,8 +8,7 @@ class Robot:
         self._position = [0,0,0]
         self._acceleration=[0.0,0.0,0.0]   #on initialise acceleration a la vitesse max que l'on lui attribue
         self._vitesse=[0.0,0.0,0.0]
-        self._direction=[1.0,0.0,0.0]
-        self._old_direction=[0.0,0.0,0.0]
+        
         #fichier.close()
 
 
