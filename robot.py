@@ -5,11 +5,7 @@ import numpy as np
 class Robot:
 
     def __init__(self,position=[0.0,0.0,0.0],acceleration=[0.0,0.0,0.0],vitesse=[0.0,0.0,0.0],direction[1.0,0.0,0.0],old_dirrection=[1.0,0.0,0.0]):
-        self._position = [0,0,0]
-        self._acceleration=[0.0,0.0,0.0]   #on initialise acceleration a la vitesse max que l'on lui attribue
-        self._vitesse=[0.0,0.0,0.0]
         
-        #fichier.close()
 
 
     #a mettre dans la classe robot
