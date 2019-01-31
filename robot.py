@@ -9,7 +9,6 @@ class Robot:
         self._acceleration=acceleration
         self._vitesse=vitesse
         self._direction=direction
-        self._old_direction=direction
 
 
     #a mettre dans la classe robot
