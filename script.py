@@ -7,7 +7,6 @@ print("Ma position en x est : ",robot._position[0])
 print("Ma position en y est : ", robot._position[1])
 print("Ma position en z est : ", robot._position[2])
 print("Ma direction actuelle est : " , robot._direction)
-print("Ma direction passée est : " , robot._old_direction)
 
 
 print("tourner")
@@ -18,7 +17,6 @@ print("Ma position en x est : " , robot._position[0])
 print("Ma position en y est : " , robot._position[1])
 print("Ma position en z est : " , robot._position[2])
 print("Ma direction actuelle est : " , robot._direction)
-print("Ma direction passée est : " , robot._old_direction)
 
 
 print("recup val acc")
@@ -29,7 +27,6 @@ print("Ma position en x est : " , robot._position[0])
 print("Ma position en y est : " , robot._position[1])
 print("Ma position en z est : " , robot._position[2])
 print("Ma direction actuelle est : " , robot._direction)
-print("Ma direction passée est : " , robot._old_direction)
 
 
 print("tourner")
@@ -40,7 +37,6 @@ print("Ma position en x est : " , robot._position[0])
 print("Ma position en y est : " , robot._position[1])
 print("Ma position en z est : " , robot._position[2])
 print("Ma direction actuelle est : " , robot._direction)
-print("Ma direction passée est : " , robot._old_direction)
 
 
 print("accelerer")
@@ -51,4 +47,3 @@ print("Ma position en x est : " , robot._position[0])
 print("Ma position en y est : " , robot._position[1])
 print("Ma position en z est : " , robot._position[2])
 print("Ma direction actuelle est : " , robot._direction)
-print("Ma direction passée est : " , robot._old_direction)
