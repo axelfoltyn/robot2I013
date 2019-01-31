@@ -7,7 +7,7 @@ class Robot:
     def __init__(self,position=[0.0,0.0,0.0],acceleration=[0.0,0.0,0.0],vitesse=[0.0,0.0,0.0],direction=[1.0,0.0,0.0]):
         self._position=position
         self._acceleration=acceleration
-        self._vistesse=vitesse
+        self._vitesse=vitesse
         self._direction=direction
         self._old_direction=direction
 
