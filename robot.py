@@ -51,8 +51,8 @@ class Robot:
         self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
         self._direction[1] = dx*math.sin(trad) + dy*math.sin(trad)
         
-    def acceleration(self, acceleration):
-        self._acceleration[0]+=acceleration
-        self._acceleration[1]+=acceleration
-        self._acceleration[2]+=acceleration
+    def acceleratioon(acceleration):
+        self._acceleration[0]+=acceleration[0]*direction[0]
+        self._acceleration[1]+=acceleration[1]*direction[1]
+        self._acceleration[2]+=acceleration[2]*direction[2]
 
