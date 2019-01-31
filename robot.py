@@ -5,8 +5,8 @@ import numpy as np
 class Robot:
 
     def __init__(self):
-        fichier=open("robot.txt","r")
-        f=fichier.readlines()
+        #fichier=open("robot.txt","r")
+        #f=fichier.readlines()
         #f=f.strip() #suppression du retour a la ligne
         #self._position =[int(elt) for elt in f.split(";",";")]
         self._position = [0,0,0]
