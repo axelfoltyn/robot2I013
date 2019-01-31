@@ -33,10 +33,6 @@ class Robot:
         self._position[0] = self._position[0] * self._direction[0] + dt * self._vitesse[0]
         self._position[1] = self._position[1] * self._direction[1] + dt * self._vitesse[1]
         self._position[2] = self._position[2] * self._direction[2] + dt * self._vitesse[2]
-    
-
-
-    #a mettre dans la classe robot
 
     def tourner(self, teta=90):
         # la rotation s'effectue vers la gauche
