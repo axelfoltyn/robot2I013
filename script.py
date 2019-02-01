@@ -1,4 +1,4 @@
-from robot import *
+from Robot import *
 
 robot = Robot()
 robot.update()
