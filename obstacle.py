@@ -2,7 +2,7 @@ class Obstacle :
 	
 	def __init__(self,x,y,z=10,nom='O',r=1.0,lo=0.0,la=0.0):
 		self._nom=nom
-		if self._type == 'O':
+		if self._nom == 'O':
 			self._x=x
 			self._y=y
 			self._z=z
