@@ -1,6 +1,6 @@
 class Obstacle :
 	
-	def __init__(self,type,x,y,z,r,lo=0.0,la=0.0):
+	def __init__(self,x,y,z=10,type='O',r=1.0,lo=0.0,la=0.0):
 		self._type=type
 		if self._type == 'O':
 			self._x=x
@@ -12,7 +12,6 @@ class Obstacle :
 			self._x=x
 			self._y=y
 			self._z=z
-			self._r=r
 			self._lo=lo			
 			self._la=la
 		
