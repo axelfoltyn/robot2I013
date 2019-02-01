@@ -1,6 +1,6 @@
 class Obstacle :
 	
-	def __init__(self,type,x,y,z,r,lo,la):
+	def __init__(self,type,x,y,z,r,lo=0.0,la=0.0):
 		self._type=type
 		if self._type == 'O':
 			self._x=x
