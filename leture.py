@@ -8,7 +8,7 @@ def lecture(fichier):
   txt=Fichier.readline()
   x=int(txt)
   
-  txt=txt=Fichier.readline()
+  txt=Fichier.readline()
   y=int(txt)
   
   txt=Fichier.readline()
