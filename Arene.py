@@ -1,7 +1,7 @@
-from robot import *
+from Robot import *
 
 class Arene:
-    def __init__(self, x = 42, y = 42, z=42,robot=Robot(), obstacles=[]):
+    def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
         """intxintxintxRobotxObstacle[] -> Arene"""
         self._x = x
         self._y = y
