@@ -1,14 +1,14 @@
 class Obstacle :
 	
-	def __init__(self,x,y,z=10,type='O',r=1.0,lo=0.0,la=0.0):
-		self._type=type
+	def __init__(self,x,y,z=10,nom='O',r=1.0,lo=0.0,la=0.0):
+		self._nom=nom
 		if self._type == 'O':
 			self._x=x
 			self._y=y
 			self._z=z
 			self._r=r		#si r est different de 0 alors cest un cercle sinon autre
 		
-		if self._type == 'C' :
+		if self._nom == 'C' :
 			self._x=x
 			self._y=y
 			self._z=z
