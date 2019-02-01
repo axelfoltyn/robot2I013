@@ -10,7 +10,7 @@ def deplacement():
 fenetre = Tk()
 
 # ouvre un espace de dessin
-canvas = Canvas(fenetre, width=800, height=600, background='grey')
+canvas = Canvas(fenetre, width=800, height=600, background='white')
 
 #affiche les dessins "canvas"	
 canvas.pack()
@@ -23,6 +23,9 @@ Bouton_Quitter.pack()
 # initialise le robot (représenté par un triangle indiquant sa direction et dont la pointe marque sa position)
 
 robot = canvas.create_polygon(100,100,60,90,60,110)
+
+o_rectangle = canvas.create_rectangle(300,300,350,370,fill = "black")
+o_circle = canvas.create_oval(600,150,650,200,fill = "black")
 
 
 deplacement()
