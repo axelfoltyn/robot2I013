@@ -28,3 +28,4 @@ def lecture(fichier):
                  break                           
     }  
     txt=Fichier.readline()
+  Fichier.close()    
