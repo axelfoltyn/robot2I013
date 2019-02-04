@@ -1,6 +1,6 @@
 #symbole de robot =R
 #symbole obstacle=O
-
+#utiliser with open
 
 def lecture(fichier):
   Fichier=open(fichier,"r")
@@ -29,3 +29,4 @@ def lecture(fichier):
     }  
     txt=Fichier.readline()
   Fichier.close()    
+  
