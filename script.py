@@ -3,71 +3,63 @@ from View import *
 from Arene import *
 from Obstacle import *
 
-robot = Robot()
-robot.update()
-print("Mon accéleration est : ", robot._acceleration)
-print("Ma position en x est : ",robot._position[0])
-print("Ma position en y est : ", robot._position[1])
-print("Ma position en z est : ", robot._position[2])
-print("Ma direction actuelle est : " , robot._direction)
+# Test lecture de fichier et initialisation de l'arene
+arene = lecture(text)
 
+arene._robot.update()
+print("Mon accéleration est : ", arene._robot._acceleration)
+print("Ma position en x est : ",arene._robot._position[0])
+print("Ma position en y est : ", arene._robot._position[1])
+print("Ma position en z est : ", arene._robot._position[2])
+print("Ma direction actuelle est : " , arene._robot._direction)
+arene.afficher()
 
 print("tourner")
-robot.tourner(50)
-robot.update()
-print("Mon accéleration est : " , robot._acceleration)
-print("Ma position en x est : " , robot._position[0])
-print("Ma position en y est : " , robot._position[1])
-print("Ma position en z est : " , robot._position[2])
-print("Ma direction actuelle est : " , robot._direction)
-
+arene._robot.tourner(50)
+arene._robot.update()
+print("Mon accéleration est : " , arene._robot._acceleration)
+print("Ma position en x est : " , arene._robot._position[0])
+print("Ma position en y est : " , arene._robot._position[1])
+print("Ma position en z est : " , arene._robot._position[2])
+print("Ma direction actuelle est : " , arene._robot._direction)
+arene.afficher()
 
 print("recup val acc")
-print("lacceleration est de", robot.val_accelerometre())
-robot.update()
-print("Mon accéleration est : " , robot._acceleration)
-print("Ma position en x est : " , robot._position[0])
-print("Ma position en y est : " , robot._position[1])
-print("Ma position en z est : " , robot._position[2])
-print("Ma direction actuelle est : " , robot._direction)
-
+print("lacceleration est de", arene._robot.val_accelerometre())
+arene._robot.update()
+print("Mon accéleration est : " , arene._robot._acceleration)
+print("Ma position en x est : " , arene._robot._position[0])
+print("Ma position en y est : " , arene._robot._position[1])
+print("Ma position en z est : " , arene._robot._position[2])
+print("Ma direction actuelle est : " , arene._robot._direction)
+arene.afficher()
 
 print("tourner")
-robot.tourner()
-robot.update()
-print("Mon accéleration est : " , robot._acceleration)
-print("Ma position en x est : " , robot._position[0])
-print("Ma position en y est : " , robot._position[1])
-print("Ma position en z est : " , robot._position[2])
-print("Ma direction actuelle est : " , robot._direction)
-
+arene._robot.tourner()
+arene._robot.update()
+print("Mon accéleration est : " , arene._robot._acceleration)
+print("Ma position en x est : " , arene._robot._position[0])
+print("Ma position en y est : " , arene._robot._position[1])
+print("Ma position en z est : " , arene._robot._position[2])
+print("Ma direction actuelle est : " , arene._robot._direction)
+arene.afficher()
 
 print("accelerer")
-robot.acceleration(1)
-robot.update()
-print("Mon accéleration est : " , robot._acceleration)
-print("Ma position en x est : " , robot._position[0])
-print("Ma position en y est : " , robot._position[1])
-print("Ma position en z est : " , robot._position[2])
-print("Ma direction actuelle est : " , robot._direction)
+arene._robot.acceleration(1)
+arene._robot.update()
+print("Mon accéleration est : " , arene._robot._acceleration)
+print("Ma position en x est : " , arene._robot._position[0])
+print("Ma position en y est : " , arene._robot._position[1])
+print("Ma position en z est : " , arene._robot._position[2])
+print("Ma direction actuelle est : " , arene._robot._direction)
 
-#Test de la classe View:
+arene.afficher()
 
-#initialisation(s) :
+arene._view_.endview()
 
-view = View(800,600)
-view.end_view()
 
-view2 = View(400,400)
-view2.endview()
 
-#Test de la classe Arene:
 
-arene = Arene()
-arene.endview()
-
-#Test de la lecture de fihcier 
-lecture(text)
 
 
 
