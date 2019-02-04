@@ -8,4 +8,5 @@ class Arene:
         self._z = z
         self._robot = robot
         self._obstacles = obstacles
+        self._view = View(x, y)
         
