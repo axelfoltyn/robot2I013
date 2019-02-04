@@ -1,7 +1,7 @@
 10
 20
 10
-A x y z R O             #A=Arene
+A x y z R O             #A=Arene Robot sera directement initialiser a lappelele
 R X Y Z DX DY DZ V A    #R=Robot
 
 #le premier caractere pour un obstacle sert a determiné se quil est 
