@@ -1,7 +1,4 @@
 from tkinter import *
-from Robot import *
-from Obstacle import *
-
 class View:
 	def __init__(self,x=800, y=600):
 		"""int * int -> View"""
@@ -10,9 +7,22 @@ class View:
 		self._canvas.pack()
 		self._Bouton_Quitter = Button(self._fenetre, text = "Quitter", command = self._fenetre.destroy)
 		self._Bouton_Quitter.pack()
+		self._objets = []
 
-	def afficher_robot(self, x, y, dx, dy):
-		self._robot = self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx)
+	def afficher_robot(self,robot):
+		x = robot._position[0]
+		y = robot._position[1]
+		dx = robot._direction[0]
+		dy = robot._direction[1]
+		self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
+
+	"""
+	def afficher_obstacle(self,obstacle):
+	"""
+
+	def clear():
+		for e in self._objets:
+			self._canvas.delete(e)
 
 	def endView(self):
 		self._fenetre.mainloop()
