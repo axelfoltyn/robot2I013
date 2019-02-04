@@ -10,3 +10,8 @@ class Arene:
         self._obstacles = obstacles
         self._view = View(x, y)
         
+    def afficher():
+        self._view.clear()
+        for i in obstacle :
+            self._view.affiche_obstacle(i)
+        self._view.afficher_robot(self._robot)
