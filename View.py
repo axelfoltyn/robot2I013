@@ -23,6 +23,7 @@ class View:
 	def clear():
 		for e in self._objets:
 			self._canvas.delete(e)
+		self._objets = []
 
 	def endView(self):
 		self._fenetre.mainloop()
