@@ -61,12 +61,11 @@ view.end_view()
 view2 = View(400,400)
 view2.endview()
 
-#Test de la classe Arene et obstacle:
+#Test de la classe Arene:
 
 arene = Arene()
-arene2 = Arene(70,70,70,[o1=Obstacle(lo = 4, la = 4)])
 arene.endview()
-arene2.endview()
+
 
 
 
