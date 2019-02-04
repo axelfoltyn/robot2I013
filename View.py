@@ -1,5 +1,6 @@
 from tkinter import *
 from Robot import *
+from Obstacle import *
 
 class View:
 	def __init__(self,x=800, y=600):
