@@ -1,0 +1,33 @@
+Comment utiliser TKinter :
+I.Les bases :
+
+
+1) Importer la bibliothèque :
+From tkinter import *
+Import tkinter
+
+2) On ouvre une fenêtre dans laquelle on fera l’affichage :
+Fenetre = Tk()
+
+3) On peut définir les dimensions de la fenêtre :
+Fenetre.geometry(« 800x600 »)
+
+4) Si on souhaite que l’utilisateur ne change pas la taille de la fenetre :
+Fenetre.resizable(width = False, height = False) 
+
+5) A la fin du programme ne pas oublier la méthode mainloop() pour que la fenêtre créée soit visible
+
+
+II.Les widgets:
+
+Les widgets sont des outils que nous pouvons utiliser afin d’afficher des choses sur la fenêtre que nous avons créée.
+Voici comment on utilise un widget de manière générale :
+<nom_variable> = <nom_widget>(parent (ici Fenetre), <paramètres>)
+
+Il existe de nombreux widgets, mais nous ne listerons ici que ceux dont nous avons besoin :
+-Canevas (pour faire des dessins sur la fenêtre)
+-Button (pour créer des boutons)
+-Entry (pour écrire dans la fenetre)
+
+Les widgets sont des classes, ils dispoent donc de plusieurs méthodes. 
+Pour en voir quelques unes avec un exemple concret, voir le fichier tk.py.
