@@ -30,6 +30,8 @@ o_circle = canvas.create_oval(600,150,650,200,fill = "black")
 
 #supprimer un élément
 canvas.delete(élément)
+#tout supprimer (dessins canvas)
+canvas.delete(ALL)
 
 
 deplacement()
