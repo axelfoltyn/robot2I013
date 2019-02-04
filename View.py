@@ -1,4 +1,5 @@
 from tkinter import *
+from Arene import *
 
 class View:
 	def __init__(self,x=800, y=600):
