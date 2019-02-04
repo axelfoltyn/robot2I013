@@ -66,6 +66,8 @@ view2.endview()
 arene = Arene()
 arene.endview()
 
+#Test de la lecture de fihcier 
+lecture(text)
 
 
 
