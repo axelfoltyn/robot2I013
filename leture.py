@@ -1,6 +1,7 @@
 #symbole de robot =R
 #symbole obstacle=O
 #utiliser with open
+#retourne larene
 
 def lecture(fichier):
   Fichier=open(fichier,"r")
