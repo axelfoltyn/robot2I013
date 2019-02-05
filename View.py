@@ -23,7 +23,7 @@ class View:
 	### faire attention à coordonnée y qui vaudra self._y - y !!! (pour avoir affichage à l'endroit)
 	"""
 
-	def clear():
+	def clear(self):
 		for e in self._objets:
 			self._canvas.delete(e)
 		self._objets = []
