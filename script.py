@@ -2,6 +2,7 @@ from Robot import *
 from View import *
 from Arene import *
 from Obstacle import *
+from lecture import *
 
 text="ressources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
