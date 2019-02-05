@@ -57,7 +57,7 @@ print("Ma direction actuelle est : " , arene._robot._direction)
 
 arene.afficher()
 
-arene._view_.endview()
+arene._view._endview()
 
 
 
