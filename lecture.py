@@ -34,4 +34,4 @@ def lecture(fichier):
   
   Fichier.close()    
   
-return a
+  return a
