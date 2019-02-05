@@ -3,6 +3,7 @@ from View import *
 from Arene import *
 from Obstacle import *
 
+text="fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
 arene = lecture(text)
 
