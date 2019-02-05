@@ -18,10 +18,9 @@ class View:
 		dy = robot._direction[1]
 		self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
 
-	"""
 	def afficher_obstacle(self,obstacle):
+		pass
 	### faire attention à coordonnée y qui vaudra self._y - y !!! (pour avoir affichage à l'endroit)
-	"""
 
 	def clear(self):
 		for e in self._objets:
