@@ -25,7 +25,7 @@ def lecture(fichier):
   while txt :    #parcour le fichier pour cree des obstacles ou robots
     arg=txt.split(" ")
     if 'O'==arg[0] : 
-      a.ajout_Obstacle(Obstacle(int(arg[1]),int(arg[2]),int(arg[3]),arg[0],flot(arg[4])))
+      a.ajout_Obstacle(Obstacle(int(arg[1]),int(arg[2]),int(arg[3]),arg[0],float(arg[4])))
                             
     if 'R'==arg[0] : 
       a.ajout_Robot(Robot([int(arg[1]),int(arg[2]),int(arg[3])],float(arg[4]),float(arg[5]),[float(arg[6]),float(arg[7]),float(arg[8])]))
