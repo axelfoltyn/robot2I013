@@ -13,7 +13,7 @@ class Robot:
     def val_accelerometre(self):
         MIN = -0.1
         MAX = 0.1
-        res = [0,1,2] #self.acceleration;
+        res = [self._acceleration*self._direction[0], self._acceleration*self._direction[1], self._acceleration * self._direction[2]];
         r= np.random.rand(3)
         res[0] += r[0] * (MAX-MIN) + MIN
         res[1] += r[1] * (MAX-MIN) + MIN
