@@ -21,5 +21,5 @@ class Arene:
     def afficher(self):
         self._view.clear()
         for i in self._obstacles :
-            self._view.affiche_obstacle(i)
+            self._view.afficher_obstacle(i)
         self._view.afficher_robot(self._robot)
