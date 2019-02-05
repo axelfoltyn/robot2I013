@@ -2,6 +2,8 @@
 #symbole obstacle=O
 #utiliser with open
 #retourne larene
+import Arene from *
+
 
 def lecture(fichier):
   Fichier=open(fichier,"r")
