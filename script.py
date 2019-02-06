@@ -55,7 +55,7 @@ print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view.update()
+arene.update()
 
 print("accelerer")
 arene._robot.acceleration(10)
@@ -67,15 +67,6 @@ print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view.update()
+arene.update(10)
 
 arene._view.endView()
-
-
-
-
-
-
-
-
-

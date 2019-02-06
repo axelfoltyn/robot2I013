@@ -23,3 +23,20 @@ class Arene:
         for i in self._obstacles :
             self._view.afficher_obstacle(i)
         self._view.afficher_robot(self._robot)
+
+    #dt en s
+    def update(self, dt = 1):
+        t = 0.04
+        self.afficher()
+        if(dt <= t):
+            self._robot.update(dt)
+            #for i in self._obstacles :
+            #    i.update(dt)
+            self._view.update(dt)
+        else:
+            self._robot.update(t)
+            #for i in self._obstacles :
+            #    i.update(0.45)
+            self._view.update(t)
+            self.update(dt-t)
+            
