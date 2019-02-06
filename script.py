@@ -59,7 +59,7 @@ arene.update()
 
 print("accelerer")
 arene._robot.acceleration(10)
-arene._robot.update()
+arene._robot.update(0.1)
 print("Mon accéleration est : " , arene._robot._acceleration)
 print("Ma position en x est : " , arene._robot._position[0])
 print("Ma position en y est : " , arene._robot._position[1])
