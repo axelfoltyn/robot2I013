@@ -33,6 +33,8 @@ canvas.delete(élément)
 #tout supprimer (dessins canvas)
 canvas.delete(ALL)
 
+#met a jour le canvas sert enormément pour le deplacement
+canvas.update()
 
 deplacement()
 
