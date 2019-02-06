@@ -3,7 +3,7 @@ from View import *
 from Arene import *
 from Obstacle import *
 from lecture import *
-from Tkinter import *
+from tkinter import *
 import time
 
 text="resources/fichier_test.txt"
@@ -18,9 +18,7 @@ print("Ma position en z est : ", arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view._canvas.pack()
-time.sleep(1)
-arene._view._canvas.update()
+arene._view.update()
 
 
 print("tourner")
@@ -33,9 +31,7 @@ print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view._canvas.pack()
-time.sleep(1)
-arene._view._canvas.update()
+arene._view.update()
 
 print("recup val acc")
 print("lacceleration est de", arene._robot.val_accelerometre())
@@ -47,9 +43,7 @@ print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view._canvas.pack()
-time.sleep(1)
-arene._view._canvas.update()
+arene._view.update()
 
 print("tourner")
 arene._robot.tourner()
@@ -61,9 +55,7 @@ print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view._canvas.pack()
-time.sleep(1)
-arene._view._canvas.update()
+arene._view.update()
 
 print("accelerer")
 arene._robot.acceleration(10)
@@ -75,9 +67,7 @@ print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
 arene.afficher()
 
-arene._view._canvas.pack()
-time.sleep(1)
-arene._view._canvas.update()
+arene._view.update()
 
 arene._view.endView()
 

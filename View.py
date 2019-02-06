@@ -1,4 +1,5 @@
 from tkinter import *
+import time
 class View:
 	def __init__(self,x=800, y=600):
 		"""int * int -> View"""
@@ -29,3 +30,9 @@ class View:
 
 	def endView(self):
 		self._fenetre.mainloop()
+
+        #dt en s
+	def update(self, dt=1):
+                self._canvas.pack()
+                time.sleep(dt)
+                self._canvas.update()
