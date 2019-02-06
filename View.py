@@ -20,7 +20,20 @@ class View:
                 self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
 
         def afficher_obstacle(self,obstacle):
-                pass
+                x0=obstacle._x
+                y0=self._y-obstacle._y
+    #si r est different de 0 alors cest un cercle sinon autre
+                if obstacle._r == 0:
+                        if (obstacle._lo != 0) and (obstacle._la != 0):
+                                self._objets.append(self._canvas.create_rectangle(obstacle._x,self.y-obstacle._y,obstacle._lo,obstacle._la,fill = "black"))
+                        else:
+                                print("L'obstacle n'existe pas")
+                else:
+                        r1 = obstacle._r
+                        x1=obstacle.x+(2*r1)
+                        y1=obstacle.y+(2*r1)
+                        self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "black"))
+
         ### faire attention à coordonnée y qui vaudra self._y - y !!! (pour avoir affichage à l'endroit)
 
         def clear(self):
