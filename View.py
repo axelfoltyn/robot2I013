@@ -23,12 +23,12 @@ class View:
                 x0=obstacle._x
                 y0=self._y-obstacle._y
     #si r est different de 0 alors cest un cercle sinon autre
-                if obstacle._r == 0:
+                if obstacle._nom == 'C':
                         if (obstacle._lo != 0) and (obstacle._la != 0):
                                 x1 = obstacle._x
                                 y1 = self._y-obstacle._y
-                                x2 = (obstacle._x)+obstacle._lo
-                                y2 = self._y-(obstacle._y+obstacle._la)
+                                x2 = x1+obstacle._lo
+                                y2 = y1+obstacle._la
                                 self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "black"))
                         else:
                                 print("L'obstacle n'existe pas")
