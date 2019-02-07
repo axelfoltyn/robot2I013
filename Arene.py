@@ -36,7 +36,7 @@ class Arene:
         else:
             self._robot.update(t)
             #for i in self._obstacles :
-            #    i.update(0.45)
+            #    i.update(t)
             self._view.update(t)
             self.update(dt-t)
             
