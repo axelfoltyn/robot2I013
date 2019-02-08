@@ -59,4 +59,8 @@ git push [<nom_remote>][<nom_branch>]
 # les partie en [] sont obligatoir pour le premier push apres le git sera que vous voulez push avec <nom_remote> sur la branche <nom_branch>
 
 II - les problemes
+<<<<<<< HEAD
 ceci est le message deja sur le git
+=======
+ceci est le message que vous voulez rajouter
+>>>>>>> creation d'une erreur de merge
