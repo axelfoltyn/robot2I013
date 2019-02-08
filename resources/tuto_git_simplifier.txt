@@ -12,21 +12,21 @@ plusieur possibilité :
 >>>cd <nom_dossier>
 
 #initialisé le git
-git init
+>>>git init
 
 #ajout de la remote origin
-git remote add origin <@git>
+>>>git remote add origin <@git>
 
 #recupérer les fichier (le nom de branche pricipale est master)
-git pull origin <nom_branche>
+>>>git pull origin <nom_branche>
 
 2 eme solution/
 
 #cloner le dossier git
-git clone <@git>
+>>>git clone <@git>
 
 #aller dans ce dossier
-cd <nom_dossier>
+>>>cd <nom_dossier>
 
 3 eme solution/
 -vous telecharger le dossier a partir du github
@@ -35,32 +35,66 @@ cd <nom_dossier>
 I.2 - commande git de base
 
 #avoir le manuel d'utilisation d'une commande git <nom_comande>
-git help <nom_comande>
+>>>git help <nom_comande>
 
 #voir nom de remote
-git remote-v
+>>>git remote-v
 
 # recupérer code sur la branche <n_b> du git
-git pull <nom_remote> <n_b>
+>>>git pull <nom_remote> <n_b>
 
 #ajout d'un fichier(on moficication) pour le prochain commit
-git add <nom de fichier>
+>>>git add <nom de fichier>
 
 #possiblité de faire git add -u pour rajouter les modification de tous les fichier present dans le git
 
 #crée un commit
-git commit -m "la description breve de ce que vous avez fait"
+>>>git commit -m "la description breve de ce que vous avez fait"
 
 #sans le -m vous ouvre votre editeur pour ecrire une description plus longue
 
 #envoi vos commit sur le git
-git push [<nom_remote>][<nom_branch>]
+>>>git push [<nom_remote>][<nom_branch>]
 
 # les partie en [] sont obligatoir pour le premier push apres le git sera que vous voulez push avec <nom_remote> sur la branche <nom_branch>
 
 II - les problemes
+#de temps en temps vous pouvez avoir des erreur du au fait qu'un fichier a ete modifier de votre coté et sur le git
+
+#dans le fichier corespondant vous aurez ceci dans l'endroi modifier par les deux coté
+
 <<<<<<< HEAD
 ceci est le message deja sur le git
 =======
 ceci est le message que vous voulez rajouter
->>>>>>> creation d'une erreur de merge
+>>>>>>> nom du commit
+
+#choisissez ce que vous gardez enlevez les <<<..., === et les >>>>...
+
+#ajout du ou des fichier coriger (ex pour 2 fichier)
+git add <fichier> <fichier2>
+
+#apres faite git status pour voir si tous les probleme sont gerer
+>>>git status
+rebasage en cours ; sur 66582ce
+Vous êtes en train de rebaser la branche 'master' sur '66582ce'.
+  (tous les conflits sont réglés : lancez "git rebase --continue")
+
+rien à valider, la copie de travail est propre
+
+#sit tous est fini vous n'avez plus qu'a finit le merge
+>>>git rebase --continue
+
+
+#si vous avez fait un commit du merge vous aurez ce message
+ Application de  creation d'une erreur de merge
+ Aucun changement - avez-vous oublié d'utiliser 'git add' ?
+ S'il n'y a plus rien à indexer, il se peut qu'autre chose ait déjà
+ introduit les mêmes changements ; vous pourriez avoir envie de sauter ce patch.
+
+Lorsque vous aurez résolu ce problème, lancez "git rebase --continue".
+Si vous préférez sauter ce patch, lancez "git rebase --skip" à la place.
+Pour extraire la branche d'origine et stopper le rebasage, lancez "git rebase --abort".
+
+# passez
+>>>git rebase --skip
