@@ -40,6 +40,12 @@ I.2 - commande git de base
 #voir nom de remote
 >>>git remote-v
 
+#voir ou vous en êtes au niveau des fichier ajouté au prochain commit, crée ou modifié sans avoir ete ajouté
+>>>git status
+
+#revenir a l'etat initial de la head '*' veux dire tout si vous souhaité remetre juste des .c par ex mettez '*.c'
+>>>git checkout -- '*'
+
 # recupérer code sur la branche <n_b> du git
 >>>git pull <nom_remote> <n_b>
 
@@ -58,7 +64,16 @@ I.2 - commande git de base
 
 # les partie en [] sont obligatoir pour le premier push apres le git sera que vous voulez push avec <nom_remote> sur la branche <nom_branch>
 
+
+
+============================================================================================================================================
+============================================================================================================================================
+============================================================================================================================================
+
+
 II - les problemes
+
+II.1 les merge
 #de temps en temps vous pouvez avoir des erreur du au fait qu'un fichier a ete modifier de votre coté et sur le git
 
 #dans le fichier corespondant vous aurez ceci dans l'endroi modifier par les deux coté
@@ -66,7 +81,7 @@ II - les problemes
 <<<<<<< HEAD
 ceci est le message deja sur le git
 =======
-ceci est le message que vous voulez rajouter
+ceci est le message que vous voulez rajouter a ka même position
 >>>>>>> nom du commit
 
 #choisissez ce que vous gardez enlevez les <<<..., === et les >>>>...
@@ -98,3 +113,36 @@ Pour extraire la branche d'origine et stopper le rebasage, lancez "git rebase --
 
 # passez
 >>>git rebase --skip
+
+
+============================================================================================================================================
+============================================================================================================================================
+============================================================================================================================================
+
+III - les branche
+
+#lister les branche
+>>>git branch -v
+dev    77f6c0a update tuto
+* master 77f6c0a update tuto
+
+
+
+#il y a 2 branche est vous êtes sur la branche master
+
+#creer une branch
+>>>git branch <nom_branch>
+
+#detruire une branch
+>>>git branch -d dev
+Branche dev supprimée (précédemment 77f6c0a)
+
+#pour aller sur une autre branche
+>>>git checkout <nom_branche>
+
+
+#ajout de la branche <ici> où vous êtes a la branche <nom_branche>
+>>>git checkout <nom_branche>
+>>>git merge <ici>
+#si <ici> ne sera plus utilisé
+git branch -d <ici>
