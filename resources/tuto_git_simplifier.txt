@@ -1,7 +1,7 @@
 I - BASE
 I.1 - Demmarer
 pour commencer un fichier git par raport a un git dont ladresse est <@git>
-Rq >>> represente le pront
+NB: >>> represente le prompt
 plusieur possibilité :
 
 1 solution/
@@ -11,7 +11,7 @@ plusieur possibilité :
 #aller dans ce dossier
 >>>cd <nom_dossier>
 
-#initialisé le git
+#initialiser le git
 >>>git init
 
 #ajout de la remote origin
@@ -81,7 +81,7 @@ II.1 les merge
 <<<<<<< HEAD
 ceci est le message deja sur le git
 =======
-ceci est le message que vous voulez rajouter a ka même position
+ceci est le message que vous voulez rajouter a la même position
 >>>>>>> nom du commit
 
 #choisissez ce que vous gardez enlevez les <<<..., === et les >>>>...
