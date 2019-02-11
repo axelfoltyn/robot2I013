@@ -19,6 +19,8 @@ class Obstacle :
 
     		if(distance<=r):
         		return True
+		else:
+			return False
 
 	def est_dans_rectangle(self,x,y,z):
     		x1=self._x + self._lo/2
