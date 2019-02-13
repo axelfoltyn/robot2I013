@@ -23,6 +23,8 @@ arene.update()
 
 print("tourner")
 arene._robot.tourner(50)
+while (arene._proximite() >= 15 ):
+  arene._robot._tourner(randint( 1, 360))
 arene._robot.update()
 print("Mon acceleration est : " , arene._robot._acceleration)
 print("Ma position en x est : " , arene._robot._position[0])
@@ -47,6 +49,8 @@ arene.update()
 
 print("tourner")
 arene._robot.tourner()
+while (arene._proximite() >= 15 ):
+  arene._robot._tourner(randint( 1, 360))
 arene._robot.update()
 print("Mon acceleration est : " , arene._robot._acceleration)
 print("Ma position en x est : " , arene._robot._position[0])
