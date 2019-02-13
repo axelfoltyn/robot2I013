@@ -49,7 +49,7 @@ class Arene:
         while(res < max):
             if (x_p + self._robot._direction[0]*res < 0 or x_p + self._robot._direction[0]*res > self._x or y_p + self._robot._direction[1]*res < 0 or y_p + self._robot._direction[1]*res > self._y):
                 return res
-            for o in obstacles:
+            for o in self._obstacles:
                 if o.est_dans(x_p + self._robot._direction[0]*res, y_p + self._robot._direction[1]*res, z_p + self._robot._direction[2]*res):
                     return res
             res += 0.1
