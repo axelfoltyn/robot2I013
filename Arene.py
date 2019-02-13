@@ -43,13 +43,14 @@ class Arene:
     def proximite(self):
         x_p = robot._x
         y_p = robot._y
+        z_p = robot._z
         max = 15 #en cm
         res = 0
         while(res < max):
-            if (robot._direction[0]*res < 0 or robot._direction[0]*res > self._x or robot._direction[1]*res < 0 or robot._direction[1]*res > self._x):
+            if (x_p + robot._direction[0]*res < 0 or x_p + robot._direction[0]*res > self._x or y_p + robot._direction[1]*res < 0 or y_p + robot._direction[1]*res > self._y):
                 return res
             for o in obstacles:
-                if o.est_dans(robot._direction[0]*res, robot._direction[1]*res, robot._direction[2]*res, robot._direction[3]*res):
+                if o.est_dans(x_p + robot._direction[0]*res, y_p + robot._direction[1]*res, z_p + robot._direction[2]*res):
                     return res
             res += 0.1
         return res
