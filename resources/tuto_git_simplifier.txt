@@ -28,9 +28,6 @@ plusieur possibilité :
 #aller dans ce dossier
 >>>cd <nom_dossier>
 
-3 eme solution/
--vous telecharger le dossier a partir du github
--vous deziper
 
 I.2 - commande git de base
 
