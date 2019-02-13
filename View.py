@@ -47,6 +47,8 @@ class View:
                 self._objets = []
 
         def endView(self):
+                self._canvas.configure(background = "lime green")
+                messagebox.showinfo("Fin du parcours", "Le parcours vient de se terminer")
                 self._fenetre.mainloop()
 
         #dt en s
