@@ -40,7 +40,7 @@ class Arene:
             self._view.update(t)
             self.update(dt-t)
     
-    def proximite():
+    def proximite(self):
         x_p = robot._x
         y_p = robot._y
         max = 15 #en cm
