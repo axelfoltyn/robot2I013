@@ -19,7 +19,6 @@ class Obstacle :
       y2=self._y - self._la
       print(self._nom,"||", x1,x,x2,"||",y1,y,y2)
       if ( x>=x1 and x<= x2 and y<=y1 and y>=y2) :
-        exit
         return True
       else:
         return False
