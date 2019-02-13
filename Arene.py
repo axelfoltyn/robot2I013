@@ -41,9 +41,9 @@ class Arene:
             self.update(dt-t)
     
     def proximite(self):
-        x_p = robot._x
-        y_p = robot._y
-        z_p = robot._z
+        x_p = _robot._x
+        y_p = _robot._y
+        z_p = _robot._z
         max = 15 #en cm
         res = 0
         while(res < max):
