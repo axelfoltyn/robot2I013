@@ -23,7 +23,7 @@ class Obstacle :
     			else:
         			return False
 		if (self._nom=='O'):
-			distance = math.sqrt((self._x-x)^2+(self._y-y)^2+(self._z-z)^2)
+			distance = math.sqrt((self._x-x)**2+(self._y-y)**2+(self._z-z)**2)
 
     			if(distance<=self._r):
         			return True
