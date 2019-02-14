@@ -1,5 +1,4 @@
 import math
-import random
 import numpy as np
 
 class Robot:
@@ -19,14 +18,7 @@ class Robot:
         res[1] += r[1] * (MAX-MIN) + MIN
         res[2] += r[2] * (MAX-MIN) + MIN
         return res
-    
-    """
-    def val_accelerometre(self):
-        res = self._acceleration
-        res += random.random()*0.02-0.01
-        return res
-    """
-    
+
     def update(self, dt = 1):
         self._vitesse += dt * self._acceleration
         self._position[0] += dt * self._vitesse * self._direction[0]
