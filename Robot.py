@@ -2,6 +2,9 @@ import math
 import random
 import numpy as np
 
+MIN = -0.1
+MAX = 0.1
+
 class Robot:
 
     def __init__(self,position=[75,60,0],acceleration=0.0,vitesse=0.0,direction=[1.0,0.0,0.0]):
@@ -11,8 +14,6 @@ class Robot:
         self._direction=direction
 
     def val_accelerometre(self):
-        MIN = -0.1
-        MAX = 0.1
         res = [self._acceleration*self._direction[0], self._acceleration*self._direction[1], self._acceleration * self._direction[2]];
         r= np.random.rand(3)
         res[0] += r[0] * (MAX-MIN) + MIN
