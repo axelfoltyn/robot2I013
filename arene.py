@@ -4,7 +4,7 @@ from obstacle import *
 
 class Arene:
     def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
-        """int * int * int * Robot * Obstacle[] -> Arene"""
+    """int * int * int * Robot * Obstacle[] -> Arene"""
         self._x = x
         self._y = y
         self._z = z
@@ -16,12 +16,12 @@ class Arene:
         self._robot = robot
         
     def ajout_Obstacle(self,obstacle):
-        self._obstacles.append(obstacle) 
+        self._obstacles.append(obstacle)
         
     def afficher(self):
         self._view.clear()
-        for i in self._obstacles :
-            self._view.afficher_obstacle(i)
+        for e in self._obstacles :
+            self._view.afficher_obstacle(e)
         self._view.afficher_robot(self._robot)
 
     #dt en s
@@ -31,12 +31,12 @@ class Arene:
         if(dt <= t):
             self._robot.update(dt)
             #for i in self._obstacles :
-            #    i.update(dt)
+            #   i.update(dt)
             self._view.update(dt)
         else:
             self._robot.update(t)
             #for i in self._obstacles :
-            #    i.update(t)
+            #   i.update(t)
             self._view.update(t)
             self.update(dt-t)
     
