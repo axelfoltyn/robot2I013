@@ -12,11 +12,11 @@ text="resources/fichier_test.txt"
 arene = lecture(text)
 
 while (True):
-  while (arene.proximite() <= 55 ):
-    arene._robot._vitesse=0.0
-    arene._robot._acceleration=0.0
-    arene._robot.tourner(randint(1, 360))
-  if (arene._robot._acceleration==0.0):
-    arene._robot.acceleration(10)
-  arene.afficher()
-  arene.update(0.40)
+    while (arene.proximite() <= 55 ):
+        arene._robot._vitesse=0.0
+        arene._robot._acceleration=0.0
+        arene._robot.tourner(randint(1, 360))
+    if (arene._robot._acceleration==0.0):
+        arene._robot.acceleration(10)
+        arene.afficher()
+        arene.update(0.40)
