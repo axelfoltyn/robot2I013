@@ -33,9 +33,11 @@ class View:
                         else:
                                 print("L'obstacle n'existe pas")
                 else:
+                        x0 = obstacle._x - obstacle._r
+                        y0 = y0 - obstacle._r
                         r1 = obstacle._r
-                        x1=obstacle._x+(2*r1)
-                        y1=self._y-obstacle._y+(2*r1)
+                        x1=x0+(2*r1)
+                        y1=y0+(2*r1)
                         self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "black"))
 
 
