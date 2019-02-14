@@ -36,3 +36,7 @@ class Robot:
         
     def acceleration(self,acceleration):
         self._acceleration += acceleration
+
+    def stop(self):
+        self._acceleration=0
+        self._vitesse=0
