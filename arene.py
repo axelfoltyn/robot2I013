@@ -1,4 +1,4 @@
-rom view import *
+from view import *
 from robot import *
 from obstacle import *
 
