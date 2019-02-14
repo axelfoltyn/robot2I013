@@ -66,10 +66,10 @@ class Arene:
             self.update(dt-t)                   #on rappelle la fonction avec un dt plus petit 
 
     def proximite(self):
-    """
-       Fonction qui permet au robot de changer de direction de manière aléatoire 
-       lorsqu'il est trop proche d'un obstacle
-    """
+        """
+        Fonction qui permet au robot de changer de direction de manière aléatoire
+        lorsqu'il est trop proche d'un obstacle
+        """
         x_p = self._robot._position[0]
         y_p = self._robot._position[1]
         z_p = self._robot._position[2]
