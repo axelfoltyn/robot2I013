@@ -8,7 +8,7 @@ from Robot import *
 
 def lecture(fichier):
   Fichier=open(fichier,"r")
-  
+   
   txt=Fichier.readline()
   x=int(txt)
   
@@ -20,7 +20,6 @@ def lecture(fichier):
   
   a= Arene(x,y,z)  #creation de arene
   
-  txt=Fichier.readline()
   n=0
   for elt in Fichier.readlines() :    #parcour le fichier pour cree des obstacles ou robots
     arg=elt.split(" ")
