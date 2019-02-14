@@ -18,5 +18,5 @@ while (True):
         arene._robot.tourner(randint(1, 360))
     if (arene._robot._acceleration==0.0):
         arene._robot.acceleration(10)
-        arene.afficher()
-        arene.update(0.40)
+    arene.afficher()
+    arene.update(0.40)
