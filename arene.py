@@ -2,78 +2,45 @@ from view import *
 from robot import *
 from obstacle import *
 
-class Arene:
+class arene:
     def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
-        """
-    int * int * int * Robot * Obstacle[] -> Arene
-    L'arene contient le robot et les obstacles
-    :param x: longueur de l'arène
-    :param y: largeur de l'arène
-    :param z: hauteur de l'arène
-    """
-        #inititialisation des paramètres de l'arene
-
+        """intxintxintxRobotxObstacle[] -> Arene"""
         self._x = x
         self._y = y
         self._z = z
         self._robot = robot
         self._obstacles = obstacles
         self._view = View(x, y)
-
+        
     def ajout_Robot(self, robot):
-        """
-    On peut ajouter un robot dans l'arene
-    :param robot: robot a ajouter dans l'arène
-    ne retourne rien
-    """
         self._robot = robot
-
+        
     def ajout_Obstacle(self,obstacle):
-        """
-    Permet d'ajouter un obstacle a notre liste d'obstacle
-    :param obstacle: obstacle a ajouter
-    """
-        self._obstacles.append(obstacle)
-
+        self._obstacles.append(obstacle) 
+        
     def afficher(self):
-        """
-    Affichage de l'arene et de ce que contient l'arène
-    """
-        self._view.clear()                      #On efface d'abord ce qui etait affiche precedemment
-        for i in self._obstacles :              #On procède a l'affichage des obstacles
+        self._view.clear()
+        for i in self._obstacles :
             self._view.afficher_obstacle(i)
-        self._view.afficher_robot(self._robot)  #On affiche le robot
+        self._view.afficher_robot(self._robot)
 
     #dt en s
     def update(self, dt = 1):
-        """
-    Permet de mettre a jour l'arène et ses elements
-    :param dt: temps en secondes represente le temps
-    ecoule pendant update
-    """
-        t = 0.04                                #intervalle de temps par defaut (40 ms)
-        self.afficher()                         #affichage de l'arène
-        if(dt <= t):                            #si le temps dt insere est inferieur a 40ms on prendra dt
+        t = 0.04
+        self.afficher()
+        if(dt <= t):
             self._robot.update(dt)
             #for i in self._obstacles :
             #    i.update(dt)
-            self._view.update(dt)              #il n'y a qu'un seul affichage
-            if self.proximite() == 0:
-                self._view.end_view(False)
+            self._view.update(dt)
         else:
             self._robot.update(t)
             #for i in self._obstacles :
             #    i.update(t)
             self._view.update(t)
-            if self.proximite() == 0:
-                self._view.end_view(False)
-            self.update(dt-t)                   #on rappelle la fonction avec un dt plus petit
-
+            self.update(dt-t)
+    
     def proximite(self):
-        """
-    Fonction qui permet au robot de changer de direction de manière aleatoire
-    lorsqu'il est trop proche d'un obstacle
-    """
         x_p = self._robot._position[0]
         y_p = self._robot._position[1]
         z_p = self._robot._position[2]
