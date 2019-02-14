@@ -11,7 +11,6 @@ text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
 arene = lecture(text)
 
-
 while (True):                                         #On crée une boucle infinie
   while (arene.proximite() <= 55 ):                   #Tant que le robot est à une distance inférieure à 55 d'un objet
     arene._robot._vitesse=0.0                         #On met l'acceleration et la vitesse à 0
