@@ -4,7 +4,7 @@ from obstacle import *
 
 class arene:
     def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
-        """intxintxintxRobotxObstacle[] -> Arene"""
+        """int * int * int * Robot * Obstacle[] -> Arene"""
         self._x = x
         self._y = y
         self._z = z
