@@ -1,8 +1,8 @@
-from View import *
-from Robot import *
-from Obstacle import *
+from view import *
+from robot import *
+from obstacle import *
 
-class Arene:
+class arene:
     def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
         """intxintxintxRobotxObstacle[] -> Arene"""
         self._x = x
