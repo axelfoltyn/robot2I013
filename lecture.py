@@ -22,8 +22,8 @@ def lecture(fichier):
   
   txt=Fichier.readline()
   n=0
-  while txt :    #parcour le fichier pour cree des obstacles ou robots
-    arg=txt.split(" ")
+  for elt in Fichier.readlines() :    #parcour le fichier pour cree des obstacles ou robots
+    arg=elt.split(" ")
     if 'O'==arg[0] : 
       a.ajout_Obstacle(Obstacle(int(arg[1]),int(arg[2]),int(arg[3]),arg[0],float(arg[4])))
                             
@@ -33,8 +33,7 @@ def lecture(fichier):
     if 'C'==arg[0] :
       a.ajout_Obstacle(Obstacle(int(arg[1]),int(arg[2]),int(arg[3]),arg[0],lo=float(arg[4]),la=float(arg[5])))
                                                    
-    txt=Fichier.readline()
-  
+      
   Fichier.close()    
   
   return a
