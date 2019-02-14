@@ -1,7 +1,7 @@
-from Robot import *
-from View import *
-from Arene import *
-from Obstacle import *
+from robot import *
+from view import *
+from arene import *
+from obstacle import *
 from lecture import *
 from tkinter import *
 import time
