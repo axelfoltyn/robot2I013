@@ -34,11 +34,12 @@ class Robot:
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
         
     def acceleration(self,acceleration):
-        self._acceleration += acceleration
+        if(self._acceleration <= 60):
+            self._acceleration += acceleration
 
     def stop(self):
         self._acceleration=0
         self._vitesse=0
 
     def toString(self):
-        return "R"
+        return "R"+" "+str(self._position[0])+" "+str(self._position[1])+" "+str(self._position[2])+" "+str(self._acceleration)+" "+str(self._vitesse)+" "+str(self._direction[0])+" "+str(self._direction[1])+" "+str(self._direction[2])
