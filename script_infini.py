@@ -6,16 +6,19 @@ from lecture import *
 from tkinter import *
 import time
 from random import *
+from ecriture import *
 
-text="resources/fichier_test.txt"
+text="resources/test.txt"
 # Test lecture de fichier et initialisation de l'arene
 arene = lecture(text)
 
 while (True):
-    while (arene.proximite() <= 55 ):
+    while (arene.proximite() <= 55 ): 
         arene._robot.stop()
         arene._robot.tourner(randint(1, 360))
     if (arene._robot._acceleration==0.0):
-        arene._robot.acceleration(100)
+        arene._robot.acceleration(20)
+    #if (random() <= 0.10):
+    #	ecriture2("resources/test.txt", arene )
     arene.afficher()
     arene.update(0.40)
