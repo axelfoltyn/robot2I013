@@ -39,3 +39,6 @@ class Robot:
     def stop(self):
         self._acceleration=0
         self._vitesse=0
+
+    def toString(self):
+        return "R"
