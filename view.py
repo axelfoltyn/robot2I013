@@ -1,6 +1,8 @@
 from tkinter import *
 import time
 import sys
+from obstacle import *
+
 
 class View:
     def __init__(self,x=800, y=600):
@@ -25,7 +27,7 @@ class View:
         x0=obstacle._x
         y0=self._y-obstacle._y
         #si r est different de 0 alors cest un cercle sinon autre
-        if obstacle._nom == 'C':
+        if isinstance(obstacle, Obstacle_carre):
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
                 y1 = self._y-obstacle._y

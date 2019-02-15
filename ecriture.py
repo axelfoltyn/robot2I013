@@ -2,13 +2,13 @@ from arene import *
 from robot import *
 from obstacle import *
 
-def ecriture(fichier):
+def ecriture2(fichier, arene):
 	Fichier=open(fichier,"w")
-	Fichier.write(arene._x)
-	Fichier.write(arene._y)
-	Fichier.write(arene._z)
+	Fichier.write(str(arene._x)+"\n")
+	Fichier.write(str(arene._y)+"\n")
+	Fichier.write(str(arene._z)+"\n")
 	for i in arene._obstacles :
-		Fichier.write(i.toString())
+		Fichier.write(i.toString()+"\n")
 
 	Fichier.close()
 

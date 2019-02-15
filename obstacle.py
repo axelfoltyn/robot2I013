@@ -21,7 +21,7 @@ class Obstacle :
         if (self._nom=='O'):                                        #Pour un obstacle Rond 
             return (x-self._x)**2+(y-self._y)**2 <= self._r**2      #On verifie si les coordonées de l'objet se trouvent dans le cercle
 
-    def toString():
+    def toString(self):
         return ""
 
 
@@ -42,11 +42,10 @@ class Obstacle_carre(Obstacle):
         return x>=x1 and x<= x2 and y<=y1 and y>=y2             #Si les coordonées de l'objet touchent le rectangle ou sont dedans
 
     def toString(self):
-        return "C"+str(self._x)+str(self._y)+str(self._z)+str(self._lo)+str(self._la)
+        return "C"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._lo)+" "+str(self._la)
 
 class Obstacle_rond(Obstacle):
     def __init__(self,x,y,z=0,r=1.0):        #Initialisation des arguments
-        self._nom=nom
         self._x=x
         self._y=y
         self._z=z
@@ -57,4 +56,4 @@ class Obstacle_rond(Obstacle):
         return (x-self._x)**2+(y-self._y)**2 <= self._r**2      #On verifie si les coordonées du point se trouvent dans le cercle
     
     def toString(self):
-        return "O"+str(self._x)+str(self._y)+str(self._z)+str(self._r)
+        return "O"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._r)
