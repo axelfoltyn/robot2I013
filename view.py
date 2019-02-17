@@ -1,6 +1,6 @@
-from tkinter import *
-import time
 import sys
+import time
+from tkinter import *
 from obstacle import *
 
 
@@ -51,7 +51,7 @@ class View:
             self._canvas.delete(e)
         self._objets = []
 
-    def endView(self, b=True):
+    def end_view(self, b=True):
         if b:
             self._canvas.configure(background = "lime green")
         else:
