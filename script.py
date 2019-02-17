@@ -1,10 +1,10 @@
-from Robot import *
-from View import *
-from Arene import *
-from Obstacle import *
-from lecture import *
-from tkinter import *
 import time
+from tkinter import *
+from view import *
+from arene import *
+from robot import *
+from obstacle import *
+from lecture import *
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
@@ -69,4 +69,4 @@ arene.afficher()
 
 arene.update(10)
 
-arene._view.endView()
+arene._view.end_view()

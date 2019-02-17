@@ -1,6 +1,6 @@
-from tkinter import *
-import time
 import sys
+import time
+from tkinter import *
 from obstacle import *
 
 class View:
@@ -50,9 +50,12 @@ class View:
             self._canvas.delete(e)
         self._objets = []
 
-    def endView(self):
-        self._canvas.configure(background = "lime green")
-        messagebox.showinfo("Fin du parcours", "Le parcours vient de se terminer")
+
+    def end_view(self, b=True):
+        if b:
+            self._canvas.configure(background = "lime green")
+        else:
+            self._canvas.configure(background = "red")
         self._fenetre.mainloop()
 
     #dt en s

@@ -1,11 +1,13 @@
-from robot import *
-from view import *
-from arene import *
-from obstacle import *
-from lecture import *
-from tkinter import *
 import time
 from random import *
+from tkinter import *
+from view import *
+from arene import *
+from robot import *
+from obstacle import *
+from lecture import *
+from random import *
+from ecriture import *
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene

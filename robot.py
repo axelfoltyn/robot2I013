@@ -33,7 +33,7 @@ class Robot:
         dy = self._direction[1]
         self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
-        
+
     def acceleration(self,acceleration):
         self._acceleration += acceleration
 
@@ -42,4 +42,4 @@ class Robot:
         self._vitesse=0
 
     def toString(self):
-        return "R"
+        return "R"+" "+str(self._position[0])+" "+str(self._position[1])+" "+str(self._position[2])+" "+str(self._acceleration)+" "+str(self._vitesse)+" "+str(self._direction[0])+" "+str(self._direction[1])+" "+str(self._direction[2])
