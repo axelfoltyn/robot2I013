@@ -32,7 +32,7 @@ class Robot:
         dy = self._direction[1]
         self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
-        
+
     def acceleration(self,acceleration):
         if(self._acceleration <= 60):
             self._acceleration += acceleration
