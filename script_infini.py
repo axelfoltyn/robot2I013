@@ -19,5 +19,7 @@ while (True):                                         #On crée une boucle infin
     arene._robot.tourner(randint(1, 360))             #Le robot tourne ensuite avec un angle qui prend une valeur aléatoire entre 0° et 360°
   if (arene._robot._acceleration==0.0):               #Si l'accélartion a été mise à 0
     arene._robot.acceleration(10)                     #On la remet à 10 l'accéleration pour que le robot reparte
+  if (random() <= 0.10):
+       ecriture2("resources/fichier_test.txt", arene )
   arene.afficher()
   arene.update(0.40)                                  #On update l'arene toute les 40ms
