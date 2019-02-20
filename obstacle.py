@@ -3,7 +3,18 @@ import math
 class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
     def __init__(self,x,y,z=0,nom='O',r=1.0,lo=0.0,la=0.0):        #Initialisation des arguments
-        self._nom=nom
+        """
+        Cette fonction initialise un obstacle de l'arène 
+        L'obstacle est un cercle par défaut
+        : param x   : position sur l'axe des abscisses
+        : param y   : position sur l'axe des ordonées 
+        : param z   : position sur la cote 
+        : param nom : nom de l'obstacle 
+        : param r   : rayon si c'est un cercle 
+        : param lo  : longueur du rectangle 
+        : param la  : largeur du rectangle
+        """
+        self._nom=nom                                               #initialisation des arguments                                     
         self._x=x
         self._y=y
         self._z=z
@@ -11,7 +22,13 @@ class Obstacle :
         self._lo=lo
         self._la=la
 
-    def est_dans(self,x,y,z):                                       #On vérifie si l'objet de coordonées x,y,z se trouve dans l'obstacle
+    def est_dans(self,x,y,z):
+        """
+        Cette fonction vérifie si l'objet de coordonées x y et z se trouve dans l'obstacle 
+        : param x: position sur l'axe des abscisses
+        : param y: position sur l'axe des ordonées
+        : param z: position sur la cote 
+        """
         if (self._nom=='C'):                                        #Si c'est un rectangle
             x1=self._x                                              #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
             x2=self._x + self._lo
