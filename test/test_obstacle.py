@@ -26,3 +26,27 @@ class ObstacleTestCarre(unittest,TestCase):
 
     def test_toString(self)
         self.assertEqual(self.obstaclec.toString(),"C"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.LO)+" "+str(self.LA))
+
+        
+class ObstacleTestRond(unittest, TestCase):
+    def setUp(self):
+        self.X = int(random.random()* 10000)
+        self.Y = int(random.random()* 10000)
+        self.Z = int(random.random()* 10000)
+        self.R = int(random.random()* 10000)
+        self.obstacler = ObstacleTestRond(self.X, self.Y, self.Z, self.R)
+
+    def test_rond(self):
+        self.assertEqual(self.X, self.obstacler._x)
+        self.assertEqual(self.Y, self.obstacler._y)
+        self.assertEqual(self.Z, self.obstacler._z)
+        self.assertEqual(self.R, self.obstacler._r)
+
+    def test_est_dans(self, x, y, z):
+        res = obstacler.est_dans(x,y,z)
+        self.assertEqual(res,(x-self.X)**2+(y-self.X)**2 <= self.R**2)
+
+    def test_toSttring(self):
+        self.assertEqual(self.obstacler.toString(),"O"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.R))
+
+    
