@@ -8,16 +8,17 @@ MAX = 0.1
 
 class Robot:
 
-    self._min_bruit_acceleration = -0.1
-    self._max_bruit_acceleration = 0.1
-    self._min_bruit_proximite = -1.0
-    self._max_bruit_proximite = 1.0
+
 
     def __init__(self,position=[75,60,0],acceleration=0.0,vitesse=0.0,direction=[1.0,0.0,0.0]):
         self._position=position
         self._acceleration=acceleration
         self._vitesse=vitesse
         self._direction=direction
+        self._min_bruit_acceleration = -0.1
+        self._max_bruit_acceleration = 0.1
+        self._min_bruit_proximite = -1.0
+        self._max_bruit_proximite = 1.0
 
     def val_accelerometre(self):
         MIN = self._min_bruit_acceleration
