@@ -5,6 +5,11 @@ import random
 
 class Robot:
 
+    self._min_bruit_acceleration = -0.1
+    self._max_bruit_acceleration = 0.1
+    self._min_bruit_proximite = -1.0
+    self._max_bruit_proximite = 1.0
+
     def __init__(self,position=[75,60,0],acceleration=0.0,vitesse=0.0,direction=[1.0,0.0,0.0]):
         self._position=position
         self._acceleration=acceleration
@@ -12,8 +17,8 @@ class Robot:
         self._direction=direction
 
     def val_accelerometre(self):
-        MIN = -0.1
-        MAX = 0.1
+        MIN = self._min_bruit_acceleration
+        MAX = self._max_bruit_acceleration
         res = [self._acceleration*self._direction[0], self._acceleration*self._direction[1], self._acceleration * self._direction[2]];
         r= np.random.rand(3)
         res[0] += r[0] * (MAX-MIN) + MIN
@@ -36,7 +41,6 @@ class Robot:
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
 
     def acceleration(self,acceleration):
-        if(self._acceleration <= 60):
             self._acceleration += acceleration
 
     def stop(self):
@@ -47,8 +51,7 @@ class Robot:
         return "R"+" "+str(self._position[0])+" "+str(self._position[1])+" "+str(self._position[2])+" "+str(self._acceleration)+" "+str(self._vitesse)+" "+str(self._direction[0])+" "+str(self._direction[1])+" "+str(self._direction[2])
 
     def proximite_bruit(self,arene):
-        MAX = 1.0
-        MIN = -1.0
+        MIN = self._min_bruit_proximite
+        MAX = self._max_bruit_proximite
         bruit = random.random() * (MAX-MIN) + MIN
-        res = arene.proximite()+bruit
-        return res
+        return arene.proximite()+bruit
