@@ -1,7 +1,7 @@
 import sys
 import time
 from tkinter import *
-from obstacle import *
+from ..model import Robot, Arene, Obstacle, Obstacle_carre, Obstacle_rond
 
 
 class View:

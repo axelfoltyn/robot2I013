@@ -1,6 +1,5 @@
-from view import *
-from robot import *
-from obstacle import *
+from model.robot import *
+from ..view.view import View
 
 class Arene:
     def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
