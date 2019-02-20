@@ -73,6 +73,10 @@ class View:
 
 
     def end_view(self, b=True):
+        """
+        Cette fonction indique la fin de l'affichage
+        : param b: booleen permattant de verifier si nous sommes à la fin du script
+        """
         if b:
             self._canvas.configure(background = "lime green")
             messagebox.showinfo("Fin du parcours","Le parcours vient de se terminer")
