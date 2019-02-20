@@ -7,8 +7,13 @@ from robot import *
 from obstacle import *
 
 def lecture(fichier):
-    Fichier=open(fichier,"r")
-    txt=Fichier.readline()
+    """
+    Cette fonction prend un fichier dans lequel l'arene est décrite 
+    et l'initialise à partir de cette description 
+    : param fichier : fichier à partir du quel on fait la lecture 
+    """
+    Fichier=open(fichier,"r")           #ouverture du fichier 
+    txt=Fichier.readline()              #lecture des coordonées de l'arene 
     x=int(txt)
     txt=Fichier.readline()
     y=int(txt)
@@ -24,5 +29,5 @@ def lecture(fichier):
             a.ajout_Robot(Robot([float(arg[1]),float(arg[2]),float(arg[3])],float(arg[4]),float(arg[5]),[float(arg[6]),float(arg[7]),float(arg[8])]))
         if 'C'==arg[0] :
             a.ajout_Obstacle(Obstacle_carre(float(arg[1]),float(arg[2]),float(arg[3]),lo=float(arg[4]),la=float(arg[5])))
-    Fichier.close()
-    return a
+    Fichier.close()                     #fermeture du fichier 
+    return a                            # On retourne l'arène que l'on a initialisée
