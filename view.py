@@ -61,7 +61,7 @@ class View:
 
         ### faire attention à coordonnée y qui vaudra self._y - y !!! (pour avoir affichage à l'endroit)
 
-     def clear(self):
+    def clear(self):
                 """
                 Cette fonction supprime tous les éléments affichés sur l'arene 
                 """
