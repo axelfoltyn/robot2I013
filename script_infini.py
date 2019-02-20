@@ -21,5 +21,7 @@ while (True):                                         #On crée une boucle infin
     arene._robot.acceleration(10)                     #On la remet à 10 l'accéleration pour que le robot reparte
   if (random() <= 0.10):
        ecriture2("resources/fichier_test.txt", arene )
+  if (random()<=0.0075) :
+        arene = lecture("resources/fichier_test.txt")
   arene.afficher()
   arene.update(0.40)                                  #On update l'arene toute les 40ms
