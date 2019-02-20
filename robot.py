@@ -1,5 +1,7 @@
 import math
 import numpy as np
+import random
+
 
 class Robot:
 
@@ -43,3 +45,10 @@ class Robot:
 
     def toString(self):
         return "R"+" "+str(self._position[0])+" "+str(self._position[1])+" "+str(self._position[2])+" "+str(self._acceleration)+" "+str(self._vitesse)+" "+str(self._direction[0])+" "+str(self._direction[1])+" "+str(self._direction[2])
+
+    def proximite_bruit(self,arene):
+        MAX = 1.0
+        MIN = -1.0
+        bruit = random.random() * (MAX-MIN) + MIN
+        res = arene.proximite()+bruit
+        return res
