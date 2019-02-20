@@ -44,7 +44,7 @@ class Robot:
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
 
     def acceleration(self,acceleration):
-        self._acceleration += acceleration
+            self._acceleration += acceleration      # if(self._acceleration <= 60):
 
     def stop(self):
         self._acceleration=0
