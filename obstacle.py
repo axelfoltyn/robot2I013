@@ -22,7 +22,7 @@ class Obstacle :
         self._lo=lo
         self._la=la
 
-    def est_dans(self,x,y,z):
+     def est_dans(self,x,y,z):
         """
         Cette fonction vérifie si l'objet de coordonées x y et z se trouve dans l'obstacle 
         : param x: position sur l'axe des abscisses
