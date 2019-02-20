@@ -20,7 +20,8 @@ while (True):
         arene._robot.acceleration(20)
     if (random() <= 0.10):
         ecriture2("resources/fichier_test.txt", arene )
-    if (random()<=0.0075) :
-        arene = lecture("resources/fichier_test.txt")
+    #if (random()<=0.0075) : #utilise pour relire le fichier
+    #    arene = lecture("resources/fichier_test.txt")
+    break
     arene.afficher()
     arene.update(0.40)
