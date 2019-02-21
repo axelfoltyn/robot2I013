@@ -41,5 +41,5 @@ class Robot:
         self._acceleration=0
         self._vitesse=0
 
-    def toString(self):
+    def __init__(self):
         return "R"+" "+str(self._position[0])+" "+str(self._position[1])+" "+str(self._position[2])+" "+str(self._acceleration)+" "+str(self._vitesse)+" "+str(self._direction[0])+" "+str(self._direction[1])+" "+str(self._direction[2])
