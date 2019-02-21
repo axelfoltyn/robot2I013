@@ -28,3 +28,12 @@ class TestArene(unittest, TestCase):
         self.assertEqual(self.obstacles, self.arene._obstacles)
         self.assertEqual(self.view_x, self.arene._view_x)
         self.assertEqual(self.view_y, self.arene._view_y)
+    
+    def Test_update(self):
+        dt = random.random()*100
+        self.arene.update(dt)
+  
+        self.assertEqual(arene.robot._position[0],  robot.X + dt * robot.V * self.DX)
+        self.assertEqual(arene.robot._position[1],  robot.Y + dt * robot.V * self.DY)
+        self.assertEqual(arene.robot._position[2],  robot.Z + dt * robot.V * self.DZ)
+        
