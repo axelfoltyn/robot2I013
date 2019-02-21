@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from obstacle import Obstacle_carre, Obstacle_rond
+from Projet import Obstacle_carre, Obstacle_rond
 
 
 class ObstacleTestCarre(unittest.TestCase):
@@ -15,10 +15,10 @@ class ObstacleTestCarre(unittest.TestCase):
 
     def test_cree(self):
         self.assertEqual(self.X, self.obstaclec._x)
-        self.assertEqual(self.X, self.obstaclec._y)
-        self.assertEqual(self.X, self.obstaclec._z)
-        self.assertEqual(self.X, self.obstaclec._lo)
-        self.assertEqual(self.X, self.obstaclec._la)
+        self.assertEqual(self.Y, self.obstaclec._y)
+        self.assertEqual(self.Z, self.obstaclec._z)
+        self.assertEqual(self.LO, self.obstaclec._lo)
+        self.assertEqual(self.LA, self.obstaclec._la)
 
     def test_est_dans(self):
         x = int(random.random()* 10000)
@@ -50,7 +50,7 @@ class ObstacleTestRond(unittest.TestCase):
         y = int(random.random()* 10000)
         z = int(random.random()* 10000)
         res = self.obstacler.est_dans(x,y,z)
-        self.assertEqual(res,(x-self.X)**2+(y-self.X)**2 <= self.R**2)
+        self.assertEqual(res,(x-self.X)**2+(y-self.Y)**2 <= self.R**2)
 
     def test_toSttring(self):
         self.assertEqual(self.obstacler.toString(),"O"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.R))
