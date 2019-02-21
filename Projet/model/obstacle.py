@@ -27,7 +27,7 @@ class Obstacle :
 
 class Obstacle_carre(Obstacle):
 
-    def __init__(self,x,y,z=0,r=1.0,lo=0.0,la=0.0):                 #Initialisation des arguments
+    def __init__(self,x,y,z=0,lo=0.0,la=0.0):                 #Initialisation des arguments
         self._x=x
         self._y=y
         self._z=z

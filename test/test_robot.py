@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from robot import Robot
+from Projet import Robot
 
 
 
@@ -49,14 +49,14 @@ class RobotTest(unittest.TestCase):
 
     def test_tourner(self):
         angle = random.random()*360
-        self.robot.tourner(angle)
         trad = math.radians(angle)
+        self.robot.tourner(angle)
         dx = self.DX
         dy = self.DY
 
-        self.assertEqual(self.robot._position[0],  dx*math.cos(trad) - dy*math.sin(trad))
-        self.assertEqual(self.robot._position[1],  self.DX*math.sin(trad) + self.DY*math.cos(trad))
-        self.assertEqual(self.robot._position[2],  self.DZ)
+        self.assertEqual(self.robot._direction[0],  dx*math.cos(trad) - dy*math.sin(trad))
+        self.assertEqual(self.robot._direction[1],  self.DX*math.sin(trad) + self.DY*math.cos(trad))
+        self.assertEqual(self.robot._direction[2],  self.DZ)
 
     def test_acceleration(self):
         a = random.random() * 100
@@ -70,7 +70,7 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._vitesse, 0)
 
     def test_toString(self):
-        self.assertEqual(self.robot.toString() , "R"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.A)+" "+str(self.V)+" "+str(self.DX)+" "+str(self.DY)+" "+str(self.DZ))
+        self.assertEqual(str(self.robot) , "R"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.A)+" "+str(self.V)+" "+str(self.DX)+" "+str(self.DY)+" "+str(self.DZ))
 
 
 if __name__=="__main__":
