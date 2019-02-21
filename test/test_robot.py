@@ -42,7 +42,7 @@ class RobotTest(unittest.TestCase):
     def test_update(self):
         dt = random.random()*100
         self.robot.update(dt)
-        self.V = dt * self.A
+        self.V = self.V + dt * self.A
         self.assertEqual(self.robot._position[0],  self.X + dt * self.V * self.DX)
         self.assertEqual(self.robot._position[1],  self.Y + dt * self.V * self.DY)
         self.assertEqual(self.robot._position[2],  self.Z + dt * self.V * self.DZ)
@@ -51,7 +51,10 @@ class RobotTest(unittest.TestCase):
         angle = random.random()*360
         self.robot.tourner(angle)
         trad = math.radians(angle)
-        self.assertEqual(self.robot._position[0],  self.DX*math.cos(trad) - self.DY*math.sin(trad))
+        dx = self.DX
+        dy = self.DY
+
+        self.assertEqual(self.robot._position[0],  dx*math.cos(trad) - dy*math.sin(trad))
         self.assertEqual(self.robot._position[1],  self.DX*math.sin(trad) + self.DY*math.cos(trad))
         self.assertEqual(self.robot._position[2],  self.DZ)
 
