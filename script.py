@@ -1,10 +1,7 @@
 import time
 from tkinter import *
-from view import *
-from arene import *
-from robot import *
-from obstacle import *
-from lecture import *
+from Projet import Robot, Arene, Obstacle, Obstacle_carre, Obstacle_rond, lecture
+#from lecture import *
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
