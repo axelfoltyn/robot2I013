@@ -21,7 +21,7 @@ class Robot:
         self._max_bruit_acceleration = 0.1
         self._min_bruit_proximite = -1.0
         self._max_bruit_proximite = 1.0
-
+        self._max_distance = 100
 
     def val_accelerometre(self):
         """Cette  fonction renvoie la valeur de l'accelerometre en prenant en compte

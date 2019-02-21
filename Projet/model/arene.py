@@ -76,7 +76,7 @@ class Arene:
         x_p = self._robot._position[0]
         y_p = self._robot._position[1]
         z_p = self._robot._position[2]
-        max = 100.0 #en cm
+        max = self._robot._max_distance #en cm
         res = 0.0
         while(res < max):
             if (x_p + self._robot._direction[0]*res < 0 or x_p + self._robot._direction[0]*res > self._x or y_p + self._robot._direction[1]*res < 0 or y_p + self._robot._direction[1]*res > self._y):
