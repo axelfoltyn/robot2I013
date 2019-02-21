@@ -2,9 +2,10 @@
 #symbole obstacle=O
 #utiliser with open
 #retourne larene
-from arene import *
-from robot import *
-from obstacle import *
+from .arene import *
+from .robot import *
+from .obstacle import *
+
 
 def lecture(fichier):
     """

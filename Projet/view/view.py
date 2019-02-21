@@ -1,5 +1,9 @@
 from tkinter import *
 import time
+from ..model import Robot
+from ..model.obstacle import *
+
+
 class View:
         def __init__(self,x=800, y=600):
                 """int * int -> View"""

@@ -1,6 +1,6 @@
-from arene import *
-from robot import *
-from obstacle import *
+from .arene import *
+from .robot import *
+from .obstacle import *
 
 def ecriture2(fichier, arene):
     """
