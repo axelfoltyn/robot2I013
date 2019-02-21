@@ -23,15 +23,15 @@ class Arene:
     def ajout_Robot(self, robot):
         """
     On peut ajouter un robot dans l'arene
-    :param robot: robot à ajouter dans l'arène
+    :param robot: robot a ajouter dans l'arène
     ne retourne rien
     """
         self._robot = robot
 
     def ajout_Obstacle(self,obstacle):
         """
-    Permet d'ajouter un obstacle à notre liste d'obstacle
-    :param obstacle: obstacle à ajouter
+    Permet d'ajouter un obstacle a notre liste d'obstacle
+    :param obstacle: obstacle a ajouter
     """
         self._obstacles.append(obstacle)
 
@@ -39,21 +39,21 @@ class Arene:
         """
     Affichage de l'arene et de ce que contient l'arène
     """
-        self._view.clear()                      #On efface d'abord ce qui était affiché précedemment
-        for i in self._obstacles :              #On procède à l'affichage des obstacles
+        self._view.clear()                      #On efface d'abord ce qui etait affiche precedemment
+        for i in self._obstacles :              #On procède a l'affichage des obstacles
             self._view.afficher_obstacle(i)
         self._view.afficher_robot(self._robot)  #On affiche le robot
 
     #dt en s
     def update(self, dt = 1):
         """
-    Permet de mettre à jour l'arène et ses éléments
-    :param dt: temps en secondes représente le temps
-    écoulé pendant update
+    Permet de mettre a jour l'arène et ses elements
+    :param dt: temps en secondes represente le temps
+    ecoule pendant update
     """
-        t = 0.04                                #intervalle de temps par défaut (40 ms)
+        t = 0.04                                #intervalle de temps par defaut (40 ms)
         self.afficher()                         #affichage de l'arène
-        if(dt <= t):                            #si le temps dt inséré est inférieur à 40ms on prendra dt
+        if(dt <= t):                            #si le temps dt insere est inferieur a 40ms on prendra dt
             self._robot.update(dt)
             #for i in self._obstacles :
             #    i.update(dt)
@@ -71,7 +71,7 @@ class Arene:
 
     def proximite(self):
         """
-    Fonction qui permet au robot de changer de direction de manière aléatoire
+    Fonction qui permet au robot de changer de direction de manière aleatoire
     lorsqu'il est trop proche d'un obstacle
     """
         x_p = self._robot._position[0]

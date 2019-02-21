@@ -42,6 +42,7 @@ class RobotTest(unittest.TestCase):
     def test_update(self):
         dt = random.random()*100
         self.robot.update(dt)
+        self.V = dt * self.A
         self.assertEqual(self.robot._position[0],  self.X + dt * self.V * self.DX)
         self.assertEqual(self.robot._position[1],  self.Y + dt * self.V * self.DY)
         self.assertEqual(self.robot._position[2],  self.Z + dt * self.V * self.DZ)
@@ -60,6 +61,7 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._acceleration, self.A + a)
 
     def test_stop(self):
+        self.setUp()
         self.robot.stop()
         self.assertEqual(self.robot._acceleration, 0)
         self.assertEqual(self.robot._vitesse, 0)
