@@ -25,7 +25,7 @@ class View:
     def afficher_robot(self,robot):
         """
         Cette fonction affiche le robot sur le canevas
-        : param robot : robot à afficher
+        : param robot : robot a afficher
         """
         x = robot._position[0]
         y = self._y-robot._position[1]
@@ -36,7 +36,7 @@ class View:
     def afficher_obstacle(self,obstacle):
         """
         Cette fonction permet d'afficher les obstacles
-        : param obstacle : obstacle à afficher
+        : param obstacle : obstacle a afficher
         """
         x0=obstacle._x
         y0=self._y-obstacle._y
@@ -59,11 +59,11 @@ class View:
             self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "black"))
 
 
-        ### faire attention à coordonnée y qui vaudra self._y - y !!! (pour avoir affichage à l'endroit)
+        ### faire attention a coordonnee y qui vaudra self._y - y !!! (pour avoir affichage a l'endroit)
 
     def clear(self):
                 """
-                Cette fonction supprime tous les éléments affichés sur l'arene
+                Cette fonction supprime tous les elements affiches sur l'arene
                 """
                 for e in self._objets:
                         self._canvas.delete(e)
@@ -74,14 +74,14 @@ class View:
     def end_view(self, b=True):
         """
         Cette fonction indique la fin de l'affichage
-        : param b: booleen permattant de verifier si nous sommes à la fin du script
+        : param b: booleen permattant de verifier si nous sommes a la fin du script
         """
         if b:
             self._canvas.configure(background = "lime green")
             messagebox.showinfo("Fin du parcours","Le parcours vient de se terminer")
         else:
             self._canvas.configure(background = "red")
-            messagebox.showwarning("Fin du parcours","Le robot s'est cogné")
+            messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
         self._fenetre.mainloop()
         sys.exit()
 

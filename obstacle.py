@@ -4,10 +4,10 @@ class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
     def __init__(self,x,y,z=0,nom='O',r=1.0,lo=0.0,la=0.0):        #Initialisation des arguments
         """
-        Cette fonction initialise un obstacle de l'arène
-        L'obstacle est un cercle par défaut
+        Cette fonction initialise un obstacle de l'arene
+        L'obstacle est un cercle par defaut
         : param x   : position sur l'axe des abscisses
-        : param y   : position sur l'axe des ordonées
+        : param y   : position sur l'axe des ordonees
         : param z   : position sur la cote
         : param nom : nom de l'obstacle
         : param r   : rayon si c'est un cercle
@@ -24,19 +24,19 @@ class Obstacle :
 
     def est_dans(self,x,y,z):
         """
-        Cette fonction vérifie si l'objet de coordonées x y et z se trouve dans l'obstacle
+        Cette fonction verifie si l'objet de coordonees x y et z se trouve dans l'obstacle
         : param x: position sur l'axe des abscisses
-        : param y: position sur l'axe des ordonées
+        : param y: position sur l'axe des ordonees
         : param z: position sur la cote
         """
         if (self._nom=='C'):                                        #Si c'est un rectangle
-            x1=self._x                                              #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
+            x1=self._x                                              #x1 ,x2 , y1 et y2 representent les quatres points du rcetangle(Carre)
             x2=self._x + self._lo
             y1=self._y
             y2=self._y - self._la
-            return x>=x1 and x<= x2 and y<=y1 and y>=y2             #Si les coordonées de l'objet touchent le rectangle ou sont dedans
+            return x>=x1 and x<= x2 and y<=y1 and y>=y2             #Si les coordonees de l'objet touchent le rectangle ou sont dedans
         if (self._nom=='O'):                                        #Pour un obstacle Rond
-            return (x-self._x)**2+(y-self._y)**2 <= self._r**2      #On verifie si les coordonées de l'objet se trouvent dans le cercle
+            return (x-self._x)**2+(y-self._y)**2 <= self._r**2      #On verifie si les coordonees de l'objet se trouvent dans le cercle
 
     def toString(self):
         return ""
@@ -51,12 +51,12 @@ class Obstacle_carre(Obstacle):
         self._lo=lo
         self._la=la
 
-    def est_dans(self,x,y,z):                                       #On vérifie si le point de coordonées x,y,z se trouve dans l'obstacle
-        x1=self._x                                                  #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
+    def est_dans(self,x,y,z):                                       #On verifie si le point de coordonees x,y,z se trouve dans l'obstacle
+        x1=self._x                                                  #x1 ,x2 , y1 et y2 representent les quatres points du rcetangle(Carre)
         x2=self._x + self._lo
         y1=self._y
         y2=self._y - self._la
-        return x>=x1 and x<= x2 and y<=y1 and y>=y2                 #Si les coordonées de l'objet touchent le rectangle ou sont dedans
+        return x>=x1 and x<= x2 and y<=y1 and y>=y2                 #Si les coordonees de l'objet touchent le rectangle ou sont dedans
 
     def toString(self):
         return "C"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._lo)+" "+str(self._la)
@@ -69,8 +69,8 @@ class Obstacle_rond(Obstacle):
         self._r=r
 
 
-    def est_dans(self,x,y,z):                                       #On vérifie si l'objet de coordonées x,y,z se trouve dans l'obstacle
-        return (x-self._x)**2+(y-self._y)**2 <= self._r**2          #On verifie si les coordonées du point se trouvent dans le cercle
+    def est_dans(self,x,y,z):                                       #On verifie si l'objet de coordonees x,y,z se trouve dans l'obstacle
+        return (x-self._x)**2+(y-self._y)**2 <= self._r**2          #On verifie si les coordonees du point se trouvent dans le cercle
 
     def toString(self):
         return "O"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._r)
