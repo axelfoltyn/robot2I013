@@ -9,7 +9,7 @@ def ecriture2(fichier, arene):
     Fichier.write(str(arene._z)+"\n")
 
     for i in arene._obstacles :
-        Fichier.write(i.toString()+"\n")
+        Fichier.write(i.__init__()+"\n")
 
-    Fichier.write(arene._robot.toString()+"\n")
+    Fichier.write(arene._robot.__init__()+"\n")
     Fichier.close()
