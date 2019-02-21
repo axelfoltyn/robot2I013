@@ -1,4 +1,4 @@
-from model.robot import *
+from .robot import *
 from ..view.view import View
 
 class Arene:

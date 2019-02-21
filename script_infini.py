@@ -1,12 +1,7 @@
 import time
 from random import *
 from tkinter import *
-from view import *
-from arene import *
-from robot import *
-from obstacle import *
-from lecture import *
-from ecriture import *
+from Projet import Robot, Arene, Obstacle, Obstacle_carre, Obstacle_rond, lecture, ecriture2
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
@@ -20,9 +15,8 @@ while (True):
         arene._robot.acceleration(20)
     if (random() <= 0.10):
         ecriture2("resources/fichier_test.txt", arene )
-    #if (random()<=0.0075) : #utilise pour relire le fichier
-    #    arene = lecture("resources/fichier_test.txt")
-    break
+    if (random()<=0.0075) : #utilise pour relire le fichier
+        arene = lecture("resources/fichier_test.txt")
     arene.afficher()
     arene.update(0.40)
 
