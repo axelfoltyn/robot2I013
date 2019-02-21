@@ -2,7 +2,7 @@ from tkinter import *
 
 def deplacement():
     canvas.move(robot,10,0) # (valeurs en pixels) ex: robot avance de 10 pixels en direction 1:0
-    #On repete cette fonction
+    #On repete cette fonctionn
     fenetre.after(40,deplacement) #valeur en millisecondes (40 pour avoir un mouvement assez fluide: ~25images/seconde)
     # exemple: vitesse en direction 1:0 ~~> 10/0.04 = 250 pixels/seconde
 
