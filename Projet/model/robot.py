@@ -57,6 +57,18 @@ class Robot:
         self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
 
+    def avancer(self,vitesse):
+        dv=vitesse-self._vitesse
+        if dv>=0:
+            self._acceleration=1
+            while self._vitesse<vitesse:
+                self.update()
+        else:
+            self._acceleration=-1
+            while self._vitesse>vitesse:
+                self.update()
+        self._acceleration=0
+
     def acceleration(self,acceleration):
         """
         Cette fonction fait accelerer le robot
