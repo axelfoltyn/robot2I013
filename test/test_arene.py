@@ -2,7 +2,7 @@ import unittest
 import random
 import math
 from Projet import View
-from Projet import Robot
+from Projet import RobotVirtuel
 from Projet import Obstacle_carre, Obstacle_rond
 from Projet import Arene
 
@@ -11,7 +11,7 @@ class TestArene(unittest.TestCase):
         self.X = int(random.random()* 10000)
         self.Y = int(random.random()* 10000)
         self.Z = int(random.random()* 10000)
-        self.robot = Robot([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
+        self.robot = RobotVirtuel([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
         self.obstacles = []
         self.view = View(self.X, self.Y)
         self.arene = Arene(self.X, self.Y, self.Z, self.robot, self.obstacles )
