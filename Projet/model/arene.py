@@ -2,7 +2,7 @@ from .robot import *
 from ..view.view import View
 
 class Arene:
-    def __init__(self, x = 42, y = 42, z = 42,robot=Robot(), obstacles=[]):
+    def __init__(self, x = 42, y = 42, z = 42,robot=RobotVirtuel(), obstacles=[]):
         """
     int * int * int * Robot * Obstacle[] -> Arene
     L'arene contient le robot et les obstacles

@@ -1,7 +1,7 @@
 import sys
 import time
 from tkinter import *
-from ..model import Robot
+from ..model import RobotVirtuel
 from ..model.obstacle import *
 
 
