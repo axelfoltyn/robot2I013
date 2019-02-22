@@ -18,7 +18,7 @@ while (True):
     if (random()<=0.0075) : #utilise pour relire le fichier
         arene = lecture("resources/fichier_test2.txt")
     arene.afficher()
-    arene.update(0.40)
+    arene.update(0.05)
 
 
 
