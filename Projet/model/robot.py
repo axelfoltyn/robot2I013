@@ -57,14 +57,21 @@ class RobotVirtuel:
         self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
 
-    def avancer(self,vitesse):
+    def avancer(self,distance):
+        target=[distance*self._direction[0],distance*self._direction[1],distance*self._direction[2]]
+        self._acceleration=10
+        while self._position[0]<target[0]:
+            self.update()
+        self.stop()
+
+    def set_vitesse(self,vitesse):
         dv=vitesse-self._vitesse
         if dv>=0:
-            self._acceleration=1
+            self._acceleration=10
             while self._vitesse<vitesse:
                 self.update()
         else:
-            self._acceleration=-1
+            self._acceleration=-10
             while self._vitesse>vitesse:
                 self.update()
         self._acceleration=0
