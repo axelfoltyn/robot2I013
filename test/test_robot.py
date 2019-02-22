@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from Projet import Robot
+from Projet import RobotVirtuel
 
 
 
@@ -16,7 +16,7 @@ class RobotTest(unittest.TestCase):
         self.DX = random.random()* 1
         self.DY = random.random()*math.sqrt(1-self.DX**2)
         self.DZ = math.sqrt(1-self.DX**2 - self.DY**2)
-        self.robot = Robot([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
+        self.robot = RobotVirtuel([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
 
 
     def test_create(self):
