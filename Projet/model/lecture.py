@@ -5,6 +5,7 @@
 from .arene import *
 from .robot import *
 from .obstacle import *
+from ..view import *
 
 
 def lecture(fichier):
@@ -16,6 +17,7 @@ def lecture(fichier):
     txt=Fichier.readline()
     z=int(txt)
     a=Arene(x,y,z)                      #creation de arene
+    a.add_obs(View(x,y))
     n=0
     for elt in Fichier.readlines():     #parcour le fichier pour cree des obstacles ou robots
         arg=elt.split(" ")

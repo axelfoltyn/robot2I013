@@ -1,7 +1,6 @@
 import time
 from tkinter import *
-from Projet import Robot, Arene, Obstacle, Obstacle_carre, Obstacle_rond, lecture
-#from lecture import *
+from Projet import lecture
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
@@ -13,10 +12,9 @@ print("Ma position en x est : ",arene._robot._position[0])
 print("Ma position en y est : ", arene._robot._position[1])
 print("Ma position en z est : ", arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
-arene.afficher()
+#afficher_arene(arene)
 
 arene.update()
-
 
 print("tourner")
 arene._robot.tourner(50)
@@ -26,7 +24,7 @@ print("Ma position en x est : " , arene._robot._position[0])
 print("Ma position en y est : " , arene._robot._position[1])
 print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
-arene.afficher()
+#afficher_arene(arene)
 
 arene.update()
 
@@ -38,7 +36,7 @@ print("Ma position en x est : " , arene._robot._position[0])
 print("Ma position en y est : " , arene._robot._position[1])
 print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
-arene.afficher()
+#afficher_arene(arene)
 
 arene.update()
 
@@ -50,7 +48,7 @@ print("Ma position en x est : " , arene._robot._position[0])
 print("Ma position en y est : " , arene._robot._position[1])
 print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
-arene.afficher()
+#afficher_arene(arene)
 
 arene.update()
 
@@ -62,8 +60,8 @@ print("Ma position en x est : " , arene._robot._position[0])
 print("Ma position en y est : " , arene._robot._position[1])
 print("Ma position en z est : " , arene._robot._position[2])
 print("Ma direction actuelle est : " , arene._robot._direction)
-arene.afficher()
+#afficher_arene(arene)
 
 arene.update(10)
 
-arene._view.end_view()
+#end_view()
