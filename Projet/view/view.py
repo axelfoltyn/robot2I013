@@ -1,23 +1,32 @@
 import sys
 import time
 from tkinter import *
-from ..model import RobotVirtuel
-from ..model.obstacle import *
-
+from tkinter import messagebox
+from ..model import Obstacle_carre
 
 class View:
     def __init__(self,x=800, y=600):
-        """int * int -> View"""
+        """
+        int * int -> View
+        Cette fonction initialise la fenetre sur laquelle le robot va s'afficher
+        : param x: largeur de la fenetre
+        : param y: heuteur de la fenetre
+        """
+        #initialisation des parametres
         self._x = x
         self._y = y
         self._fenetre = Tk()
         self._canvas = Canvas(self._fenetre, width = x, height = y, background = "grey")
         self._canvas.pack()
-        self._Bouton_Quitter = Button(self._fenetre, text = "Quitter", command = self._fenetre.destroy)
+        self._Bouton_Quitter = Button(self._fenetre, text = "Quitter", command = self._fenetre.destroy) #creation du boutton quitter
         self._Bouton_Quitter.pack()
         self._objets = []
 
     def afficher_robot(self,robot):
+        """
+        Cette fonction affiche le robot sur le canevas
+        : param robot : robot a afficher
+        """
         x = robot._position[0]
         y = self._y-robot._position[1]
         dx = robot._direction[0]
@@ -25,6 +34,10 @@ class View:
         self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
 
     def afficher_obstacle(self,obstacle):
+        """
+        Cette fonction permet d'afficher les obstacles
+        : param obstacle : obstacle a afficher
+        """
         x0=obstacle._x
         y0=self._y-obstacle._y
         #si r est different de 0 alors cest un cercle sinon autre
@@ -45,23 +58,50 @@ class View:
             y1=y0+(2*r1)
             self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "black"))
 
-# faire attention à coordonnée y qui vaudra self._y - y !!! (pour avoir affichage à l'endroit)
+
+        ### faire attention a coordonnee y qui vaudra self._y - y !!! (pour avoir affichage a l'endroit)
+
+    def update_arene(self,arene,dt=1):
+        """
+        Affichage de l'arene et de ce que contient l'arène """
+        self.clear()                      #On efface d'abord ce qui etait affiche precedemment
+        for i in arene._obstacles :              #On procède a l'affichage des obstacles
+            self.afficher_obstacle(i)
+        self.afficher_robot(arene._robot)  #On affiche le robot
+        self.update(dt)
+
+
 
     def clear(self):
-        for e in self._objets:
-            self._canvas.delete(e)
-        self._objets = []
+                """
+                Cette fonction supprime tous les elements affiches sur l'arene
+                """
+                for e in self._objets:
+                        self._canvas.delete(e)
+                self._objets = []
+
+
+
 
     def end_view(self, b=True):
+        """
+        Cette fonction indique la fin de l'affichage
+        : param b: booleen permattant de verifier si nous sommes a la fin du script
+        """
         if b:
             self._canvas.configure(background = "lime green")
+            messagebox.showinfo("Fin du parcours","Le parcours vient de se terminer")
         else:
             self._canvas.configure(background = "red")
+            messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
         self._fenetre.mainloop()
-        sys.exit()
 
     #dt en s
     def update(self, dt=1):
         self._canvas.pack()
         time.sleep(dt)
         self._canvas.update()
+
+
+
+
