@@ -1,5 +1,6 @@
 import time
 import math
+from .lecture import lecture
 
 class Robot2I013(object):
     """
