@@ -40,11 +40,11 @@ class Robot2I013(object):
         :green:  composante verte (0-255)
         :blue: composante bleu (0-255)
         """
-        self._gpg.set_led(led,red,green,blue)
+        pass
 
     def get_voltage(self):
         """ get the battery voltage """
-        return self._gpg.get_voltage_battery()
+        pass
 
 
     def set_motor_dps(self, port, dps):
@@ -63,7 +63,7 @@ class Robot2I013(object):
         Lit les etats des moteurs en degre.
         :return: couple du  degre de rotation des moteurs
         """
-        return self._gpg.read_encoders()
+        pass
 
     def offset_motor_encoder(self, port, offset):
         """
@@ -75,7 +75,7 @@ class Robot2I013(object):
 
         Zero the encoder by offsetting it by the current position
         """
-        self._gpg.offset_motor_encoder(port,offset)
+        pass
 
     def get_distance(self):
         """
@@ -91,18 +91,14 @@ class Robot2I013(object):
         Tourne le servo a l'angle en parametre.
         :param int position: Angle de rotation, de **0** a **180** degres, 90 pour le milieu.
         """
-        self.servo.rotate_servo(position)
+        pass
+
     def stop(self):
         """ Arrete le robot """
         self.set_motor_dps(self.MOTOR_LEFT+self.MOTOR_RIGHT,0)
         self.set_led(self.LED_LEFT_BLINKER+self.LED_LEFT_EYE+self.LED_LEFT_BLINKER+self.LED_RIGHT_EYE+self.LED_WIFI,0,0,0)
 
     def get_image(self):
-        stream = BytesIO()
-        self.camera.capture(stream,format="jpeg")
-        stream.seek(0)
-        img= Image.open(stream).copy()
-        stream.close()
-        return img
+        pass
 
 
