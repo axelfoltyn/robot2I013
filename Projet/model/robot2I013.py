@@ -1,16 +1,10 @@
 import time
 import math
-from easygopigo3 import EasyGoPiGo3,Servo,DistanceSensor,MotionSensor
-import picamera
-from io import BytesIO
-from PIL import Image
-from di_sensors import distance_sensor as ds_sensor
-from di_sensors import  inertial_measurement_unit as imu
 
 class Robot2I013(object):
-    """ 
+    """
     Classe d'encapsulation du robot et des senseurs.
-    Constantes disponibles : 
+    Constantes disponibles :
     LED (controle des LEDs) :  LED_LEFT_EYE, LED_RIGHT_EYE, LED_LEFT_BLINKER, LED_RIGHT_BLINKER, LED_WIFI
     MOTEURS (gauche et droit) : MOTOR_LEFT, MOTOR_RIGHT
     et les constantes ci-dessous qui definissent les elements physiques du robot
@@ -20,12 +14,12 @@ class Robot2I013(object):
     WHEEL_DIAMETER           = 66.5 #  diametre de la roue (mm)
     WHEEL_BASE_CIRCUMFERENCE = WHEEL_BASE_WIDTH * math.pi # perimetre du cercle de rotation (mm)
     WHEEL_CIRCUMFERENCE      = WHEEL_DIAMETER   * math.pi # perimetre de la roue (mm)
-    
+
     def __init__(self,controler,fps=25,resolution=None,servoPort = "SERVO1",motionPort="AD1"):
-        """ 
+        """
             Initialise le robot
 
-            :controler: le controler du robot, muni d'une fonction update et d'une fonction stop qui 
+            :controler: le controler du robot, muni d'une fonction update et d'une fonction stop qui
                         rend in booleen (vrai a la fin du controle, faux sinon)
             :fps: nombre d'appel a controler.update() par seconde (approximatif!)
             :resolution: resolution de la camera
@@ -33,41 +27,14 @@ class Robot2I013(object):
             :motionPort: port pour l'accelerometre (AD1 ou AD2)
         """
 
-        self._gpg= EasyGoPiGo3()
-        self.controler = controler
-        self.fps=fps
-        self.LED_LEFT_EYE = self._gpg.LED_LEFT_EYE
-        self.LED_RIGHT_EYE = self._gpg.LED_RIGHT_EYE
-        self.LED_LEFT_BLINKER = self._gpg.LED_LEFT_BLINKER
-        self.LED_RIGHT_BLINKER = self._gpg.LED_RIGHT_BLINKER
-        self.LED_WIFI = self._gpg.LED_WIFI
-        self.MOTOR_LEFT= self._gpg.MOTOR_LEFT
-        self.MOTOR_RIGHT = self._gpg.MOTOR_RIGHT
-        
-        try:
-            self.camera = picamera.PiCamera()
-            if resolution:
-                self.camera.resolution = resolution
-        except Exception as e:
-            print("Camera not found",e)
-        try:
-            self.servo = Servo(servoPort,self._gpg)
-        except Exception as e:
-            print("Servo not found",e)
-        try:
-            self.distanceSensor = ds_sensor.DistanceSensor()
-        except Exception as e:
-            print("Distance Sensor not found",e)
-        try:
-            self.imu = imu.inertial_measurement_unit()
-        except Exception as e:
-            print("IMU sensor not found",e)
-        self._gpg.set_motor_limits(self._gpg.MOTOR_LEFT+self._gpg.MOTOR_RIGHT,0)
+        text="resources/fichier_test.txt"
+        # Test lecture de fichier et initialisation de l'arene
+        self.arene = lecture(text)
 
     def set_led(self, led, red = 0, green = 0, blue = 0):
         """
         Allume une led.
-        
+
         :led: une des constantes LEDs (ou plusieurs combines avec +) : LED_LEFT_EYE, LED_RIGHT_EYE, LED_LEFT_BLINKER, LED_RIGHT_BLINKER, LED_WIFI.
         :red: composante rouge (0-255)
         :green:  composante verte (0-255)
@@ -97,12 +64,12 @@ class Robot2I013(object):
         :return: couple du  degre de rotation des moteurs
         """
         return self._gpg.read_encoders()
-   
+
     def offset_motor_encoder(self, port, offset):
         """
-        Fixe l'offset des moteurs (en degres) (permet par exemple de reinitialiser a 0 l'etat 
+        Fixe l'offset des moteurs (en degres) (permet par exemple de reinitialiser a 0 l'etat
         du moteur gauche avec offset_motor_encode(self.MOTOR_LEFT,self.read_encoders()[0])
-        
+
         :port: un des deux moteurs MOTOR_LEFT ou MOTOR_RIGHT (ou les deux avec +)
         :offset: l'offset de decalage en degre.
 
@@ -137,5 +104,5 @@ class Robot2I013(object):
         img= Image.open(stream).copy()
         stream.close()
         return img
-    
+
 
