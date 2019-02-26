@@ -78,6 +78,8 @@ class Robot2I013(object):
         pass
 
     def get_distance(self):
+
+        self.arene._robot.proximite_bruit(self.arene)
         """
         Lit le capteur de distance (en mm).
         :returns: entier distance en millimetre.
