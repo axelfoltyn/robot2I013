@@ -1,5 +1,5 @@
 from Projet import RobotVirtuel, Obstacle, Arene
-
+from sys
 def dessin_carre(self,taille):
     i=0
     while (i<4):
@@ -15,3 +15,4 @@ def dessin_carre(self,taille):
         arene._robot.tourner()
         arene.update(0.5)
         i=i+1
+    sys.exit(0)
