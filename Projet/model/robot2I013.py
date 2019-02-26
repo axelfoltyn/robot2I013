@@ -78,15 +78,14 @@ class Robot2I013(object):
         pass
 
     def get_distance(self):
-
-        self.arene._robot.proximite_bruit(self.arene)
         """
         Lit le capteur de distance (en mm).
         :returns: entier distance en millimetre.
             1. L'intervalle est de **5-8,000** millimeters.
             2. Lorsque la valeur est en dehors de l'intervalle, le retour est **8190**.
         """
-        return self.distanceSensor.read_range_single(False)
+        return self.arene._robot.proximite_bruit(self.arene)
+
 
     def servo_rotate(self,position):
         """
