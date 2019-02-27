@@ -52,11 +52,17 @@ class Arene:
             self._robot.update(dt)
             for obs in self._observers:
                 obs.update_arene(self,dt)
+            if self.proximite() == 0:
+                for obs in self._observers:
+                    obs.arret(False)
         else:
             self._robot.update(t)
             for obs in self._observers:
                 obs.update_arene(self,t)
             self.update(dt-t)
+            if self.proximite() == 0:
+                for obs in self._observers:
+                    obs.arret(False)
                        #on rappelle la fonction avec un dt plus petit
 
 
@@ -82,3 +88,7 @@ class Arene:
 
         def set_max_proximite(self,valeur):
             self._max_proximite=valeur
+
+    def fin(self):
+        for obs in self._observers:
+                obs.arret(True)
