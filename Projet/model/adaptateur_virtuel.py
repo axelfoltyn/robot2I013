@@ -6,6 +6,7 @@ class AdaptateurVirtuel:
         text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
         self._arene = lecture(text)
+        self._arene._robot.add_obs(self._arene)
 
     def tourner_droite(self, teta):
         self._arene._robot.tourner(-teta)
