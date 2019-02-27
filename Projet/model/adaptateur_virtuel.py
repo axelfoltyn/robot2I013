@@ -21,14 +21,14 @@ class AdaptateurVirtuel:
     def Avancer(self,distance):
         self._arene._robot.avancer(distance)
 
-    def get_proximite():
+    def get_proximite(self):
         self._arene.set_max_proximite(8)
-        if (self._arene._robot.proximite_buit(self._arene)<0.5):
+        if (self._arene._robot.proximite_bruit(self._arene)<0.5):
             return 0.5
-        elif (self._arene._robot.proximite_buit(self._arene)>8):
+        elif (self._arene._robot.proximite_bruit(self._arene)>8):
             return 8
         else :
-            return self._arene._robot.proximite_buit(self._arene)
+            return self._arene._robot.proximite_bruit(self._arene)
 
 
     def get_image():

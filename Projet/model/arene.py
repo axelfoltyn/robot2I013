@@ -86,8 +86,8 @@ class Arene:
             res += 0.1
         return res
 
-        def set_max_proximite(self,valeur):
-            self._max_proximite=valeur
+    def set_max_proximite(self,valeur):
+        self._max_proximite=valeur
 
     def fin(self):
         for obs in self._observers:
