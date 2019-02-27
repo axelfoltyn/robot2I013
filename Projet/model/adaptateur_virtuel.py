@@ -1,20 +1,27 @@
+from Projet import RobotVirtuel
+
 class AdaptateurVirturel:
     def __init__():
         pass
 
     def tourner_droite():
-        pass
+        RobotVirtuel.tourner(-90)
+
 
     def tourner_gauche():
-        pass
+        RobotVirtuel.tourner(90)
+
 
     def Avancer():
-        pass
+        RobotVirtuel.avancer(10)
+
 
     def stop():
-        pass
+        RobotVirtuel.stop()
+
 
     def get_proximite():
+        #RobotVirtuel.proximite_buit() il faut une arene
         pass
 
     def get_image():
