@@ -1,4 +1,4 @@
-from Projet import RobotVirtuel, Obstacle, Arene
+from Projet import RobotVirtuel
 from random import randint
 import sys
 
@@ -12,4 +12,4 @@ def fonce(self):
         arene.afficher()
         arene.update(0.05)
         if (arene._robot._positio[0]>arene._x or arene._robot._positio[0]<0 or arene._robot._positio[1]>arene._y or arene._robot._positio[1]<0 ):
-            sys.exit(0)
+            arene._robot.stop()

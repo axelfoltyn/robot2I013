@@ -1,10 +1,11 @@
-from Projet import RobotVirtuel, Obstacle, Arene
-from sys
-def dessin_carre(self,taille):
+from Projet import RobotVirtuel, Obstacle
+from arene import Arene
+
+def carre(self,taille):
     i=0
     while (i<4):
         j=0
-        while(j<taille)
+        while(j<taille):
             if (arene._robot.proximite_bruite(arene)<taille-j):
                 #freine jusqua sarrete
                 break
@@ -15,4 +16,4 @@ def dessin_carre(self,taille):
         arene._robot.tourner()
         arene.update(0.5)
         i=i+1
-    sys.exit(0)
+
