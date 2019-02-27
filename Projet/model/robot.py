@@ -53,12 +53,17 @@ class RobotVirtuel:
         : param teta : angle de rotation
         """
         # rotation dans le sens trigo
-        trad = math.radians(teta)
-        dx = self._direction[0]
-        dy = self._direction[1]
-        self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
-        self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
-        for obs in self._observers:
+        d_teta = 5
+        if teta > d_teta:
+            self.tourner(d_teta)
+            self.tourner(teta - d_teta)
+        else
+            trad = math.radians(teta)
+            dx = self._direction[0]
+            dy = self._direction[1]
+            self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
+            self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
+            for obs in self._observers:
                 obs.update(dt)
 
 
