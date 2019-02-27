@@ -1,11 +1,11 @@
-from Projet import RobotVirtuel
+from .robot import RobotVirtuel
+from .lecture import lecture
 
-class AdaptateurVirturel:
+class AdaptateurVirtuel:
     def __init__(self, controler, fps=25, resolution=None, servoPort="SERVO1",motionPort="AD1"):
         text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
         self._arene = lecture(text)
-        self._arene._
 
     def tourner_droite(self, teta):
         self._arene._robot.tourner(-teta)
@@ -17,16 +17,16 @@ class AdaptateurVirturel:
         self._arene.update() #a enleve plus tard
 
 
-    def Avancer(distance):
+    def Avancer(self,distance):
         self._arene._robot.avancer(distance)
 
     def get_proximite():
         self._arene.set_max_proximite(8)
-        if (self._arene._robot.proximite_buit(self._arene)<0.5)
+        if (self._arene._robot.proximite_buit(self._arene)<0.5):
             return 0.5
-        elif (self._arene._robot.proximite_buit(self._arene)>8)
+        elif (self._arene._robot.proximite_buit(self._arene)>8):
             return 8
-        else
+        else :
             return self._arene._robot.proximite_buit(self._arene)
 
 
