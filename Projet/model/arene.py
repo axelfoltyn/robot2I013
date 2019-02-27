@@ -18,6 +18,7 @@ class Arene:
         self._robot = robot
         self._obstacles = obstacles
         self._observers = []
+        self._max_proximite=100
 
     def add_obs(self,observer):
         self._observers.append(observer)
@@ -55,7 +56,7 @@ class Arene:
             self._robot.update(t)
             for obs in self._observers:
                 obs.update_arene(self,t)
-            self.update(dt-t)                 
+            self.update(dt-t)
                        #on rappelle la fonction avec un dt plus petit
 
 
@@ -68,7 +69,7 @@ class Arene:
         x_p = self._robot._position[0]
         y_p = self._robot._position[1]
         z_p = self._robot._position[2]
-        max = 100.0 #en cm
+        max = self._max_proximite #en cm
         res = 0.0
         while(res < max):
             if (x_p + self._robot._direction[0]*res < 0 or x_p + self._robot._direction[0]*res > self._x or y_p + self._robot._direction[1]*res < 0 or y_p + self._robot._direction[1]*res > self._y):
@@ -78,3 +79,6 @@ class Arene:
                     return res
             res += 0.1
         return res
+
+        def set_max_proximite(self,valeur):
+            self._max_proximite=valeur
