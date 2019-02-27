@@ -1,28 +1,30 @@
 from Projet import RobotVirtuel
 
 class AdaptateurVirturel:
-    def __init__():
-        pass
+    def __init__(self):
+        text="resources/fichier_test.txt"
+        # Test lecture de fichier et initialisation de l'arene
+        self._arene = lecture(text)
 
-    def tourner_droite():
-        RobotVirtuel.tourner(-90)
-
-
-    def tourner_gauche():
-        RobotVirtuel.tourner(90)
+    def tourner_droite(self, teta):
+        self._arene._robot.tourner(-teta)
 
 
-    def Avancer():
-        RobotVirtuel.avancer(10)
+    def tourner_gauche(self, teta):
+        self._arene._robot.tourner(teta)
+
+
+    def Avancer(distance):
+        self._arene._robot.avancer(distance)
 
 
     def stop():
-        RobotVirtuel.stop()
+        self._arene._robot.stop()
 
 
     def get_proximite():
-        #RobotVirtuel.proximite_buit() il faut une arene
-        pass
+        return self._arene._robot.proximite_buit(self._arene)
+
 
     def get_image():
         pass

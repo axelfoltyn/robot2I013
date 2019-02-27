@@ -101,3 +101,18 @@ class RobotVirtuel:
         MAX = self._max_bruit_proximite
         bruit = random.random() * (MAX-MIN) + MIN
         return arene.proximite()+bruit
+
+    def set_min(self,valeur):
+        self._min_bruit_proximite=valeur
+
+    def set_max(self,valeur):
+        self._max_bruit_proximite=valeur
+
+    def set_max_acceleration(self,valeur):
+        self._max_bruit_acceleration =valeur
+
+    def set_min_acceleration(self,valeur):
+        self._min_bruit_acceleration=valeur
+
+    def set_distance(self, valeur):
+        self._max_distance=valeur
