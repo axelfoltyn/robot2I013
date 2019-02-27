@@ -22,6 +22,7 @@ class RobotVirtuel:
         self._min_bruit_proximite = -1.0
         self._max_bruit_proximite = 1.0
         self._max_distance = 100
+        self._observers = []
 
     def val_accelerometre(self):
         """Cette  fonction renvoie la valeur de l'accelerometre en prenant en compte
@@ -45,6 +46,7 @@ class RobotVirtuel:
         self._position[1] += dt * self._vitesse * self._direction[1]
         self._position[2] += dt * self._vitesse * self._direction[2]
 
+
     def tourner(self, teta=90):
         """
         Cette fonction fait tourner le robot d'un angle teta qui est a 90 degre par defaut
@@ -56,7 +58,8 @@ class RobotVirtuel:
         dy = self._direction[1]
         self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
         self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
-
+        for obs in self._observers:
+                obs.update(dt)
 
 
 
@@ -64,7 +67,9 @@ class RobotVirtuel:
         target=[distance*self._direction[0]+self._position[0],distance*self._direction[1],distance*self._direction[2]]
         self._acceleration=10
         while self._position[0]<target[0]  if self._direction[0] > 0  else self._position[0]>target[0]:
-            self.update(0.01)
+            #self.update(0.01)
+            for obs in self._observers:
+                obs.update(0.01)
         self.stop()
 
 
@@ -75,11 +80,15 @@ class RobotVirtuel:
         if dv>=0:
             self._acceleration=10
             while self._vitesse<vitesse:
-                self.update()
+                #self.update()
+                for obs in self._observers:
+                    obs.update(dt)
         else:
             self._acceleration=-10
             while self._vitesse>vitesse:
-                self.update()
+                #self.update()
+                for obs in self._observers:
+                    obs.update(dt)
         self._acceleration=0
 
     def acceleration(self,acceleration):
@@ -122,3 +131,6 @@ class RobotVirtuel:
 
     def set_distance(self, valeur):
         self._max_distance=valeur
+
+    def add_obs(self,observer):
+        self._observers.append(observer)
