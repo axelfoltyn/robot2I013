@@ -83,7 +83,7 @@ class View:
 
 
 
-    def end_view(self, b=True):
+    def arret(self, b=True):
         """
         Cette fonction indique la fin de l'affichage
         : param b: booleen permattant de verifier si nous sommes a la fin du script

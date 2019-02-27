@@ -57,21 +57,27 @@ class RobotVirtuel:
         if teta > d_teta:
             self.tourner(d_teta)
             self.tourner(teta - d_teta)
-        else
+        elif teta < 0 and teta < -d_teta:
+            self.tourner(-d_teta)
+            self.tourner(teta + d_teta)
+        else:
             trad = math.radians(teta)
             dx = self._direction[0]
             dy = self._direction[1]
             self._direction[0] = dx*math.cos(trad) - dy*math.sin(trad)
             self._direction[1] = dx*math.sin(trad) + dy*math.cos(trad)
             for obs in self._observers:
-                obs.update(dt)
+                obs.update(0.01*abs(teta))
 
 
 
     def avancer(self,distance):
-        target=[distance*self._direction[0]+self._position[0],distance*self._direction[1],distance*self._direction[2]]
+        target=[distance*self._direction[0]+self._position[0],distance*self._direction[1]+self._position[1],distance*self._direction[2]+self._position[2]]
         self._acceleration=10
-        while self._position[0]<target[0]  if self._direction[0] > 0  else self._position[0]>target[0]:
+        while (self._position[0]<=target[0]  if self._direction[0] > 0 \
+          else self._position[0]>=target[0]) and \
+          (self._position[1]<=target[1]  if self._direction[1] > 0 \
+          else self._position[1]>=target[1]):
             #self.update(0.01)
             for obs in self._observers:
                 obs.update(0.01)
@@ -87,13 +93,13 @@ class RobotVirtuel:
             while self._vitesse<vitesse:
                 #self.update()
                 for obs in self._observers:
-                    obs.update(dt)
+                    obs.update(0.01)
         else:
             self._acceleration=-10
             while self._vitesse>vitesse:
                 #self.update()
                 for obs in self._observers:
-                    obs.update(dt)
+                    obs.update(0.01)
         self._acceleration=0
 
     def acceleration(self,acceleration):
