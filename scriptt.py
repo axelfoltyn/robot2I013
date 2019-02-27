@@ -1,10 +1,7 @@
 from Projet import AdaptateurVirtuel as Robot
+from carre import *
 robot=Robot(True)
-while(True):
-    robot.tourner_gauche(90)
-    robot.Avancer(50)
-    robot.tourner_droite(90)
-    robot.Avancer(50)
-    robot.tourner_droite(90)
+
+carre(50, robot)
 
 
