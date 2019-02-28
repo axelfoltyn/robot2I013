@@ -22,7 +22,7 @@ class AdaptateurVirtuel:
         self._arene._robot.avancer(distance)
 
     def get_proximite(self):
-        max = 80
+        max = 800
         self._arene.set_max_proximite(max)
         if (self._arene._robot.proximite_bruit(self._arene)<0.5):
             return 0.5

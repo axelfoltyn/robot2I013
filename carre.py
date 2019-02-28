@@ -1,7 +1,7 @@
 
 def carre(taille, robot):
     i=0
-    n = 80
+    n = 800
     while (i<4):
         j=0
         while(j<taille):
