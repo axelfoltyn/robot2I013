@@ -1,0 +1,25 @@
+Pour lier le robot avec les flèches, on peut utiliser tkinter :
+
+from tkinter import *
+
+Ensuite, il suffit d'utiliser la commande "bind", ce qui va permettre de lier certaines touches du clavier à l'ordinateur.
+
+Exemple :
+# création d'une fenetre Tk
+root = Tk()
+
+# Exemples de touches
+root.bind("<Up>", maFonction) # Flèche haut
+root.bind("<Down>", maFonction2) # Bas
+root.bind("<Left>", maFonction3) # Gauche
+root.bind("<Right>", maFonction4) # Droite
+
+/!\ les fonctions maFonction doivent s'écrire de manière spéciale.
+
+Toutes les fonctions liées au bind ne doivent comporter qu'un seul argument du nom de event.
+exemple :
+def maFonction_Avance(event):
+  robot.avance()
+ 
+Il faut aussi faire attention à l'écriture des chaine de caractères qui sont en premier argument 
+de la fonction bind car elles sont specifiques à chaque touche de clavier  
