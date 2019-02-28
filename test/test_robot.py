@@ -1,11 +1,7 @@
 import unittest
 import random
 import math
-<<<<<<< HEAD
-from robot import Robot
-=======
 from Projet import RobotVirtuel
->>>>>>> dev
 
 
 
@@ -20,11 +16,7 @@ class RobotTest(unittest.TestCase):
         self.DX = random.random()* 1
         self.DY = random.random()*math.sqrt(1-self.DX**2)
         self.DZ = math.sqrt(1-self.DX**2 - self.DY**2)
-<<<<<<< HEAD
-        self.robot = Robot([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
-=======
         self.robot = RobotVirtuel([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
->>>>>>> dev
 
 
     def test_create(self):
@@ -57,16 +49,6 @@ class RobotTest(unittest.TestCase):
 
     def test_tourner(self):
         angle = random.random()*360
-<<<<<<< HEAD
-        self.robot.tourner(angle)
-        trad = math.radians(angle)
-        dx = self.DX
-        dy = self.DY
-
-        self.assertEqual(self.robot._position[0],  dx*math.cos(trad) - dy*math.sin(trad))
-        self.assertEqual(self.robot._position[1],  self.DX*math.sin(trad) + self.DY*math.cos(trad))
-        self.assertEqual(self.robot._position[2],  self.DZ)
-=======
         trad = math.radians(angle)
         self.robot.tourner(angle)
         dx = self.DX
@@ -75,7 +57,6 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._direction[0],  dx*math.cos(trad) - dy*math.sin(trad))
         self.assertEqual(self.robot._direction[1],  self.DX*math.sin(trad) + self.DY*math.cos(trad))
         self.assertEqual(self.robot._direction[2],  self.DZ)
->>>>>>> dev
 
     def test_acceleration(self):
         a = random.random() * 100
@@ -89,11 +70,7 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._vitesse, 0)
 
     def test_toString(self):
-<<<<<<< HEAD
-        self.assertEqual(self.robot.toString() , "R"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.A)+" "+str(self.V)+" "+str(self.DX)+" "+str(self.DY)+" "+str(self.DZ))
-=======
         self.assertEqual(str(self.robot) , "R"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.A)+" "+str(self.V)+" "+str(self.DX)+" "+str(self.DY)+" "+str(self.DZ))
->>>>>>> dev
 
 
 if __name__=="__main__":
