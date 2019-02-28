@@ -48,13 +48,15 @@ class AdaptateurVirtuel:
         pass
 
 
-    def set_motor_dps(self, port, dps):
+    def set_motor_dps(self, port = MOTOR_LEFT+MOTOR_RIGHT, dps):
         """
         Fixe la vitesse d'un moteur en nombre de degres par seconde
 
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
+	trad_dps = (dps/360)*WHEEL_CIRCUMFERENCE   
+        robot.set_vitesse(trad_dps/10)	
 
 
 
