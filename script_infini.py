@@ -1,23 +1,13 @@
 import time
 from random import *
 from tkinter import *
-<<<<<<< HEAD
-from view import *
-from arene import *
-from robot import *
-from obstacle import *
-from lecture import *
-from random import *
-from ecriture import *
-=======
+
 from Projet import RobotVirtuel, Arene, Obstacle_carre, Obstacle_rond, lecture, ecriture2
->>>>>>> dev
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
 arene = lecture(text)
 
-<<<<<<< HEAD
 while (True):                                         #On crée une boucle infinie
   while (arene.proximite() <= 55 ):                   #Tant que le robot est à une distance inférieure à 55 d'un objet
     arene._robot.stop()                         #On met l'acceleration et la vitesse à 0
@@ -30,19 +20,3 @@ while (True):                                         #On crée une boucle infin
         arene = lecture("resources/fichier_test2.txt")
   arene.afficher()
   arene.update(0.40)                                  #On update l'arene toute les 40ms
-=======
-while (True):
-    while (arene.proximite() <= 55 ):
-        arene._robot.stop()
-        arene._robot.tourner(randint(1, 360))
-    if (arene._robot._acceleration==0.0):
-        arene._robot.acceleration(20)
-    if (random() <= 0.10):
-        ecriture2("resources/fichier_test2.txt", arene )
-    if (random()<=0.0075) : #utilise pour relire le fichier
-        arene = lecture("resources/fichier_test2.txt")
-    arene.update(0.05)
-
-
-
->>>>>>> dev
