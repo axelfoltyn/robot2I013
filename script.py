@@ -63,9 +63,4 @@ print("Ma direction actuelle est : " , arene._robot._direction)
 #afficher_arene(arene)
 
 arene.update(10)
-
-<<<<<<< HEAD
 arene._view.end_view()
-=======
-#end_view()
->>>>>>> dev
