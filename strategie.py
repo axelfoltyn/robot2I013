@@ -2,11 +2,12 @@ import time
 
 class Strategie_avance:
 
-    def __init__(self, robot, distance, vitesse,fps=25):
+    def __init__(self, robot, distance, vitesse,fps=25,):
         self._robot=robot
         self._distance=distance
         self._t=time.time()
         self._vitesse=vitesse
+        self._
 
     def update(self):
         if(self.stop())
@@ -65,3 +66,31 @@ class Strategie_tourner_gauche:
     def stop(self):
         dt=(time.time()-self._t)
         return self._angle<=dt*self._vitesse
+
+
+
+class Strategie_carre:
+    def __init__(self,robot,distance,vitesse,fps=25):
+        self._robot=robot
+        self._distance=distance
+        self._vitesse=vitesse
+        self._num_strat=0
+        self._stratege=[Strategie_avancer(robot, distance,vitesse) ,Strategie_tourner_droite(robot, 90, vitesse)]
+        self._i=0
+
+   def stop(self):
+        return self._i>=4
+
+
+    def update(self):
+        dt=1/fps
+        if self.stop():
+            return dt
+        if self._stratege[self._num_strat].stop() and self._num_strat==0:
+            self._num_strat=1
+            self._stratege[self._num_strat].update()
+        elif:
+            self._i+=1
+            if self._stratege[self._num_strat].stop():
+                self._stratege[self._num_strat].update()
+        return dt
