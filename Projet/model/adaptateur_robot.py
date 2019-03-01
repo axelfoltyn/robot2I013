@@ -46,22 +46,14 @@ class AdaptateurRobot(Robot2I013):
                 break
         Robot2I013.stop()
 
-    def Avancer(self, distance):        # distance en cm
+    def avancer(self, distance):        # distance en cm
         self._position_moteur=Robot2I013.get_motor_position()
         Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[0])
         Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_RIGHT, self._position_moteur[1])
-        nb_tours=(distance*10)//WHEEL_CIRCUMFERENCE
-        reste=(distance*10)%WHEEL_CIRCUMFERENCE
-        cpt=0
+        target=(distance*10)/(WHEEL_CIRCUMFERENCE*360)
         Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT+Robot2I013.MOTOR_RIGHT, DPS)
-        while True:
-            temp=self._position_moteur[0]
+        while self._position_moteur < target:
             self._position_moteur=Robot2I013.get_motor_position()
-            if temp>self._position_moteur[0]:
-                cpt+=1
-            delta_position=(self._position_moteur[0]/360)*WHEEL_CIRCUMFERENCE
-            if cpt == nb_tours and delta_position >= reste:
-                break
         Robot2I013.stop()
 
     def get_proximite():
