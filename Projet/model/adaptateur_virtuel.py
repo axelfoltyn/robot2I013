@@ -35,9 +35,10 @@ class AdaptateurVirtuel:
         # Test lecture de fichier et initialisation de l'arene
         self._arene = lecture(text)
         self._arene._robot.add_obs(self._arene)
-        self.NB_Tours_Gauche          = 0                          # Nombre de tour du moteur gauche
-        self.NB_Tours_Droit           = 0                          # Nombre de toursdu moteur droit
-
+        self.DPS_Gauche          = 0                          # Nombre de tour du moteur gauche
+        self.DPS_Droit           = 0                          # Nombre de toursdu moteur droit
+        self.dt_gauche = 0
+        self.dt_droite = 0
 
 
     def set_led(self, led, red = 0, green = 0, blue = 0):
@@ -86,12 +87,12 @@ class AdaptateurVirtuel:
         Zero the encoder by offsetting it by the current position
         """
         if port == MOTOR_LEFT:
-            self.NB_Tours_Gauche = 0
+            self.dt_gauche = 0
         elif port == MOTOR_RIGHT:
-            self.NB_Tours_Droit = 0
+            self.dt_droite = 0
         elif port == MOTOR_RIGHT + MOTOR_LEFT:
-            self.NB_Tours_Gauche = 0
-            self.NB_Tours_Droit = 0
+            self.dt_gauche = 0
+            self.dt_droite = 0
 
 
     def get_distance(self):
@@ -128,4 +129,9 @@ class AdaptateurVirtuel:
         pass
 
 
+    update(self, dt):
+        dt_max = 0.2
+        if dt < dt_max:
+            if DPS_Droit == DPS_Gauche:
+                self._arene._robot.
 
