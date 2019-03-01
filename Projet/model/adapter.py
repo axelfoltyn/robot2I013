@@ -5,50 +5,22 @@ class Adapter(Robot2I013):
     def __init__(self,controler,fps=25,resolution=None,servoPort = "SERVO1",motionPort="AD1"):
         super().__init__(controler,fps,resolution,servoPort,motionPort)
 
-    def action(type, dps):
+    def action(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
+        dps=(vitesse/WHEEL_CIRCUMFERENCE)*3600
+        if code==0:
+            Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT+Robot2I013.MOTOR_RIGHT, dps)
+        else:
+            Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT, -code*dps)
+            Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, code*dps)
 
+    def tourner_gauche(self,vitesse):       # vitesse en cm/s
+        self.action(-1,vitesse)
 
-    def tourner_droite(self,teta): # angle en degres
-        self._position_moteur=Robot2I013.get_motor_position()
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[0])
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_RIGHT, self._position_moteur[1])
-        distance=(teta/360)*WHEEL_BASE_CIRCUMFERENCE
-        nb_tours=(distance*10)//WHEEL_CIRCUMFERENCE
-        reste=(distance*10)%WHEEL_CIRCUMFERENCE
-        cpt=0
-        Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT, DPS)
-        while True:
-            temp=self._position_moteur[0]
-            self._position_moteur=Robot2I013.get_motor_position()
-            if temp>self._position_moteur[0]:
-                cpt+=1
-            delta_position=(self._position_moteur[0]/360)*WHEEL_CIRCUMFERENCE
-            if cpt == nb_tours and delta_position >= reste:
-                break
-        Robot2I013.stop()
+    def tourner_droite(self,vitesse):       # vitesse en cm/s
+        self.action(1,vitesse)
 
-    def tourner_gauche(self,teta): # angle en degres
-        self._position_moteur=Robot2I013.get_motor_position()
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[0])
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_RIGHT, self._position_moteur[1])
-        distance=(teta/360)*WHEEL_BASE_CIRCUMFERENCE
-        nb_tours=(distance*10)//WHEEL_CIRCUMFERENCE
-        reste=(distance*10)%WHEEL_CIRCUMFERENCE
-        cpt=0
-        Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, DPS)
-        while True:
-            temp=self._position_moteur[1]
-            self._position_moteur=Robot2I013.get_motor_position()
-            if temp>self._position_moteur[1]:
-                cpt+=1
-            delta_position=(self._position_moteur[1]/360)*WHEEL_CIRCUMFERENCE
-            if cpt == nb_tours and delta_position >= reste:
-                break
-        Robot2I013.stop()
-
-    def Avancer(self, vitesse):     # vitesse en cm/s
-        dps=(vitesse*3600)/WHEEL_CIRCUMFERENCE
-        Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT+Robot2I013.MOTOR_RIGHT, dps)
+    def avancer(self, vitesse):     # vitesse en cm/s
+            self.action(0,vitesse)
 
     def get_motor_position():
         return Robot2I013.get_motor_position()
