@@ -30,3 +30,9 @@ class Adapter(Robot2I013):
 
     def get_image():
         return Robot2I013.get_image()
+
+    def offset_motor_encoder(self, port, offset):
+        Robot2I013.offset_motor_encoder(port, offset)
+
+    def stop(self):
+        Robot2I013.stop()

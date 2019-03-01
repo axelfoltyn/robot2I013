@@ -2,8 +2,6 @@ from adapter import Adapter
 
 class AdaptateurRobot(Robot2I013):
 
-    DPS=360     # vitesse de rotation des roues (en mouvement) fixees a 1 tr/s soit ~ 21 cm/s
-
     def __init__(self,controler,fps=25,resolution=None,servoPort = "SERVO1",motionPort="AD1"):
         super().__init__(controler,fps,resolution,servoPort,motionPort)
         self._position_moteur=Robot2I013.get_motor_position()
