@@ -8,62 +8,31 @@ class AdaptateurRobot(Robot2I013):
         super().__init__(controler,fps,resolution,servoPort,motionPort)
         self._position_moteur=Robot2I013.get_motor_position()
 
-    def tourner_droite(self,teta):
+    def tourner_droite(self,teta): # teta en degree
         self._position_moteur=Robot2I013.get_motor_position()
         Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[0])
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_RIGHT, self._position_moteur[1])
-        distance=(teta/360)*WHEEL_BASE_CIRCUMFERENCE
-        nb_tours=(distance*10)//WHEEL_CIRCUMFERENCE
-        reste=(distance*10)%WHEEL_CIRCUMFERENCE
-        cpt=0
+        target=teta*(WHEEL_BASE_CIRCUMFERENCE/WHEEL_CIRCUMFERENCE)
         Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT, DPS)
-        while True:
-            temp=self._position_moteur[0]
+        Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, -DPS)
+        while self._position_moteur[0] < target:
             self._position_moteur=Robot2I013.get_motor_position()
-            if temp>self._position_moteur[0]:
-                cpt+=1
-            delta_position=(self._position_moteur[0]/360)*WHEEL_CIRCUMFERENCE
-            if cpt == nb_tours and delta_position >= reste:
-                break
         Robot2I013.stop()
 
-    def tourner_gauche(self,teta):
+    def tourner_gauche(self,teta): # teta en degree
         self._position_moteur=Robot2I013.get_motor_position()
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[0])
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_RIGHT, self._position_moteur[1])
-        distance=(teta/360)*WHEEL_BASE_CIRCUMFERENCE
-        nb_tours=(distance*10)//WHEEL_CIRCUMFERENCE
-        reste=(distance*10)%WHEEL_CIRCUMFERENCE
-        cpt=0
-        Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, DPS)
-        while True:
-            temp=self._position_moteur[1]
+        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[1])
+        target=teta*(WHEEL_BASE_CIRCUMFERENCE/WHEEL_CIRCUMFERENCE)
+        Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT, -DPS)
+        Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, +DPS)
+        while self._position_moteur[1] < target:
             self._position_moteur=Robot2I013.get_motor_position()
-            if temp>self._position_moteur[1]:
-                cpt+=1
-            delta_position=(self._position_moteur[1]/360)*WHEEL_CIRCUMFERENCE
-            if cpt == nb_tours and delta_position >= reste:
-                break
         Robot2I013.stop()
 
     def avancer(self, distance):        # distance en cm
         self._position_moteur=Robot2I013.get_motor_position()
         Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[0])
-        Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_RIGHT, self._position_moteur[1])
-        target=(distance*10)/(WHEEL_CIRCUMFERENCE*360)
+        target=(distance/WHEEL_CIRCUMFERENCE)*3600
         Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT+Robot2I013.MOTOR_RIGHT, DPS)
-        while self._position_moteur < target:
+        while self._position_moteur[0] < target:
             self._position_moteur=Robot2I013.get_motor_position()
         Robot2I013.stop()
-
-    def get_proximite():
-        """
-        Lit le capteur de distance (en mm).
-        :returns: entier distance en millimetre.
-            1. L'intervalle est de **5-8,000** millimeters.
-            2. Lorsque la valeur est en dehors de l'intervalle, le retour est **8190**.
-        """
-        return Robot2I013.get_distance()
-
-    def get_image():
-        return Robot2I013.get_image()
