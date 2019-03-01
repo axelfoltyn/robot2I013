@@ -137,5 +137,12 @@ class AdaptateurVirtuel:
         dt_max = 0.2
         if dt < dt_max:
             if DPS_Droit == DPS_Gauche:
-                self._arene._robot.
-
+                self._arene._robot.avancer(dt * DPS_Gauche * WHEEL_CIRCUMFERENCE / 360)
+            elif DPS_Gauche == -DPS_Droit:
+                pass
+        else:
+            if DPS_Droit == DPS_Gauche:
+                self._arene._robot.avancer(dt_max * DPS_Gauche * WHEEL_CIRCUMFERENCE / 360)
+            elif DPS_Gauche == -DPS_Droit:
+                pass
+            self.update(dt - dt_max)
