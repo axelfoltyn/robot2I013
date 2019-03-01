@@ -137,7 +137,7 @@ class AdaptateurVirtuel:
         pass
 
 
-    update(self, dt):
+    def update(self, dt):
         dt_max = 0.2
         if dt < dt_max:
             if DPS_Droit == DPS_Gauche:
