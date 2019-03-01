@@ -1,4 +1,4 @@
-from robot2I013 import Robot2I013
+from adapter import Adapter
 
 class AdaptateurRobot(Robot2I013):
 
@@ -23,7 +23,7 @@ class AdaptateurRobot(Robot2I013):
         Robot2I013.offset_motor_encoder(Robot2I013.MOTOR_LEFT, self._position_moteur[1])
         target=teta*(WHEEL_BASE_CIRCUMFERENCE/WHEEL_CIRCUMFERENCE)
         Robot2I013.set_motor_dps(Robot2I013.MOTOR_LEFT, -DPS)
-        Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, +DPS)
+        Robot2I013.set_motor_dps(Robot2I013.MOTOR_RIGHT, DPS)
         while self._position_moteur[1] < target:
             self._position_moteur=Robot2I013.get_motor_position()
         Robot2I013.stop()
