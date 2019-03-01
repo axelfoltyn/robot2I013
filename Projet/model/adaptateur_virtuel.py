@@ -29,14 +29,16 @@ class AdaptateurVirtuel:
     WHEEL_DIAMETER           = 66.5                       # diametre de la roue (mm)
     WHEEL_BASE_CIRCUMFERENCE = WHEEL_BASE_WIDTH * math.pi # perimetre du cercle de rotation (mm)
     WHEEL_CIRCUMFERENCE      = WHEEL_DIAMETER   * math.pi # perimetre de la roue (mm)
-    NB_Tours_Gauche          = 0                          # Nombre de tour du moteur gauche  
-    NB_Tours_Droit           = 0                          # Nombre de toursdu moteur droit
 
     def __init__(self, controler, fps=25, resolution=None, servoPort="SERVO1",motionPort="AD1"):
         text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
         self._arene = lecture(text)
         self._arene._robot.add_obs(self._arene)
+        self.NB_Tours_Gauche          = 0                          # Nombre de tour du moteur gauche
+        self.NB_Tours_Droit           = 0                          # Nombre de toursdu moteur droit
+
+
 
     def set_led(self, led, red = 0, green = 0, blue = 0):
         """
@@ -54,15 +56,15 @@ class AdaptateurVirtuel:
         pass
 
 
-    def set_motor_dps(self, port = MOTOR_LEFT+MOTOR_RIGHT, dps):
+    def set_motor_dps(self, port, dps):
         """
         Fixe la vitesse d'un moteur en nombre de degres par seconde
 
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
-	trad_dps = (dps/360)*WHEEL_CIRCUMFERENCE   
-        robot.set_vitesse(trad_dps/10)	
+        trad_dps = (dps/360)*WHEEL_CIRCUMFERENCE
+        robot.set_vitesse(trad_dps/10)
 
 
 
@@ -83,6 +85,13 @@ class AdaptateurVirtuel:
 
         Zero the encoder by offsetting it by the current position
         """
+        if port == MOTOR_LEFT:
+            self.NB_Tours_Gauche = 0
+        elif port == MOTOR_RIGHT:
+            self.NB_Tours_Droit = 0
+        elif port == MOTOR_RIGHT + MOTOR_LEFT:
+            self.NB_Tours_Gauche = 0
+            self.NB_Tours_Droit = 0
 
 
     def get_distance(self):
