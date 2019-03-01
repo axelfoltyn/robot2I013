@@ -89,8 +89,9 @@ class Strategie_carre:
         if self._stratege[self._num_strat].stop() and self._num_strat==0:
             self._num_strat=1
             self._stratege[self._num_strat].update()
-        elif:
+        elif self._stratege[self._num_strat].stop() and self._num_strat==1:
             self._i+=1
-            if self._stratege[self._num_strat].stop():
+            self._num_strat=0
+            if not self.stop():
                 self._stratege[self._num_strat].update()
         return dt
