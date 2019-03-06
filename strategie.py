@@ -80,11 +80,11 @@ class Strategie_carre:
         self._num_strat=0
         self._stratege=[Strategie_avancer(robot, distance,vitesse) ,Strategie_tourner_droite(robot, 90, vitesse)]
         self._i=0
-
-   def stop(self):
+    
+    def stop(self):
         return self._i>=4
-
-
+    
+    
     def update(self):
         dt=1/fps
         if self.stop():
