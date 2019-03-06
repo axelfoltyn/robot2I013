@@ -1,4 +1,7 @@
 import time
+from Projet import RobotVirtuel as robot
+from Projet import Arene as arene
+
 
 class Strategie_avance:
 
@@ -95,3 +98,21 @@ class Strategie_carre:
             if not self.stop():
                 self._stratege[self._num_strat].update()
         return dt
+
+class Strategie_fonce:
+    def __init__(self,robot,vitesse,distance):
+        self._robot=robot
+        self._vitesse=vitesse
+        self._distance=distance
+
+
+    def update():
+        if(self.stop()):
+            self._robot.avancer(0)
+        else:
+            self._robot.avancer(10)
+
+
+    def stop(self):
+        return self.get_distance()<=self._distance
+    
