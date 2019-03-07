@@ -1,5 +1,7 @@
 from .robot import RobotVirtuel
 from .lecture import lecture
+import math
+
 
 class AdaptateurVirtuel:
     #def __init__(self, controler, fps=25, resolution=None, servoPort="SERVO1",motionPort="AD1"):
