@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import random
-from .lecture import lecture
 
 class RobotVirtuel:
 
@@ -13,10 +12,10 @@ class RobotVirtuel:
     MOTOR_LEFT               = 2
 
     def __init__(self, resolution=None, servoPort="SERVO1",motionPort="AD1"):
-        text="resources/fichier_test.txt"
+        #text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
-        self._arene = lecture(text,self)
-        self.add_obs(self._arene)
+        #self._arene = lecture(text,self)
+        self._arene = None
         self.DPS_Gauche              = 0                          # Nombre de tour du moteur gauche
         self.DPS_Droit               = 0                          # Nombre de toursdu moteur droit
         self.dt_gauche               = 0
@@ -29,6 +28,10 @@ class RobotVirtuel:
         self._max_bruit_proximite    = 1.0
         self._max_distance           = 100
         self._observers              = []
+
+    def set_arene(arene):
+        self._arene = arene
+        self.add_obs(self._arene)
 
 
     def set_led(self, led, red = 0, green = 0, blue = 0):

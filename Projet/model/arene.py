@@ -20,7 +20,6 @@ class Arene:
         self._obstacles = obstacles
         self._observers = []
         self._max_proximite=100
-        print("kjfghdkdfhg")
         thread_affichage = Thread(target=self.boucle_actualiser, args=(1/fps))
         thread_affichage.start()
 
@@ -46,7 +45,6 @@ class Arene:
 
     def boucle_actualiser(self, fps = 25):
         while True:
-            print('dfmjksdfh')
             self.update(1/fps)
             time.sleep(1/fps)
 

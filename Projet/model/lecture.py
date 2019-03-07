@@ -3,7 +3,6 @@
 #utiliser with open
 #retourne larene
 from .arene import Arene
-from .robot import RobotVirtuel
 from .obstacle import Obstacle_rond, Obstacle_carre
 from ..view import View
 

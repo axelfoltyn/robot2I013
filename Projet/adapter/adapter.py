@@ -1,6 +1,6 @@
 class Adapter():
 
-    def __init__(self):
+    def __init__(self, Robot):
         self._Robot=Robot
 
     def action(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
