@@ -1,5 +1,7 @@
 from .robot import RobotVirtuel
 from .lecture import lecture
+import math
+
 
 class AdaptateurVirtuel:
     #def __init__(self, controler, fps=25, resolution=None, servoPort="SERVO1",motionPort="AD1"):
@@ -68,11 +70,11 @@ class AdaptateurVirtuel:
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
-        if   (port == MOTOR_LEFT):
+        if   (port == self.MOTOR_LEFT):
             DPS_Gauche = dps
-        elif (port  == MOTOR_RIGHT):
+        elif (port  == self.MOTOR_RIGHT):
             DPS_Droit  = dps
-        elif (port == MOTOR_RIGHT+MOTOR_LEFT):
+        elif (port == self.MOTOR_RIGHT+self.MOTOR_LEFT):
             DPS_Gauche = dps
             DPS_Droit  = dps
 
@@ -82,7 +84,7 @@ class AdaptateurVirtuel:
         Lit les etats des moteurs en degre.
         :return: couple du  degre de rotation des moteurs
         """
-        return [(dt * DPS_Gauche - offset_gauche), (dt * DPS_Droit - offset_droite)]
+        return [(dt * self.DPS_Gauche - self.offset_gauche), (dt * self.DPS_Droit - self.offset_droite)]
 
     def offset_motor_encoder(self, port, offset):
         """
@@ -140,18 +142,21 @@ class AdaptateurVirtuel:
     def update(self, dt):
         dt_max = 0.2
         if dt < dt_max:
-            if DPS_Droit == DPS_Gauche:
-                self._arene._robot.avancer(dt * DPS_Gauche * WHEEL_CIRCUMFERENCE / 360)
-            elif DPS_Gauche == -DPS_Droit:
-                circonference_cm = WHEEL_CIRCUMFERENCE/10
+            if self.DPS_Droit == self.DPS_Gauche:
+                self._arene._robot.avancer(dt * self.DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
+            elif self.DPS_Gauche == -self.DPS_Droit:
+                circonference_cm = self.WHEEL_CIRCUMFERENCE/10
                 distance = self.get_motor_position()[1] * circonference_cm / 360
-                self._arene._robot.tourner(distance * 360 / WHEEL_BASE_CIRCUMFERENCE)
+                self._arene._robot.tourner(distance * 360 / self.WHEEL_BASE_CIRCUMFERENCE)
                 pass
         else:
             if DPS_Droit == DPS_Gauche:
-                self._arene._robot.avancer(dt_max * DPS_Gauche * WHEEL_CIRCUMFERENCE / 360)
+                self._arene._robot.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
             elif DPS_Gauche == -DPS_Droit:
-                circonference_cm = WHEEL_CIRCUMFERENCE/10
+                circonference_cm = self.WHEEL_CIRCUMFERENCE/10
                 distance = self.get_motor_position()[1] * circonference_cm / 360
-                self._arene._robot.tourner(distance * 360 / WHEEL_BASE_CIRCUMFERENCE)
+                self._arene._robot.tourner(distance * 360 / self.WHEEL_BASE_CIRCUMFERENCE)
             self.update(dt - dt_max)
+
+    def fin(self):
+        self._arene.fin()
