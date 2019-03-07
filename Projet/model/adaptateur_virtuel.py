@@ -157,3 +157,6 @@ class AdaptateurVirtuel:
                 distance = self.get_motor_position()[1] * circonference_cm / 360
                 self._arene._robot.tourner(distance * 360 / self.WHEEL_BASE_CIRCUMFERENCE)
             self.update(dt - dt_max)
+
+    def fin(self):
+        self._arene.fin()
