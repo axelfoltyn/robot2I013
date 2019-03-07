@@ -1,9 +1,7 @@
-from .adaptateur_virtuel import AdaptateurVirtuel as Robot
-
 class Adapter():
 
     def __init__(self):
-        self._Robot=Robot(True)
+        self._Robot=Robot
 
     def action(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
         dps=(vitesse/self._Robot.WHEEL_CIRCUMFERENCE)*3600
@@ -39,5 +37,6 @@ class Adapter():
 
     def finish(self):
         self._Robot.fin()
+
     def update(self, dt):
         self._Robot.update(dt)
