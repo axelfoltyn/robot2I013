@@ -1,8 +1,9 @@
 from .robot import *
 from .obstacle import *
+from threading import Thread
 
 class Arene:
-    def __init__(self, x = 42, y = 42, z = 42,robot=RobotVirtuel(), obstacles=[],observers=[]):
+    def __init__(self, x = 42, y = 42, z = 42,robot=RobotVirtuel(), obstacles=[],observers=[], fps=25):
         """
     int * int * int * Robot * Obstacle[] -> Arene
     L'arene contient le robot et les obstacles
@@ -19,6 +20,9 @@ class Arene:
         self._obstacles = obstacles
         self._observers = []
         self._max_proximite=100
+        print("kjfghdkdfhg")
+        thread_affichage = Thread(target=self.boucle_actualiser, args=(1/fps))
+        thread_affichage.start()
 
     def add_obs(self,observer):
         self._observers.append(observer)
@@ -40,8 +44,14 @@ class Arene:
         self._obstacles.append(obstacle)
 
 
+    def boucle_actualiser(self, fps = 25):
+        while True:
+            print('dfmjksdfh')
+            self.update(1/fps)
+            time.sleep(1/fps)
+
     #dt en s
-    def update(self, dt = 1):
+    def update(self, dt=0.1):
         """
     Permet de mettre a jour l'arène et ses elements
     :param dt: temps en secondes represente le temps
