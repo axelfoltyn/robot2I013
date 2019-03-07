@@ -110,7 +110,7 @@ class Strategie_fonce:
         if(self.stop()):
             self._robot.avancer(0)
         else:
-            self._robot.avancer(10)
+            self._robot.avancer(self._vitesse)
         return 1/self.fps
 
 

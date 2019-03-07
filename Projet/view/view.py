@@ -99,7 +99,7 @@ class View:
     #dt en s
     def update(self, dt=1):
         self._canvas.pack()
-        time.sleep(dt)
+        #time.sleep(dt)
         self._canvas.update()
 
 
