@@ -1,5 +1,5 @@
 import time
-from Projet import RobotVirtuel as robot
+from Projet import RobotVirtuel as Robot
 from Projet import Arene as arene
 
 
@@ -13,7 +13,7 @@ class Strategie_avance:
         self._
 
     def update(self):
-        if(self.stop())
+        if(self.stop()):
             self._robot.avancer(0)
         else:
             self._robot.avancer(self._vitesse)
@@ -36,7 +36,7 @@ class Strategie_tourner_droite:
         self._vitesse=vitesse
 
     def update(self):
-        if(self.stop())
+        if(self.stop()):
             self._robot.tourner_droite(0)
         else:
             self._robot.tourner_droite(self._vitesse)
@@ -59,7 +59,7 @@ class Strategie_tourner_gauche:
         self._vitesse=vitesse
 
     def update(self):
-        if(self.stop())
+        if(self.stop()):
             self._robot.tourner_gauche(0)
         else:
             self._robot.tourner_gauche(self._vitesse)
@@ -114,5 +114,5 @@ class Strategie_fonce:
 
 
     def stop(self):
-        return self.get_distance()<=self._distance
+        return self._robot.get_distance()<=self._distance
 
