@@ -100,17 +100,18 @@ class Strategie_carre:
         return dt
 
 class Strategie_fonce:
-    def __init__(self,robot,vitesse,distance):
+    def __init__(self,robot,vitesse,distance,fps=25):
         self._robot=robot
         self._vitesse=vitesse
         self._distance=distance
-
+        self.fps = fps
 
     def update(self):
         if(self.stop()):
             self._robot.avancer(0)
         else:
             self._robot.avancer(10)
+        return 1/self.fps
 
 
     def stop(self):

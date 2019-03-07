@@ -1,12 +1,12 @@
-from adaptateur_virtuel import RobotVirtuel as Robot
+from .adaptateur_virtuel import AdaptateurVirtuel as Robot
 
 class Adapter():
 
     def __init__(self):
-        self._Robot=Robot()
+        self._Robot=Robot(True)
 
     def action(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
-        dps=(vitesse/WHEEL_CIRCUMFERENCE)*3600
+        dps=(vitesse/self._Robot.WHEEL_CIRCUMFERENCE)*3600
         if code==0:
             self._Robot.set_motor_dps(self._Robot.MOTOR_LEFT+self._Robot.MOTOR_RIGHT, dps)
         else:
@@ -22,13 +22,13 @@ class Adapter():
     def avancer(self, vitesse):     # vitesse en cm/s
             self.action(0,vitesse)
 
-    def get_motor_position():
+    def get_motor_position(self):
         return self._Robot.get_motor_position()
 
-    def get_distance():
+    def get_distance(self):
         return self._Robot.get_distance()
 
-    def get_image():
+    def get_image(self):
         return self._Robot.get_image()
 
     def offset_motor_encoder(self, port, offset):
@@ -36,3 +36,6 @@ class Adapter():
 
     def stop(self):
         self._Robot.stop()
+
+    def update(self, dt):
+        self._Robot.update(dt)
