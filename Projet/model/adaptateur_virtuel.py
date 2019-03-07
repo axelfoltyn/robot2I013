@@ -71,12 +71,12 @@ class AdaptateurVirtuel:
         :dps: la vitesse cible en nombre de degres par seconde
         """
         if   (port == self.MOTOR_LEFT):
-            DPS_Gauche = dps
+            self.DPS_Gauche = dps
         elif (port  == self.MOTOR_RIGHT):
-            DPS_Droit  = dps
+            self.DPS_Droit  = dps
         elif (port == self.MOTOR_RIGHT+self.MOTOR_LEFT):
-            DPS_Gauche = dps
-            DPS_Droit  = dps
+            self.DPS_Gauche = dps
+            self.DPS_Droit  = dps
 
 
     def get_motor_position(self):

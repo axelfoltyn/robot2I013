@@ -73,7 +73,7 @@ class RobotVirtuel:
 
     def avancer(self,distance):
         target=[distance*self._direction[0]+self._position[0],distance*self._direction[1]+self._position[1],distance*self._direction[2]+self._position[2]]
-        self._acceleration=10
+        self._acceleration=100
         while (self._position[0]<=target[0]  if self._direction[0] > 0 \
           else self._position[0]>=target[0]) and \
           (self._position[1]<=target[1]  if self._direction[1] > 0 \
