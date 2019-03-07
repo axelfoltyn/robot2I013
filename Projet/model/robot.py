@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import random
+from .lecture import lecture
 
 class RobotVirtuel:
 
@@ -11,7 +12,7 @@ class RobotVirtuel:
     MOTOR_RIGHT              = 1
     MOTOR_LEFT               = 2
 
-    def __init__(self, controler, fps=25, resolution=None, servoPort="SERVO1",motionPort="AD1"):
+    def __init__(self, resolution=None, servoPort="SERVO1",motionPort="AD1"):
         text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
         self._arene = lecture(text,self)

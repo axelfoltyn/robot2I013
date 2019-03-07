@@ -1,6 +1,4 @@
 import time
-from Projet import RobotVirtuel as Robot
-from Projet import Arene as arene
 
 
 class Strategie_avance:

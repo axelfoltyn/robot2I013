@@ -3,7 +3,7 @@ from .obstacle import *
 from threading import Thread
 
 class Arene:
-    def __init__(self, x = 42, y = 42, z = 42,robot=RobotVirtuel(), obstacles=[],observers=[], fps=25):
+    def __init__(self, x = 42, y = 42, z = 42,robot=None, obstacles=[],observers=[], fps=25):
         """
     int * int * int * Robot * Obstacle[] -> Arene
     L'arene contient le robot et les obstacles
