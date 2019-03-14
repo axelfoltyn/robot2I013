@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import random
+from .lecture import lecture
 
 class RobotVirtuel:
 
@@ -12,16 +13,18 @@ class RobotVirtuel:
     MOTOR_LEFT               = 2
 
     def __init__(self, resolution=None, servoPort="SERVO1",motionPort="AD1"):
-        #text="resources/fichier_test.txt"
+        text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
-        #self._arene = lecture(text,self)
-        self._arene = None
+
+
         self.DPS_Gauche              = 0                          # Nombre de tour du moteur gauche
         self.DPS_Droit               = 0                          # Nombre de toursdu moteur droit
+
         self.dt_gauche               = 0
         self.dt_droite               = 0
         self.offset_gauche           = 0
         self.offset_droite           = 0
+
         self._min_bruit_acceleration = -0.1
         self._max_bruit_acceleration = 0.1
         self._min_bruit_proximite    = -1.0
@@ -29,9 +32,12 @@ class RobotVirtuel:
         self._max_distance           = 100
         self._observers              = []
 
-    def set_arene(arene):
-        self._arene = arene
-        self.add_obs(self._arene)
+        self._direction = [0,0,0]                                 #initialiser lors de la lecture
+        self._position = [0,0,0]                                  #initialiser lors de la lecture
+        self._vitesse = 0                                         #initialiser lors de la lecture
+        self._acceleration = 0                                    #initialiser lors de la lecture
+
+        self._arene = lecture(text,self)
 
 
     def set_led(self, led, red = 0, green = 0, blue = 0):
@@ -129,13 +135,12 @@ class RobotVirtuel:
     def update(self, dt):
         dt_max = 0.2
         if dt < dt_max:
-            if self.DPS_Droit == self.DPS_Gauche:
+            if self.DPS_Gauche == self.DPS_Droit:
                 self.avancer(dt * self.DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
             elif self.DPS_Gauche == -self.DPS_Droit:
                 circonference_cm = self.WHEEL_CIRCUMFERENCE/10
                 distance = self.get_motor_position()[1] * circonference_cm / 360
                 self.tourner(distance * 360 / self.WHEEL_BASE_CIRCUMFERENCE)
-                pass
         else:
             if DPS_Droit == DPS_Gauche:
                 self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
@@ -204,15 +209,15 @@ class RobotVirtuel:
 
 
     def avancer(self,distance):
-        target=[distance*self._direction[0]+self._position[0],distance*self._direction[1]+self._position[1],distance*self._direction[2]+self._position[2]]
-        self._acceleration=100
-        while (self._position[0]<=target[0]  if self._direction[0] > 0 \
-          else self._position[0]>=target[0]) and \
-          (self._position[1]<=target[1]  if self._direction[1] > 0 \
-          else self._position[1]>=target[1]):
-            #self.update(0.01)
-            for obs in self._observers:
-                obs.update(0.01)
+        #target=[distance*self._direction[0]+self._position[0],distance*self._direction[1]+self._position[1],distance*self._direction[2]+self._position[2]]
+        #self._acceleration=100
+        #while (self._position[0]<=target[0]  if self._direction[0] > 0 \
+        #  else self._position[0]>=target[0]) and \
+        #  (self._position[1]<=target[1]  if self._direction[1] > 0 \
+        #  else self._position[1]>=target[1]):
+        #    self.update(0.01)
+        #    for obs in self._observers:
+        #        obs.update(0.01)
         self.stop()
 
 
@@ -278,7 +283,7 @@ class RobotVirtuel:
     def add_obs(self,observer):
         self._observers.append(observer)
 
-    def set_positon(self,pos1,pos2,pos3):
+    def set_position(self,pos1,pos2,pos3):
 
         """
            Cette fonction nous permet de positionner le robot
@@ -311,3 +316,21 @@ class RobotVirtuel:
         self._direction[0] = dirx
         self._direction[1] = diry
         self._direction[2] = dirz
+
+    def get_x(self):
+        return self._position[0]
+
+    def get_y(self):
+        return self._position[1]
+
+    def get_z(self):
+        return self._position[2]
+
+    @property
+    def x(self): return self._position[0]
+
+    @property
+    def y(self): return self._position[1]
+
+    @property
+    def z(self): return self._position[2]
