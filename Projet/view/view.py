@@ -2,7 +2,7 @@ import sys
 import time
 from tkinter import *
 from tkinter import messagebox
-from ..model import Obstacle_carre
+#from ..model import Obstacle_carre
 
 class View:
     def __init__(self,x=800, y=600):
@@ -41,7 +41,8 @@ class View:
         x0=obstacle._x
         y0=self._y-obstacle._y
         #si r est different de 0 alors cest un cercle sinon autre
-        if isinstance(obstacle, Obstacle_carre):
+        #if isinstance(obstacle, Obstacle_carre):
+        if obstacle.name == 'C':
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
                 y1 = self._y-obstacle._y
@@ -64,7 +65,7 @@ class View:
     def update_arene(self,arene,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
-        self.clear()                      #On efface d'abord ce qui etait affiche precedemment
+        self.clear()                   #On efface d'abord ce qui etait affiche precedemment
         for i in arene._obstacles :              #On procède a l'affichage des obstacles
             self.afficher_obstacle(i)
         self.afficher_robot(arene._robot)  #On affiche le robot

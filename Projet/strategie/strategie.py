@@ -3,7 +3,7 @@ import time
 
 class Strategie_avance:
 
-    def __init__(self, robot, distance, vitesse,fps=25,):
+    def __init__(self, robot, distance, vitesse,fps=25):
         self._robot=robot
         self._distance=distance
         self._t=time.time()

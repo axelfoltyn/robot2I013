@@ -33,6 +33,7 @@ class Obstacle_carre(Obstacle):
         self._z=z
         self._lo=lo
         self._la=la
+        self.name = 'C'
 
     def est_dans(self,x,y,z):                                       #On vérifie si le point de coordonées x,y,z se trouve dans l'obstacle
         x1=self._x                                                  #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
@@ -50,7 +51,7 @@ class Obstacle_rond(Obstacle):
         self._y=y
         self._z=z
         self._r=r
-
+        self.name = 'R'
 
     def est_dans(self,x,y,z):                                       #On vérifie si l'objet de coordonées x,y,z se trouve dans l'obstacle
         return (x-self._x)**2+(y-self._y)**2 <= self._r**2          #On verifie si les coordonées du point se trouvent dans le cercle
