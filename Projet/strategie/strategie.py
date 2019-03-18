@@ -18,7 +18,6 @@ class Strategie_avance:
             self._robot.avancer(0)
         else:
             self._robot.avancer(self._vitesse)
-        return 1/fps
 
     def stop(self):
         dt=(time.time()-self._t)
@@ -43,15 +42,16 @@ class Strategie_tourner_droite:
 
     def update(self):
         if(self.stop()):
+            print("pas bien")
             self._robot.tourner_droite(0)
         else:
+            print("bien")
             self._robot.tourner_droite(self._vitesse)
-
-        return 1/fps
 
 
     def stop(self):
         dt=(time.time()-self._t)
+        print(dt)
         return self._angle<=dt*self._vitesse
 
 
@@ -88,7 +88,7 @@ class Strategie_carre:
         self._distance=distance
         self._vitesse=vitesse
         self._num_strat=0
-        self._stratege=[Strategie_avancer(robot, distance,vitesse) ,Strategie_tourner_droite(robot, 90, vitesse)]
+        self._stratege=[Strategie_avance(robot, distance,vitesse) ,Strategie_tourner_droite(robot, 90, vitesse)]
         self._i=0
 
     def stop(self):
@@ -103,9 +103,8 @@ class Strategie_carre:
 
 
     def update(self):
-        dt=1/fps
         if self.stop():
-            return dt
+            self._robot.avancer(0)
         if self._stratege[self._num_strat].stop() and self._num_strat==0:
             self._num_strat=1
             self._stratege[self._num_strat].start()
@@ -118,8 +117,6 @@ class Strategie_carre:
                 self._stratege[self._num_strat].update()
         else:
              self._stratege[self._num_strat].update()
-
-        return dt
 
 class Strategie_fonce:
     def __init__(self,robot,vitesse,distance,fps=25):

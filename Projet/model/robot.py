@@ -77,7 +77,7 @@ class RobotVirtuel:
         Lit les etats des moteurs en degre.
         :return: couple du  degre de rotation des moteurs
         """
-        return [(dt * self.DPS_Gauche - self.offset_gauche), (dt * self.DPS_Droit - self.offset_droite)]
+        return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit - self.offset_droite)]
 
     def offset_motor_encoder(self, port, offset):
         """
@@ -133,6 +133,7 @@ class RobotVirtuel:
 
 
     def update(self, dt):
+        print(self.DPS_Gauche, self.DPS_Droit)
         dt_max = 0.2
         if dt < dt_max:
             if self.DPS_Gauche == self.DPS_Droit:
@@ -140,14 +141,14 @@ class RobotVirtuel:
             elif self.DPS_Gauche == -self.DPS_Droit:
                 circonference_cm = self.WHEEL_CIRCUMFERENCE/10
                 distance = self.get_motor_position()[1] * circonference_cm / 360
-                self.tourner(distance * 360 / self.WHEEL_BASE_CIRCUMFERENCE)
+                self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
         else:
             if DPS_Droit == DPS_Gauche:
                 self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
             elif DPS_Gauche == -DPS_Droit:
                 circonference_cm = self.WHEEL_CIRCUMFERENCE/10
                 distance = self.get_motor_position()[1] * circonference_cm / 360
-                self.tourner(distance * 360 / self.WHEEL_BASE_CIRCUMFERENCE)
+                self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
             self.update(dt - dt_max)
 
     def fin(self):
@@ -190,6 +191,7 @@ class RobotVirtuel:
         : param teta : angle de rotation
         """
         # rotation dans le sens trigo
+        print(teta)
         d_teta = 5
         if teta > d_teta:
             self.tourner(d_teta)
