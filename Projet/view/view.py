@@ -2,10 +2,12 @@ import sys
 import time
 from tkinter import *
 from tkinter import messagebox
+import threading
 #from ..model import Obstacle_carre
 
-class View:
-    def __init__(self,x=800, y=600):
+class View(threading.Thread):
+    def __init__(self,arene):
+        super(View,self).__init__()
         """
         int * int -> View
         Cette fonction initialise la fenetre sur laquelle le robot va s'afficher
@@ -13,15 +15,19 @@ class View:
         : param y: heuteur de la fenetre
         """
         #initialisation des parametres
-        self._x = x
-        self._y = y
+        self._x = arene._x
+        self._y = arene._y
+        self._objets = []
+        self.arene = arene
+
+    def run(self):
         self._fenetre = Tk()
-        self._canvas = Canvas(self._fenetre, width = x, height = y, background = "grey")
+        self._canvas = Canvas(self._fenetre, width = self._x, height = self._y, background = "grey")
         self._canvas.pack()
         self._Bouton_Quitter = Button(self._fenetre, text = "Quitter", command = self._fenetre.destroy) #creation du boutton quitter
         self._Bouton_Quitter.pack()
-        self._objets = []
-
+        self._fenetre.after(1,self.update_arene)
+        self._fenetre.mainloop()
     def afficher_robot(self,robot):
         """
         Cette fonction affiche le robot sur le canevas
@@ -62,14 +68,15 @@ class View:
 
         ### faire attention a coordonnee y qui vaudra self._y - y !!! (pour avoir affichage a l'endroit)
 
-    def update_arene(self,arene,dt=1):
+    def update_arene(self,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
         self.clear()                   #On efface d'abord ce qui etait affiche precedemment
-        for i in arene._obstacles :              #On procède a l'affichage des obstacles
+        for i in self.arene._obstacles :              #On procède a l'affichage des obstacles
             self.afficher_obstacle(i)
-        self.afficher_robot(arene._robot)  #On affiche le robot
+        self.afficher_robot(self.arene._robot)  #On affiche le robot
         self.update(dt)
+        self._fenetre.after(5,self.update_arene)
 
 
 
@@ -95,7 +102,7 @@ class View:
         else:
             self._canvas.configure(background = "red")
             messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
-        self._fenetre.mainloop()
+        #self._fenetre.mainloop()
 
     #dt en s
     def update(self, dt=1):

@@ -1,6 +1,6 @@
 from .robot import *
 from .obstacle import *
-from threading import Thread
+
 import time
 
 class Arene:
@@ -21,12 +21,11 @@ class Arene:
         self._obstacles = obstacles
         self._observers = []
         self._max_proximite=100
-        thread_affichage = Thread(target=self.boucle_actualiser, args=(fps,))
-        thread_affichage.start()
+
 
     def add_obs(self,observer):
-        self._observers.append(observer)
-
+        #self._observers.append(observer)
+        pass
 
     def ajout_Robot(self, robot):
         """
@@ -46,6 +45,7 @@ class Arene:
 
     def boucle_actualiser(self, fps = 25):
         while True:
+            print('hey')
             if self._robot != None:
                 self.update(1/fps)
             time.sleep(1/fps)
