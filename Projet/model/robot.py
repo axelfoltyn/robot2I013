@@ -222,7 +222,7 @@ class RobotVirtuel:
 
         for i in [0,1,2]:
             self._position[i]=self._position[i]+self._direction[i]*distance
-        self.stop()
+        #self.stop()
 
 
 
@@ -254,6 +254,8 @@ class RobotVirtuel:
         """
         Fonction STOP qui met l'acceleration et la vitesse du robot a 0
         """
+        self.DPS_Gauche = 0
+        self.DPS_Droit = 0
         self._acceleration=0
         self._vitesse=0
 
