@@ -24,7 +24,7 @@ class Arene:
 
 
     def add_obs(self,observer):
-        #self._observers.append(observer)
+        self._observers.append(observer)
         pass
 
     def ajout_Robot(self, robot):
@@ -45,7 +45,6 @@ class Arene:
 
     def boucle_actualiser(self, fps = 25):
         while True:
-            print('hey')
             if self._robot != None:
                 self.update(1/fps)
             time.sleep(1/fps)
@@ -60,15 +59,15 @@ class Arene:
         t = 0.04                                #intervalle de temps par defaut (40 ms)
         if(dt <= t):                         #si le temps dt insere est inferieur a 40ms on prendra dt
             self._robot.update(dt)
-            for obs in self._observers:
-                obs.update_arene(self,dt)
+            #for obs in self._observers:
+            #    obs.update_arene(self,dt)
             if self.proximite() == 0:
                 for obs in self._observers:
                     obs.arret(False)
         else:
             self._robot.update(t)
-            for obs in self._observers:
-                obs.update_arene(self,t)
+            #for obs in self._observers:
+            #    obs.update_arene(self,t)
             self.update(dt-t)
             if self.proximite() == 0:
                 for obs in self._observers:

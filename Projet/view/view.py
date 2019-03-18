@@ -102,7 +102,7 @@ class View(threading.Thread):
         else:
             self._canvas.configure(background = "red")
             messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
-        #self._fenetre.mainloop()
+        self._fenetre.mainloop()
 
     #dt en s
     def update(self, dt=1):
