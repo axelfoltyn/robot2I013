@@ -218,6 +218,10 @@ class RobotVirtuel:
         #    self.update(0.01)
         #    for obs in self._observers:
         #        obs.update(0.01)
+
+
+        for i in [0,1,2]:
+            self._position[i]=self._position[i]+self._direction[i]*distance
         self.stop()
 
 
