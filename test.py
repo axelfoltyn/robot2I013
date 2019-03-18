@@ -1,5 +1,5 @@
 import time
-from Projet import Strategie_fonce
+from Projet import Strategie_fonce, Strategie_carre
 from Projet import RobotVirtuel as RobotV
 from Projet import Adapter as Robot
 from Projet import lecture
@@ -16,7 +16,10 @@ thread_affichage = Thread(target=robotv._arene.boucle_actualiser, args=(25.,))
 thread_affichage.start()
 view.start()
 
-strat = Strategie_fonce(robot, 10, 15)
+#strat = Strategie_fonce(robot, 10, 15)
+strat = Strategie_carre(robot, 10, 15)
+
+
 
 while not strat.stop():
     strat.update()
