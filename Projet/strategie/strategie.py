@@ -1,6 +1,7 @@
 import time
 
 
+
 class Strategie_avance:
 
     def __init__(self, robot, distance, vitesse,fps=25):
@@ -32,12 +33,12 @@ class Strategie_tourner_droite:
     def __init__(self, robot, angle, vitesse,fps=25):
         self._robot=robot
         self._angle=angle
-        self._t=time.time()
         self._vitesse=vitesse
+        self._position=robot.offset_motor_encoder(robot.MOTOR_RIGHT, offset)
 
 
     def start(self):
-        self._t=time.time()
+        self._position=robot.offset_motor_encoder(robot.MOTOR_RIGHT, offset)
 
 
     def update(self):
@@ -48,17 +49,16 @@ class Strategie_tourner_droite:
 
 
     def stop(self):
-        dt=(time.time()-self._t)
-        return self._angle<=dt*self._vitesse
-
-
+        circonference_cm = robot.WHEEL_CIRCUMFERENCE/10
+        distance = robot.get_motor_position() * circonference_cm / 360
+        deta=distance * 360.0 / robot.WHEEL_BASE_CIRCUMFERENCE
+        return self._angle<=deta
 
 class Strategie_tourner_gauche:
 
     def __init__(self, robot, angle, vitesse,fps=25):
         self._robot=robot
         self._angle=angle
-        self._t=time.time()
         self._vitesse=vitesse
 
     def start(self):
