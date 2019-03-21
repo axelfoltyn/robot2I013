@@ -34,11 +34,11 @@ class Strategie_tourner_droite:
         self._robot=robot
         self._angle=angle
         self._vitesse=vitesse
-        robot.offset_motor_encoder(robot.MOTOR_RIGHT, robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
 
 
     def start(self):
-        robot.offset_motor_encoder(robot.MOTOR_RIGHT, robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
 
 
     def update(self):
@@ -49,9 +49,9 @@ class Strategie_tourner_droite:
 
 
     def stop(self):
-        circonference_cm = robot.WHEEL_CIRCUMFERENCE/10
-        distance = robot.get_motor_position() * circonference_cm / 360
-        deta=distance * 360.0 / robot.WHEEL_BASE_CIRCUMFERENCE
+        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
+        distance = self._robot.get_motor_position()[1] * circonference_cm / 360
+        deta=distance * 360.0 / self._robot.WHEEL_BASE_CIRCUMFERENCE
         return self._angle<=deta
 
 class Strategie_tourner_gauche:
