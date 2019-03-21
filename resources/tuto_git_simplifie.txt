@@ -145,3 +145,10 @@ Branche dev supprimée (précédemment 77f6c0a)
 >>>git merge <ici>
 #si <ici> ne sera plus utilisé
 git branch -d <ici>
+
+
+
+
+
+apart
+git fetch --all
