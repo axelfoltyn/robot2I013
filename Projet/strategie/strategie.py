@@ -34,11 +34,11 @@ class Strategie_tourner_droite:
         self._robot=robot
         self._angle=angle
         self._vitesse=vitesse
-        self._position=robot.offset_motor_encoder(robot.MOTOR_RIGHT, offset)
+        robot.offset_motor_encoder(robot.MOTOR_RIGHT, robot.get_motor_position()[1])
 
 
     def start(self):
-        self._position=robot.offset_motor_encoder(robot.MOTOR_RIGHT, offset)
+        robot.offset_motor_encoder(robot.MOTOR_RIGHT, robot.get_motor_position()[1])
 
 
     def update(self):

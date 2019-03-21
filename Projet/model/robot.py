@@ -89,11 +89,11 @@ class RobotVirtuel:
 
         Zero the encoder by offsetting it by the current position
         """
-        if port == MOTOR_LEFT:
+        if port == self.MOTOR_LEFT:
             self.offset_gauche = offset
-        elif port == MOTOR_RIGHT:
+        elif port == self.MOTOR_RIGHT:
             self.offset_droite = offset
-        elif port == MOTOR_RIGHT + MOTOR_LEFT:
+        elif port == self.MOTOR_RIGHT + self.MOTOR_LEFT:
             self.offset_gauche = offset
             self.offset_droite = offset
 
