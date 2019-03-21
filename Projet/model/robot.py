@@ -90,12 +90,12 @@ class RobotVirtuel:
         Zero the encoder by offsetting it by the current position
         """
         if port == self.MOTOR_LEFT:
-            self.offset_gauche = offset
+            self.offset_gauche += offset
         elif port == self.MOTOR_RIGHT:
-            self.offset_droite = offset
+            self.offset_droite += offset
         elif port == self.MOTOR_RIGHT + self.MOTOR_LEFT:
-            self.offset_gauche = offset
-            self.offset_droite = offset
+            self.offset_gauche += offset
+            self.offset_droite += offset
 
 
     def get_distance(self):
