@@ -42,16 +42,13 @@ class Strategie_tourner_droite:
 
     def update(self):
         if(self.stop()):
-            print("pas bien")
             self._robot.tourner_droite(0)
         else:
-            print("bien")
             self._robot.tourner_droite(self._vitesse)
 
 
     def stop(self):
         dt=(time.time()-self._t)
-        print(dt)
         return self._angle<=dt*self._vitesse
 
 
