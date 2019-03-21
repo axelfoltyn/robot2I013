@@ -1,6 +1,7 @@
 import time
 from Projet import Strategie_fonce, Strategie_carre
 from Projet import RobotVirtuel as RobotV
+#from Projet import Robot2I013 as RobotV
 from Projet import Adapter as Robot
 from Projet import lecture
 from Projet import View
