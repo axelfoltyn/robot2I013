@@ -41,3 +41,12 @@ class Adapter():
 
     def update(self, dt):
         self._Robot.update(dt)
+
+    @property
+    def WHEEL_CIRCUMFERENCE(self): return self._Robot.WHEEL_CIRCUMFERENCE
+
+    @property
+    def MOTOR_LEFT(self): return self._Robot.MOTOR_LEFT
+
+    @property
+    def MOTOR_RIGHT(self): return self._Robot.MOTOR_RIGHT
