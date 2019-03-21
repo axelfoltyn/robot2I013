@@ -46,6 +46,9 @@ class Adapter():
     def WHEEL_CIRCUMFERENCE(self): return self._Robot.WHEEL_CIRCUMFERENCE
 
     @property
+    def WHEEL_BASE_CIRCUMFERENCE(self): return self._Robot.WHEEL_BASE_CIRCUMFERENCE
+
+    @property
     def MOTOR_LEFT(self): return self._Robot.MOTOR_LEFT
 
     @property
