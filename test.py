@@ -21,7 +21,7 @@ view.start()
 strat = Strategie_carre(robot, 10, 15)
 
 
-
+strat.start()
 while not strat.stop():
     strat.update()
     #robotv._arene.update(1/25)
