@@ -7,14 +7,8 @@ from Projet import View
 from threading import Thread
 
 robotv = RobotV()
-
-view = View(robotv._arene)
-robotv._arene.add_obs(view)
 robot = Robot(robotv)
 
-thread_affichage = Thread(target=robotv._arene.boucle_actualiser, args=(25.,))
-thread_affichage.start()
-view.start()
 
 strat = Strategie_fonce(robot, 100, 1)
 #strat = Strategie_carre(robot, 100, 100)
