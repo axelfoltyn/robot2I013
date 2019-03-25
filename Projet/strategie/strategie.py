@@ -147,3 +147,41 @@ class Strategie_fonce:
 
 
 
+class Strategie_avance_ameliore:
+
+    i=2
+
+    def __init__(self, robot, distance, vitesse,fps=25):
+        self._robot=robot
+        self._distance=distance
+        self._vitesse=vitesse
+
+
+    def start(self):
+        print("reset :", self._robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
+        print("reset :", self._robot.get_motor_position()[1])
+
+    def update(self):
+        if(self._vitesse > 50):
+            if(self.dist()):
+                self._robot.avancer(self._vitesse/2)
+        if(self.stop()):
+            self._robot.avancer(0)
+        else:
+            self._robot.avancer(self._vitesse)
+
+    def stop(self):
+        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
+        distance = self._robot.get_motor_position()[1] * circonference_cm / 360
+        return self._distance<=distance
+
+    def dist(self):
+        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
+        distance = self._robot.get_motor_position()[1] * circonference_cm / 360
+        if (self._distance/i<=distance):
+            i=i+1
+            return True
+        else:
+            return False
