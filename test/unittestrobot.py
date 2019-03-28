@@ -20,7 +20,8 @@ class RobotVirtuelTest(unittest.TestCase):
         self.offset_gauche=0
         self.offset_droit=0
 
-
+    def soso(self):
+        pass
 
 
 
