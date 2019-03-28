@@ -4,7 +4,7 @@ import time
 
 class Strategie_avance:
 
-    def __init__(self, robot, distance, vitesse,fps=25):
+    def __init__(self, robot, distance, vitesse):
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
@@ -17,9 +17,6 @@ class Strategie_avance:
         print("reset :", self._robot.get_motor_position()[1])
 
     def update(self):
-        if(self.stop()):
-            self._robot.avancer(0)
-        else:
             self._robot.avancer(self._vitesse)
 
     def stop(self):
@@ -33,7 +30,7 @@ class Strategie_avance:
 
 class Strategie_tourner_droite:
 
-    def __init__(self, robot, angle, vitesse,fps=25):
+    def __init__(self, robot, angle, vitesse):
         self._robot=robot
         self._angle=angle
         self._vitesse=vitesse
@@ -46,9 +43,6 @@ class Strategie_tourner_droite:
 
 
     def update(self):
-        if(self.stop()):
-            self._robot.tourner_droite(0)
-        else:
             self._robot.tourner_droite(self._vitesse)
 
 
@@ -62,7 +56,7 @@ class Strategie_tourner_droite:
 
 class Strategie_tourner_gauche:
 
-    def __init__(self, robot, angle, vitesse,fps=25):
+    def __init__(self, robot, angle, vitesse):
         self._robot=robot
         self._angle=angle
         self._vitesse=vitesse
@@ -72,9 +66,7 @@ class Strategie_tourner_gauche:
 
 
     def update(self):
-        if(self.stop()):
-            self._robot.tourner_gauche(0)
-        else:
+
             self._robot.tourner_gauche(self._vitesse)
 
         return 1/fps
@@ -88,7 +80,7 @@ class Strategie_tourner_gauche:
 
 
 class Strategie_carre:
-    def __init__(self,robot,distance,vitesse,fps=25):
+    def __init__(self,robot,distance,vitesse):
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
@@ -107,15 +99,13 @@ class Strategie_carre:
 
 
     def update(self):
-        if self.stop():
-            self._robot.avancer(0)
         if self._stratege[self._num_strat].stop() and self._num_strat==0:
-            print("1")
+            self._robot.avancer(0)
             self._num_strat=1
             self._stratege[self._num_strat].start()
             self._stratege[self._num_strat].update()
         elif self._stratege[self._num_strat].stop() and self._num_strat==1:
-            print("2")
+            self._robot.avancer(0)
             self._i+=1
             self._num_strat=0
             if not self.stop():
@@ -125,21 +115,16 @@ class Strategie_carre:
             self._stratege[self._num_strat].update()
 
 class Strategie_fonce:
-    def __init__(self,robot,vitesse,distance,fps=25):
+    def __init__(self,robot,vitesse,distance):
         self._robot=robot
         self._vitesse=vitesse
         self._distance=distance
-        self.fps = fps
 
     def start(self):
         self._robot.avancer(0)
 
     def update(self):
-        if(self.stop()):
-            self._robot.avancer(0)
-        else:
-            self._robot.avancer(self._vitesse)
-        return 1/self.fps
+        self._robot.avancer(self._vitesse)
 
     def stop(self):
         print(self._robot.get_distance()/10.0, self._distance)
@@ -151,7 +136,7 @@ class Strategie_avance_ameliore:
 
     _i=2
 
-    def __init__(self, robot, distance, vitesse,fps=25):
+    def __init__(self, robot, distance, vitesse):
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
