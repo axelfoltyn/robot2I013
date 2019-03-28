@@ -15,13 +15,14 @@ class RobotVirtuel:
     def __init__(self, resolution=None, servoPort="SERVO1",motionPort="AD1"):
         text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
-
+        self.angleg = 0
+        self.angled = 0
 
         self.DPS_Gauche              = 0                          # Nombre de tour du moteur gauche
         self.DPS_Droit               = 0                          # Nombre de toursdu moteur droit
 
-        self.dt_gauche               = 0
-        self.dt_droite               = 0
+        #self.dt_gauche               = 0
+        #self.dt_droite               = 0
         self.offset_gauche           = 0
         self.offset_droite           = 0
 
@@ -78,12 +79,7 @@ class RobotVirtuel:
         Lit les etats des moteurs en degre.
         :return: couple du  degre de rotation des moteurs
         """
-        if self.DPS_Gauche >= 0:
-            if self.DPS_Droit >= 0:
-                return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit - self.offset_droite)]
-            else:
-                return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit + self.offset_droite)]
-        return [(self.dt_gauche * self.DPS_Gauche + self.offset_gauche), (self.dt_droite * self.DPS_Droit + self.offset_droite)]
+        return [(self.angleg - self.offset_gauche), (self.angled - self.offset_droite)]
 
     def offset_motor_encoder(self, port, offset):
         """
@@ -140,8 +136,8 @@ class RobotVirtuel:
 
 
     def update_dt(self, dt):
-        self.dt_droite += dt
-        self.dt_gauche += dt
+        self.angleg += dt * self.DPS_Gauche
+        self.angled += dt * self.DPS_Droit
 
     def update(self, dt):
         dt_max = 0.2

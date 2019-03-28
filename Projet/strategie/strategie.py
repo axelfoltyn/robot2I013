@@ -11,10 +11,8 @@ class Strategie_avance:
 
 
     def start(self):
-        print("reset :", self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
-        print("reset :", self._robot.get_motor_position()[1])
 
     def update(self):
         if(self.stop()):
@@ -53,11 +51,11 @@ class Strategie_tourner_droite:
 
 
     def stop(self):
-        print(self._robot.get_motor_position()[1])
-        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE
+        print('pos = ', self._robot.get_motor_position()[1])
+        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
         distance = abs(self._robot.get_motor_position()[1]) * circonference_cm / 360
         deta=distance * 360.0 / self._robot.WHEEL_BASE_CIRCUMFERENCE
-        print(deta)
+        print('deta = ', deta)
         return self._angle<=deta
 
 class Strategie_tourner_gauche:
@@ -110,12 +108,10 @@ class Strategie_carre:
         if self.stop():
             self._robot.avancer(0)
         if self._stratege[self._num_strat].stop() and self._num_strat==0:
-            print("1")
             self._num_strat=1
             self._stratege[self._num_strat].start()
             self._stratege[self._num_strat].update()
         elif self._stratege[self._num_strat].stop() and self._num_strat==1:
-            print("2")
             self._i+=1
             self._num_strat=0
             if not self.stop():
