@@ -11,10 +11,8 @@ class Strategie_avance:
 
 
     def start(self):
-        print("reset :", self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
-        print("reset :", self._robot.get_motor_position()[1])
 
     def update(self):
             self._robot.avancer(self._vitesse)
@@ -47,12 +45,8 @@ class Strategie_tourner_droite:
 
 
     def stop(self):
-        print(self._robot.get_motor_position()[1])
-        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE
-        distance = abs(self._robot.get_motor_position()[1]) * circonference_cm / 360
-        deta=distance * 360.0 / self._robot.WHEEL_BASE_CIRCUMFERENCE
-        print(deta)
-        return self._angle<=deta
+        target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
+        return target<=abs(self._robot.get_motor_position()[1])
 
 class Strategie_tourner_gauche:
 
