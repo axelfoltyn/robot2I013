@@ -60,10 +60,7 @@ class Strategie_tourner_gauche:
 
 
     def update(self):
-
-            self._robot.tourner_gauche(self._vitesse)
-
-        return 1/fps
+        self._robot.tourner_gauche(self._vitesse)
 
     def stop(self):
         circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
@@ -87,6 +84,7 @@ class Strategie_carre:
 
 
     def start(self):
+        self._i = 0
         self._num_strat=0
         self._stratege[0].start()
 
