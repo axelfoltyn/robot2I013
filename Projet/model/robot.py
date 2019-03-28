@@ -63,6 +63,7 @@ class RobotVirtuel:
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
+        print('=>', port, dps)
         if   (port == self.MOTOR_LEFT):
             self.DPS_Gauche = dps
         elif (port  == self.MOTOR_RIGHT):
@@ -77,7 +78,12 @@ class RobotVirtuel:
         Lit les etats des moteurs en degre.
         :return: couple du  degre de rotation des moteurs
         """
-        return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit - self.offset_droite)]
+        if self.DPS_Gauche >= 0:
+            if self.DPS_Droit >= 0:
+                return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit - self.offset_droite)]
+            else:
+                return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit + self.offset_droite)]
+        return [(self.dt_gauche * self.DPS_Gauche + self.offset_gauche), (self.dt_droite * self.DPS_Droit + self.offset_droite)]
 
     def offset_motor_encoder(self, port, offset):
         """
@@ -108,12 +114,13 @@ class RobotVirtuel:
         min = 0.5
         max = 800
         self._arene.set_max_proximite(max)
-        if (self.proximite_bruit(self._arene)<min):
-            return min
-        elif (self.proximite_bruit(self._arene)>max):
-            return max
+        res = self.proximite_bruit(self._arene)
+        if (res<min):
+            return 10*min
+        elif (res>max):
+            return 10*max
         else :
-            return self.proximite_bruit(self._arene)
+            return 10*res
 
 
     def servo_rotate(self,position):
@@ -144,14 +151,14 @@ class RobotVirtuel:
             if self.DPS_Gauche == self.DPS_Droit:
                 self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
             elif self.DPS_Gauche == -self.DPS_Droit:
-                distance = dt * self.DPS_Gauche * circonference_cm / 360
+                distance = dt * self.DPS_Droit * circonference_cm / 360
                 self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
         else:
             self.update_dt(dt_max)
             if DPS_Droit == DPS_Gauche:
                 self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
             elif DPS_Gauche == -DPS_Droit:
-                distance = dt * self.DPS_Gauche * circonference_cm / 360
+                distance = dt * self.DPS_Droit * circonference_cm / 360
                 self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
             self.update(dt - dt_max)
 
