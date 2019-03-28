@@ -8,8 +8,8 @@ class Adapter():
         if code==0:
             self._Robot.set_motor_dps(self._Robot.MOTOR_LEFT+self._Robot.MOTOR_RIGHT, dps)
         else:
-            self._Robot.set_motor_dps(self._Robot.MOTOR_LEFT, -code*dps)
-            self._Robot.set_motor_dps(self._Robot.MOTOR_RIGHT, code*dps)
+            self._Robot.set_motor_dps(self._Robot.MOTOR_LEFT, code*dps)
+            self._Robot.set_motor_dps(self._Robot.MOTOR_RIGHT, -code*dps)
 
     def tourner_gauche(self,vitesse):       # vitesse en cm/s
         self.action(-1,vitesse)

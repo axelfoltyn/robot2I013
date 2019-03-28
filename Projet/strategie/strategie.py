@@ -54,8 +54,8 @@ class Strategie_tourner_droite:
 
     def stop(self):
         print(self._robot.get_motor_position()[1])
-        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
-        distance = self._robot.get_motor_position()[1] * circonference_cm / 360
+        circonference_cm = self._robot.WHEEL_CIRCUMFERENCE
+        distance = abs(self._robot.get_motor_position()[1]) * circonference_cm / 360
         deta=distance * 360.0 / self._robot.WHEEL_BASE_CIRCUMFERENCE
         print(deta)
         return self._angle<=deta
@@ -131,6 +131,9 @@ class Strategie_fonce:
         self._distance=distance
         self.fps = fps
 
+    def start(self):
+        self._robot.avancer(0)
+
     def update(self):
         if(self.stop()):
             self._robot.avancer(0)
@@ -139,7 +142,8 @@ class Strategie_fonce:
         return 1/self.fps
 
     def stop(self):
-        return self._robot.get_distance()<=self._distance
+        print(self._robot.get_distance()/10.0, self._distance)
+        return self._robot.get_distance()/10.0<=self._distance
 
 
 
