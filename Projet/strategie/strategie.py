@@ -158,14 +158,11 @@ class Strategie_avance_ameliore:
 
 
     def start(self):
-        print("reset :", self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
-        print("reset :", self._robot.get_motor_position()[1])
 
     def update(self):
         if(self._vitesse > 50):
-            print(self._vitesse)
             if(self.dist()):
                 self._vitesse=self._vitesse/2
         if(self.stop()):
@@ -176,16 +173,13 @@ class Strategie_avance_ameliore:
     def stop(self):
         circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
         distance = self._robot.get_motor_position()[1] * circonference_cm / 360
-        print(self._distance, distance, self._distance<=distance)
         return self._distance<=distance
 
     def dist(self):
         circonference_cm = self._robot.WHEEL_CIRCUMFERENCE/10
         distance = self._robot.get_motor_position()[1] * circonference_cm / 360
         if (distance>=self._distance-self._distance/self._i):
-            print(distance, self._distance-self._distance/self._i)
             self._i=self._i+1
             return True
         else:
-            print('bloblo', distance, self._distance-self._distance/self._i)
             return False
