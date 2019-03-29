@@ -35,9 +35,7 @@ class Strategie_tourner_droite:
 
 
     def start(self):
-        print("reset2.0 :", self._robot.get_motor_position()[1])
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
-        print("reset2.0 :", self._robot.get_motor_position()[1])
 
 
     def update(self):
@@ -119,7 +117,6 @@ class Strategie_fonce:
         self._robot.avancer(self._vitesse)
 
     def stop(self):
-        print(self._robot.get_distance()/10.0, self._distance)
         return self._robot.get_distance()/10.0<=self._distance
 
 
