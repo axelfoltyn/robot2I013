@@ -61,5 +61,4 @@ strat.start()
 while not strat.stop():
     strat.update()
     time.sleep(1/25)
-print("sdqkgqsdjgfrsfhqsiuzfkhjksdf<kglvslgelfhj")
 robot.finish()

@@ -61,7 +61,6 @@ class RobotVirtuel:
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
-        print('=>', port, dps)
         if   (port == self.MOTOR_LEFT):
             self.DPS_Gauche = dps
         elif (port  == self.MOTOR_RIGHT):
@@ -144,7 +143,6 @@ class RobotVirtuel:
             if self.DPS_Gauche == self.DPS_Droit:
                 self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
             elif self.DPS_Gauche == -self.DPS_Droit:
-                print(" ", dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
                 self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
         else:
             self.update_dt(dt_max)
