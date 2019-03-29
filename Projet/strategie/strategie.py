@@ -157,3 +157,31 @@ class Strategie_avance_ameliore:
             return True
         else:
             return False
+
+class Strategie_fonce_ameliore:
+
+    di = 0.3
+    _i=di
+
+    def __init__(self,robot,vitesse,distance):
+        self._robot=robot
+        self._vitesse=vitesse
+        self._distance=distance
+
+    def start(self):
+        pass
+
+    def update(self):
+        if self._vitesse > 10:
+            if self.dist():
+                self._i += self.di
+                self._vitesse=self._vitesse/2
+        self._robot.avancer(self._vitesse)
+
+
+    def dist(self):
+        print(self._robot.get_distance()/10.0, self._distance*(1+1/self._i))
+        return self._robot.get_distance()/10.0<=self._distance*(1+1/self._i)
+
+    def stop(self):
+        return self._robot.get_distance()/10.0<=self._distance
