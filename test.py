@@ -54,7 +54,7 @@ class Strategie_avance_ameliore:
         else:
             return False
 #strat = Strategie_fonce(robot, 100, 1)
-strat = Strategie_carre(robot, 100, 100)
+strat = Strategie_carre(robot, 100, 10)
 #strat= Strategie_avance_ameliore(robot, 300, 3000)
 
 strat.start()

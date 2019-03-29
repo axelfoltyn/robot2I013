@@ -20,9 +20,6 @@ class RobotVirtuel:
 
         self.DPS_Gauche              = 0                          # Nombre de tour du moteur gauche
         self.DPS_Droit               = 0                          # Nombre de toursdu moteur droit
-
-        #self.dt_gauche               = 0
-        #self.dt_droite               = 0
         self.offset_gauche           = 0
         self.offset_droite           = 0
 
@@ -147,15 +144,14 @@ class RobotVirtuel:
             if self.DPS_Gauche == self.DPS_Droit:
                 self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
             elif self.DPS_Gauche == -self.DPS_Droit:
-                distance = dt * self.DPS_Droit * circonference_cm / 360
-                self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
+                print(" ", dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+                self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
         else:
             self.update_dt(dt_max)
             if DPS_Droit == DPS_Gauche:
                 self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
             elif DPS_Gauche == -DPS_Droit:
-                distance = dt * self.DPS_Droit * circonference_cm / 360
-                self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
+                self.tourner((dt - dt_max) * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
             self.update(dt - dt_max)
 
     def fin(self):
