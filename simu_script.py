@@ -1,5 +1,5 @@
 import time
-from projet import Strategie_fonce, Strategie_carre
+from projet import StrategieFonce, StrategieCarre
 from projet import RobotVirtuel as RobotV
 from projet import Adapter as Robot
 from projet import lecture
@@ -17,7 +17,7 @@ thread_affichage.start()
 view.start()
 
 
-class Strategie_fonce_ameliore:
+class StrategieFonceAmeliore:
 
     di = 0.3
     _i=di
@@ -44,9 +44,9 @@ class Strategie_fonce_ameliore:
 
     def stop(self):
         return self._robot.get_distance()/10.0<=self._distance
-#strat = Strategie_fonce(robot, 100, 1)
-#strat = Strategie_carre(robot, 100, 10)
-strat= Strategie_fonce_ameliore(robot, 300, 40)
+#strat = StrategieFonce(robot, 100, 1)
+#strat = StrategieCarre(robot, 100, 10)
+strat= StrategieFonceAmeliore(robot, 300, 40)
 
 strat.start()
 while not strat.stop():

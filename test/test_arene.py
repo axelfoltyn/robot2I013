@@ -3,7 +3,7 @@ import random
 import math
 from projet import View
 from projet import RobotVirtuel
-from projet import Obstacle_carre, Obstacle_rond
+from projet import ObstacleCarre, ObstacleRond
 from projet import Arene
 
 class TestArene(unittest.TestCase):
