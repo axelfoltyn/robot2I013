@@ -1,7 +1,7 @@
 import time
 from projet import StrategieFonce, StrategieCarre
 from projet import RobotVirtuel as RobotV
-from projet import Adapter as Robot
+from projet import Adapter
 from projet import lecture
 from projet import View
 from threading import Thread
@@ -10,7 +10,7 @@ robotv = RobotV()
 
 view = View(robotv._arene)
 robotv._arene.add_obs(view)
-robot = Robot(robotv)
+robot = Adapter(robotv)
 
 thread_affichage = Thread(target=robotv._arene.boucle_actualiser, args=(25.,))
 thread_affichage.start()
@@ -19,7 +19,7 @@ view.start()
 
 class StrategieFonceAmeliore:
 
-    di = 0.3
+    di = 0.7
     _i=di
 
     def __init__(self,robot,vitesse,distance):
