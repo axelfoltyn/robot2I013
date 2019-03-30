@@ -1,55 +1,66 @@
 class Adapter():
 
-    def __init__(self, Robot):
-        self._Robot=Robot
+    def __init__(self, robot, calibrage=1):
+        self._robot=robot
+        self._calibrage=calibrage
+        self.WHEEL_BASE_CIRCUMFERENCE=self._robot.WHEEL_BASE_CIRCUMFERENCE
+        self.WHEEL_CIRCUMFERENCE=self._robot.WHEEL_CIRCUMFERENCE
+        #self.LED_LEFT_EYE=self._robot.LED_LEFT_EYE
+        #self.LED_RIGHT_EYE=self._robot.LED_RIGHT_EYE
+        #self.LED_LEFT_BLINKER=self._robot.LED_LEFT_BLINKER
+        #self.LED_RIGHT_BLINKER=self._robot.LED_RIGHT_BLINKER
+        #self.LED_WIFI=self._robot.LED_WIFI
+        self.MOTOR_LEFT=self._robot.MOTOR_LEFT
+        self.MOTOR_RIGHT=self._robot.MOTOR_RIGHT
 
-    def action(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
-        dps=(vitesse/self._Robot.WHEEL_CIRCUMFERENCE)*3600
+
+    def set_led(self, led, red=0, green=0, blue=0):
+        self._robot.set_led(led, red, green, blue)
+
+    def get_voltage(self):
+        return self._robot.get_voltage()
+
+    def set_motor_dps(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
+        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
         if code==0:
-            self._Robot.set_motor_dps(self._Robot.MOTOR_LEFT+self._Robot.MOTOR_RIGHT, dps)
+            self._robot.set_motor_dps(self.MOTOR_LEFT, dps*self._calibrage)
+            self._robot.set_motor_dps(self.MOTOR_RIGHT, dps/self._calibrage)
         else:
-            self._Robot.set_motor_dps(self._Robot.MOTOR_LEFT, code*dps)
-            self._Robot.set_motor_dps(self._Robot.MOTOR_RIGHT, -code*dps)
+            self._robot.set_motor_dps(self.MOTOR_LEFT, code*dps*self._calibrage)
+            self._robot.set_motor_dps(self.MOTOR_RIGHT, -code*dps/self._calibrage)
+
+    def avancer(self, vitesse):             # vitesse en cm/s
+        self.set_motor_dps(0,vitesse)
 
     def tourner_gauche(self,vitesse):       # vitesse en cm/s
-        self.action(-1,vitesse)
+        self.set_motor_dps(-1,vitesse)
 
     def tourner_droite(self,vitesse):       # vitesse en cm/s
-        self.action(1,vitesse)
-
-    def avancer(self, vitesse):     # vitesse en cm/s
-            self.action(0,vitesse)
+        self.set_motor_dps(1,vitesse)
 
     def get_motor_position(self):
-        return self._Robot.get_motor_position()
-
-    def get_distance(self):
-        return self._Robot.get_distance()
-
-    def get_image(self):
-        return self._Robot.get_image()
+        return self._robot.get_motor_position()
 
     def offset_motor_encoder(self, port, offset):
-        self._Robot.offset_motor_encoder(port, offset)
+        self._robot.offset_motor_encoder(port, offset)
+
+    def get_distance(self):
+        return self._robot.get_distance()
+
+    def servo_rotate(self, position):
+        self._robot.servo_rotate(position)
 
     def stop(self):
-        self._Robot.stop()
+        self._robot.stop()
+
+    def get_image(self):
+        return self._robot.get_image()
+
+    # methodes supplementaires pour la simulation
 
     def finish(self):
-        self._Robot.stop()
-        self._Robot.fin()
+        self._robot.stop()
+        self._robot.fin()
 
     def update(self, dt):
-        self._Robot.update(dt)
-
-    @property
-    def WHEEL_CIRCUMFERENCE(self): return self._Robot.WHEEL_CIRCUMFERENCE
-
-    @property
-    def WHEEL_BASE_CIRCUMFERENCE(self): return self._Robot.WHEEL_BASE_CIRCUMFERENCE
-
-    @property
-    def MOTOR_LEFT(self): return self._Robot.MOTOR_LEFT
-
-    @property
-    def MOTOR_RIGHT(self): return self._Robot.MOTOR_RIGHT
+        self._robot.update(dt)
