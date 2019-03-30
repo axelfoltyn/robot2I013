@@ -1,33 +1,18 @@
 import time
-from Projet import Strategie_fonce, Strategie_carre
-from robot2I013 import Robot2I013 as RobotV
-from Projet import Adapter as Robot
+from robot2I013 import Robot2I013 as Robot
+from Projet import Adapter
+from Projet import Strategie_fonce, Strategie_carre, Strategie_fonce_ameliore
 
-robotv = RobotV()
-robot = Robot(robotv)
+calibrage=1 # augmenter legerement pour devier vers la droite
 
-class strat_test:
-    def __init__(self, robot, distance, vitesse):
-        self._robot=robot
-        self._distance=distance
-        self._vitesse=vitesse
+robot=Adapter(Robot(), calibrage)
 
+strat=Strategie_carre(robot, 20, 10)
+#strat=Strategie_fonce(robot, 100, 13)
+#strat=Strategie_fonce_ameliore(robot, 300, 40)
 
-    def start(self):
-        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
-        self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
-
-    def update(self):
-            self._robot.avancer(self._vitesse)
-
-
-#strat = Strategie_fonce(robot, 100, 13)
-strat = Strategie_carre(robot, 20, 10)
-#strat = strat_test(robot, 90, 5)
-
-while True:
-    strat.start()
-    while not strat.stop():
-        strat.update()
-        time.sleep(0)
-    print("fin boucle")
+strat.start()
+while not strat.stop():
+    strat.update()
+    time.sleep(0.01)
+robot.stop()
