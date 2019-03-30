@@ -2,7 +2,7 @@ import time
 
 
 
-class Strategie_avance:
+class StrategieAvance:
 
     def __init__(self, robot, distance, vitesse):
         self._robot=robot
@@ -26,7 +26,7 @@ class Strategie_avance:
 
 
 
-class Strategie_tourner_droite:
+class StrategieTournerDroite:
 
     def __init__(self, robot, angle, vitesse):
         self._robot=robot
@@ -46,7 +46,7 @@ class Strategie_tourner_droite:
         target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
         return target<=abs(self._robot.get_motor_position()[1])
 
-class Strategie_tourner_gauche:
+class StrategieTournerGauche:
 
     def __init__(self, robot, angle, vitesse):
         self._robot=robot
@@ -68,13 +68,13 @@ class Strategie_tourner_gauche:
 
 
 
-class Strategie_carre:
+class StrategieCarre:
     def __init__(self,robot,distance,vitesse):
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
         self._num_strat=0
-        self._stratege=[Strategie_avance(robot, distance,vitesse) ,Strategie_tourner_droite(robot, 90, vitesse)]
+        self._stratege=[StrategieAvance(robot, distance,vitesse) ,StrategieTournerDroite(robot, 90, vitesse)]
         self._i=0
 
     def stop(self):
@@ -104,7 +104,7 @@ class Strategie_carre:
         else:
             self._stratege[self._num_strat].update()
 
-class Strategie_fonce:
+class StrategieFonce:
     def __init__(self,robot,vitesse,distance):
         self._robot=robot
         self._vitesse=vitesse
@@ -121,7 +121,7 @@ class Strategie_fonce:
 
 
 
-class Strategie_avance_ameliore:
+class StrategieAvanceAmeliore:
 
     _i=2
 
@@ -158,7 +158,7 @@ class Strategie_avance_ameliore:
         else:
             return False
 
-class Strategie_fonce_ameliore:
+class StrategieFonceAmeliore:
 
     di = 0.3
     _i=di

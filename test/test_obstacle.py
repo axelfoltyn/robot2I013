@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from projet import Obstacle_carre, Obstacle_rond
+from projet import ObstacleCarre, ObstacleRond
 
 
 class ObstacleTestCarre(unittest.TestCase):
@@ -11,7 +11,7 @@ class ObstacleTestCarre(unittest.TestCase):
         self.Z = int(random.random()* 10000)
         self.LO = int(random.random()* 10000)
         self.LA = int(random.random()* 10000)
-        self.obstaclec = Obstacle_carre(self.X, self.Y, self.Z, self.LO, self.LA)
+        self.obstaclec = ObstacleCarre(self.X, self.Y, self.Z, self.LO, self.LA)
 
     def test_cree(self):
         self.assertEqual(self.X, self.obstaclec._x)
@@ -37,7 +37,7 @@ class ObstacleTestRond(unittest.TestCase):
         self.Y = int(random.random()* 10000)
         self.Z = int(random.random()* 10000)
         self.R = int(random.random()* 10000)
-        self.obstacler = Obstacle_rond(self.X, self.Y, self.Z, self.R)
+        self.obstacler = ObstacleRond(self.X, self.Y, self.Z, self.R)
 
     def test_rond(self):
         self.assertEqual(self.X, self.obstacler._x)
