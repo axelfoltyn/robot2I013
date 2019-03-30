@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from Projet import Robot
+from projet import Robot
 
 class RobotVirtuelTest(unittest.TestCase):
     def setUp(self):

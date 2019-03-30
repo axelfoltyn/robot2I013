@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from Projet import Obstacle_carre, Obstacle_rond
+from projet import Obstacle_carre, Obstacle_rond
 
 
 class ObstacleTestCarre(unittest.TestCase):
