@@ -1,1 +1,1 @@
-from .strategies import StrategieAvance, StrategieTournerDroite, StrategieTournerGauche, StrategieCarre, StrategieFonce, StrategieAvanceAmeliore
+from .strategies import StrategieCarre, StrategieFonce, StrategieFonceAmeliore
