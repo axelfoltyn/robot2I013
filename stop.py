@@ -1,4 +1,2 @@
-from robot2I013 import Robot2I013 as r
-
-r.set_dps(1,0)
-r.set_dps(2,0)
+from robot2I013 import Robot2I013
+Robot2I013.set_motor_dps(3,0)
