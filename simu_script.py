@@ -1,9 +1,9 @@
 import time
-from Projet import Strategie_fonce, Strategie_carre
-from Projet import RobotVirtuel as RobotV
-from Projet import Adapter as Robot
-from Projet import lecture
-from Projet import View
+from projet import Strategie_fonce, Strategie_carre
+from projet import RobotVirtuel as RobotV
+from projet import Adapter as Robot
+from projet import lecture
+from projet import View
 from threading import Thread
 
 robotv = RobotV()

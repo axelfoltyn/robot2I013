@@ -1,7 +1,7 @@
 import time
 from robot2I013 import Robot2I013 as Robot
-from Projet import Adapter
-from Projet import Strategie_fonce, Strategie_carre, Strategie_fonce_ameliore
+from projet import Adapter
+from projet import Strategie_fonce, Strategie_carre, Strategie_fonce_ameliore
 
 calibrage=1 # augmenter legerement pour devier vers la droite
 
