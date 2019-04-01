@@ -1,4 +1,4 @@
-from Projet import AdaptateurVirtuel as Robot
+from projet import AdaptateurVirtuel as Robot
 from carre import *
 from fonce import *
 

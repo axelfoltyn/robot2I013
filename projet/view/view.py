@@ -3,7 +3,7 @@ import time
 from tkinter import *
 from tkinter import messagebox
 import threading
-#from ..model import Obstacle_carre
+#from ..model import ObstacleCarre
 
 class View(threading.Thread):
     def __init__(self,arene):
@@ -47,7 +47,7 @@ class View(threading.Thread):
         x0=obstacle._x
         y0=self._y-obstacle._y
         #si r est different de 0 alors cest un cercle sinon autre
-        #if isinstance(obstacle, Obstacle_carre):
+        #if isinstance(obstacle, ObstacleCarre):
         if obstacle.name == 'C':
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
