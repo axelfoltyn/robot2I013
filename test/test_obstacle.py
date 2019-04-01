@@ -27,8 +27,8 @@ class ObstacleTestCarre(unittest.TestCase):
         res = self.obstaclec.est_dans(x, y, z)
         x1=self.X
         x2=self.X+self.LO
-        y1=slef.Y
-        y2=slef.Y-self.LA
+        y1=self.Y
+        y2=self.Y-self.LA
         self.assertEqual(res, x>=x1 and x<= x2 and y<=y1 and y>=y2 )
 
     def test_toString(self):
