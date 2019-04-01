@@ -25,7 +25,11 @@ class ObstacleTestCarre(unittest.TestCase):
         y = int(random.random()* 10000)
         z = int(random.random()* 10000)
         res = self.obstaclec.est_dans(x, y, z)
-        self.assertEqual(res, self.X<=x and x<=self.X + self.LO and self.Y<=y and y>=self.Y - self.LA )
+        x1=self.X
+        x2=self.X+self.LO
+        y1=slef.Y
+        y2=slef.Y-self.LA
+        self.assertEqual(res, x>=x1 and x<= x2 and y<=y1 and y>=y2 )
 
     def test_toString(self):
         self.assertEqual(self.obstaclec.__str__(),"C"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.LO)+" "+str(self.LA))
