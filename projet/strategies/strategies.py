@@ -10,13 +10,13 @@ class StrategieAvance:
         self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
 
     def start(self):
-        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
     def update(self):
             self._robot.avancer(self._vitesse)
 
     def stop(self):
-        return self._robot.get_motor_position()[1]>=self._target
+        return self._robot.get_motor_position()[0]>=self._target
 
 
 class StrategieTournerDroite:
@@ -118,7 +118,7 @@ class StrategieAvanceAmeliore:
         self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
 
     def start(self):
-        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
     def update(self):
         if self._vitesse>50:
@@ -130,10 +130,10 @@ class StrategieAvanceAmeliore:
             self._robot.avancer(self._vitesse)
 
     def stop(self):
-        return self._robot.get_motor_position()[1]>=self._target
+        return self._robot.get_motor_position()[0]>=self._target
 
     def dist(self):
-        if self._robot.get_motor_position()[1]>=self._target/(1-self._i):
+        if self._robot.get_motor_position()[0]>=self._target/(1-self._i):
             self._i=self._i+1
             return True
         else:
