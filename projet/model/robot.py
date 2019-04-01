@@ -135,21 +135,26 @@ class RobotVirtuel:
         self.angleg += dt * self.DPS_Gauche
         self.angled += dt * self.DPS_Droit
 
+    def update_aux(self, dt):
+        self.update_dt(dt)
+        circonference_cm = self.WHEEL_CIRCUMFERENCE/10
+        if self.DPS_Gauche == self.DPS_Droit:
+            self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
+        elif self.DPS_Gauche == -self.DPS_Droit:
+            self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+        elif self.DPS_Gauche > 0 and  self.DPS_Droit > 0 and self.DPS_Gauche < self.DPS_Droit:
+            self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
+            self.tourner(dt * (self.DPS_Droit - self.DPS_Gauche) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+        elif self.DPS_Gauche > 0 and  self.DPS_Droit > 0 and  self.DPS_Gauche > self.DPS_Droit:
+            self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
+            self.tourner(dt * (self.DPS_Gauche - self.DPS_Droit) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+
     def update(self, dt):
         dt_max = 0.2
-        circonference_cm = self.WHEEL_CIRCUMFERENCE/10
         if dt < dt_max:
-            self.update_dt(dt)
-            if self.DPS_Gauche == self.DPS_Droit:
-                self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
-            elif self.DPS_Gauche == -self.DPS_Droit:
-                self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+            self.update_aux(dt)
         else:
-            self.update_dt(dt_max)
-            if DPS_Droit == DPS_Gauche:
-                self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
-            elif DPS_Gauche == -DPS_Droit:
-                self.tourner((dt - dt_max) * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+            self.update_aux(dt_max)
             self.update(dt - dt_max)
 
     def fin(self):
