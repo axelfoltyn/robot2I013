@@ -3,12 +3,14 @@ from robot2I013 import Robot2I013 as Robot
 from projet import Adapter
 from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore
 
-calibrage=1 # augmenter legerement pour devier vers la droite
+calibrage=0.999 # defaut=1 , augmenter legerement pour devier vers la droite
 
 robot=Adapter(Robot(), calibrage)
 
-strat=StrategieCarre(robot, 20, 10)
-#strat=StrategieFonce(robot, 100, 13)
+#VITESSE MAX = 20.9
+
+#strat=StrategieCarre(robot, 20, 10)
+strat=StrategieFonce(robot, 10, 20)
 #strat=StrategieFonceAmeliore(robot, 300, 40)
 
 strat.start()
