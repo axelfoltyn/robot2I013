@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from Projet import RobotVirtuel
+from projet import RobotVirtuel
 
 
 
@@ -71,6 +71,14 @@ class RobotTest(unittest.TestCase):
 
     def test_toString(self):
         self.assertEqual(str(self.robot) , "R"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.A)+" "+str(self.V)+" "+str(self.DX)+" "+str(self.DY)+" "+str(self.DZ))
+
+
+    def test_set_motor_dps_gauche(self):
+        a=random.random()*100
+        self.robot.set_motor_dps(MOTOR_LEFT,a)
+        self.assertEqual(self.robot.DPS_Gauche,a)
+        a=1
+
 
 
 if __name__=="__main__":

@@ -25,7 +25,7 @@ class Obstacle :
         return ""
 
 
-class Obstacle_carre(Obstacle):
+class ObstacleCarre(Obstacle):
 
     def __init__(self,x,y,z=0,lo=0.0,la=0.0):                 #Initialisation des arguments
         self._x=x
@@ -45,7 +45,7 @@ class Obstacle_carre(Obstacle):
     def __str__(self):
         return "C"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._lo)+" "+str(self._la)
 
-class Obstacle_rond(Obstacle):
+class ObstacleRond(Obstacle):
     def __init__(self,x,y,z=0,r=1.0):                               #Initialisation des arguments
         self._x=x
         self._y=y
