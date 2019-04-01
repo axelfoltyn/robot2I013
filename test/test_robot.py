@@ -8,15 +8,15 @@ from projet import RobotVirtuel
 class RobotTest(unittest.TestCase):
     def setUp(self):
 
-        self.X = int(random.random()* 10000)
-        self.Y = int(random.random()* 10000)
-        self.Z = int(random.random()* 10000)
-        self.A = random.random()* 10000
-        self.V = random.random()* 10000
-        self.DX = random.random()* 1
-        self.DY = random.random()*math.sqrt(1-self.DX**2)
-        self.DZ = math.sqrt(1-self.DX**2 - self.DY**2)
-        self.robot = RobotVirtuel([self.X,self.Y,self.Z],self.A,self.V,[self.DX,self.DY,self.DZ])
+        self.X = 0
+        self.Y = 0
+        self.Z = 0
+        self.A = 0
+        self.V = 0
+        self.DX = 0
+        self.DY = 0
+        self.DZ = 0
+        self.robot = RobotVirtuel()
 
 
     def test_create(self):
