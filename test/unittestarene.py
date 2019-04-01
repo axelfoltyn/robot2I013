@@ -1,7 +1,7 @@
 import unittest
 import random
 import math
-from projet import View
+from projet import view
 from projet import RobotVirtuel
 from projet import ObstacleCarre, ObstacleRond
 from projet import Arene
