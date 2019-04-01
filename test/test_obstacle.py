@@ -28,7 +28,7 @@ class ObstacleTestCarre(unittest.TestCase):
         self.assertEqual(res, self.X<=x and x<=self.X + self.LO and self.Y<=y and y>=self.Y - self.LA )
 
     def test_toString(self):
-        self.assertEqual(self.obstaclec.toString(),"C"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.LO)+" "+str(self.LA))
+        self.assertEqual(self.obstaclec.str(),"C"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.LO)+" "+str(self.LA))
 
 
 class ObstacleTestRond(unittest.TestCase):
@@ -53,6 +53,6 @@ class ObstacleTestRond(unittest.TestCase):
         self.assertEqual(res,(x-self.X)**2+(y-self.Y)**2 <= self.R**2)
 
     def test_toSttring(self):
-        self.assertEqual(self.obstacler.toString(),"O"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.R))
+        self.assertEqual(self.obstacler.str(),"O"+" "+str(self.X)+" "+str(self.Y)+" "+str(self.Z)+" "+str(self.R))
 
 
