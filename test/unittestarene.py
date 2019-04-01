@@ -1,10 +1,10 @@
 import unittest
 import random
 import math
-from Projet import View
-from Projet import RobotVirtuel
-from Projet import ObstacleCarre, ObstacleRond
-from Projet import Arene
+from projet import View
+from projet import RobotVirtuel
+from projet import ObstacleCarre, ObstacleRond
+from projet import Arene
 
 class TestArene(unittest.TestCase):
     def setUp(self):
