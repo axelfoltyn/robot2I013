@@ -77,6 +77,7 @@ class RobotTest(unittest.TestCase):
         a=random.random()*100
         self.robot.set_motor_dps(MOTOR_LEFT,a)
         self.assertEqual(self.robot.DPS_Gauche,a)
+        a=1
 
 
 
