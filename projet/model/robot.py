@@ -15,13 +15,11 @@ class RobotVirtuel:
     def __init__(self, resolution=None, servoPort="SERVO1",motionPort="AD1"):
         text="resources/fichier_test.txt"
         # Test lecture de fichier et initialisation de l'arene
-
+        self.angleg = 0
+        self.angled = 0
 
         self.DPS_Gauche              = 0                          # Nombre de tour du moteur gauche
         self.DPS_Droit               = 0                          # Nombre de toursdu moteur droit
-
-        self.dt_gauche               = 0
-        self.dt_droite               = 0
         self.offset_gauche           = 0
         self.offset_droite           = 0
 
@@ -63,7 +61,6 @@ class RobotVirtuel:
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
         """
-        print('=>', port, dps)
         if   (port == self.MOTOR_LEFT):
             self.DPS_Gauche = dps
         elif (port  == self.MOTOR_RIGHT):
@@ -78,12 +75,7 @@ class RobotVirtuel:
         Lit les etats des moteurs en degre.
         :return: couple du  degre de rotation des moteurs
         """
-        if self.DPS_Gauche >= 0:
-            if self.DPS_Droit >= 0:
-                return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit - self.offset_droite)]
-            else:
-                return [(self.dt_gauche * self.DPS_Gauche - self.offset_gauche), (self.dt_droite * self.DPS_Droit + self.offset_droite)]
-        return [(self.dt_gauche * self.DPS_Gauche + self.offset_gauche), (self.dt_droite * self.DPS_Droit + self.offset_droite)]
+        return [(self.angleg - self.offset_gauche), (self.angled - self.offset_droite)]
 
     def offset_motor_encoder(self, port, offset):
         """
@@ -140,8 +132,8 @@ class RobotVirtuel:
 
 
     def update_dt(self, dt):
-        self.dt_droite += dt
-        self.dt_gauche += dt
+        self.angleg += dt * self.DPS_Gauche
+        self.angled += dt * self.DPS_Droit
 
     def update(self, dt):
         dt_max = 0.2
@@ -151,15 +143,13 @@ class RobotVirtuel:
             if self.DPS_Gauche == self.DPS_Droit:
                 self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
             elif self.DPS_Gauche == -self.DPS_Droit:
-                distance = dt * self.DPS_Droit * circonference_cm / 360
-                self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
+                self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
         else:
             self.update_dt(dt_max)
             if DPS_Droit == DPS_Gauche:
                 self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
             elif DPS_Gauche == -DPS_Droit:
-                distance = dt * self.DPS_Droit * circonference_cm / 360
-                self.tourner(distance * 360.0 / self.WHEEL_BASE_CIRCUMFERENCE)
+                self.tourner((dt - dt_max) * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
             self.update(dt - dt_max)
 
     def fin(self):
