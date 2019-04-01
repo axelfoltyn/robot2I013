@@ -35,6 +35,47 @@ class StrategieCercle: # a terminer
     def stop(self):
         return self._robot.get_motor_position()[0]>=self._target
 
+
+class Strategie_tourner_droite_ameliore:
+
+    _i=2
+
+    def __init__(self, robot, angle, vitesse):
+        self._robot=robot
+        self._angle=angle
+        self._vitesse=vitesse
+
+
+    def start(self):
+        print("reset2.0 :", self._robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
+        print("reset2.0 :", self._robot.get_motor_position()[1])
+
+
+    def update(self):
+        print("v=", self._vitesse)
+        if(self._vitesse>10):
+            if(self.dist()):
+                self._vitesse = self._vitesse / 2
+        self._robot.tourner_droite(self._vitesse)
+
+
+    def stop(self):
+
+        target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
+        print("tfvtftftftftftf", target, abs(self._robot.get_motor_position()[1]))
+        return target<=abs(self._robot.get_motor_position()[1])
+
+
+    def dist(self):
+        target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
+        print("uhyfhdygxcjfh", abs(self._robot.get_motor_position()[1]),target*(1-1/self._i))
+        if (abs(self._robot.get_motor_position()[1])>=target*(1-1/self._i)):
+            self._i=self._i*2
+            return True
+        else:
+            return False
+
 #strat=StrategieCarre(robot, 100, 10)
 #strat=StrategieFonce(robot, 100, 1)
 strat=StrategieFonceAmeliore(robot, 300, 40)
