@@ -94,6 +94,10 @@ class RobotTest(unittest.TestCase):
         self.robot.offset_motor_encoder(MOTOR_LEFT,a)
         self.assertEqual(self.robot.offset_gauche,self.offset_gauche+a)
 
+    def test_offset_motor_encoder_droit(self):
+        a=random.random()*100
+        self.robot.offset_motor_encoder(MOTOR_RIGHT,a)
+        self.assertEqual(self.robot.offset_droit,self.offset_droit+a)
 
 
 if __name__=="__main__":
