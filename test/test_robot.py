@@ -224,6 +224,10 @@ class RobotTest(unittest.TestCase):
         self.assertLessEqual(res,800)
         self.assertLessEqual(0.5,res)
 
+    def test_fin(self):
+        pass
+
+
 
 
 if __name__=="__main__":
