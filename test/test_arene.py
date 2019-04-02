@@ -70,3 +70,18 @@ class TestArene(unittest.TestCase):
         val = rendom.random()*100
         self.arene.set_max_proximite(val)
         self.assertEqual(self.arene.set_max_proximite,val)
+
+
+    def Test_fin(self):
+        class test_obs:
+            def __init__(self):
+                arreter = False
+
+            def arret(self,bool):
+                if (bool):
+                    return bool
+
+        obs=test_obs()
+        self.arene.add_obs(obs)
+        self.arene.fin()
+        self.assertTrue(self.arene._observers[len(self.arene._observers)-1].arreter)
