@@ -65,3 +65,8 @@ class TestArene(unittest.TestCase):
 
     def Test_proximite(self):
         pass
+
+    def Test_set_max_proximite(self):
+        val = rendom.random()*100
+        self.arene.set_max_proximite(val)
+        self.assertEqual(self.arene.set_max_proximite,val)
