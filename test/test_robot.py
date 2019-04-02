@@ -132,6 +132,11 @@ class RobotTest(unittest.TestCase):
         self.robot.set_max_acceleration(acc)
         self.assertEqual(self.robot._max_bruit_acceleration,acc)
 
+    def test_set_min_acceleration(self):
+        acc=random.random()*100
+        self.robot.set_min_acceleration(acc)
+        self.assertEqual(self.robot._min_bruit_acceleration,acc)
+
 
 if __name__=="__main__":
     unittest.main()
