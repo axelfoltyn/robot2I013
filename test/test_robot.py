@@ -227,7 +227,11 @@ class RobotTest(unittest.TestCase):
     def test_fin(self):
         pass
 
-
+    def test_proximite_bruit(self):
+        ar=Arene()
+        res=self.robot.proximite_bruit(ar)
+        self.assertLessEqual(res,ar.proximite()+self.robot._max_bruit_proximite)
+        self.assertLessEqual(ar.proximite()+self.robot._min_bruit_proximite,res)
 
 
 if __name__=="__main__":
