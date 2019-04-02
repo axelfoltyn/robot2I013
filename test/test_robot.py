@@ -110,6 +110,13 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(a[0],self.robot.dt_gauche * self.robot.DPS_Gauche - self.robot.offset_gauche)
         self.assertEqual(a[1],self.robot.dt_droit * self.robot.DPS_Droit - self.robot.offset_droit)
 
+    def test_avancer(self):
+        b=random.random()*100
+        self.robot.avancer(b)
+        self.assertEqual(self.robot._position[0],self.X+self.DX*b)
+        self.assertEqual(self.robot._position[1],self.Y+self.DY*b)
+        self.assertEqual(self.robot._position[2],self.Z+self.DZ*b)
+
 
 
 if __name__=="__main__":
