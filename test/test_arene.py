@@ -37,3 +37,12 @@ class TestArene(unittest.TestCase):
         self.assertEqual(arene.robot._position[1],  robot.Y + dt * robot.V * self.DY)
         self.assertEqual(arene.robot._position[2],  robot.Z + dt * robot.V * self.DZ)
 
+    def Test_add_obs(self):
+        class test_obs:
+            def __init__(self):
+                arreter = False
+        obs=test_obs()
+        self.arene.add_obs(obs)
+        l=len(self.arene._observers)
+        self.assertFalse(self.arene._observers[l-1].arreter)
+
