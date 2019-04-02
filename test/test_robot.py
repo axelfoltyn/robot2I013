@@ -105,6 +105,12 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot.offset_gauche,self.offset_gauche+a)
         self.assertEqual(self.robot.offset_droit,self.offset_droit+a)
 
+    def test_get_motor_position(self):
+        a=self.robot.get_motor_position()
+        self.assertEqual(a[0],self.robot.dt_gauche * self.robot.DPS_Gauche - self.robot.offset_gauche)
+        self.assertEqual(a[1],self.robot.dt_droit * self.robot.DPS_Droit - self.robot.offset_droit)
+
+
 
 if __name__=="__main__":
     unittest.main()
