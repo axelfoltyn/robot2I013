@@ -46,3 +46,6 @@ class TestArene(unittest.TestCase):
         l=len(self.arene._observers)
         self.assertFalse(self.arene._observers[l-1].arreter)
 
+    def Test_ajout_Robot(self):
+        self.arene.ajout_Robot(self.robot)
+        self.assertEqual(self.arene.robot,self.robot)
