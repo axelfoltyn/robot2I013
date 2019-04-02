@@ -197,6 +197,13 @@ class RobotTest(unittest.TestCase):
     def test_servo_rotate(self):
         pass
 
+    def test_get_image(self):
+        pass
+
+    #def test_stop2(self):    pass
+
+
+
 
 if __name__=="__main__":
     unittest.main()
