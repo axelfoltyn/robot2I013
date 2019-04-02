@@ -180,5 +180,14 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._direction[2],dir3)
 
 
+    def test_get(self):
+        a=self.robot.get_x
+        b=self.robot.get_y
+        c=self.robot.get_z
+        self.assertEqual(self.robot._position[0],a)
+        self.assertEqual(self.robot._position[1],b)
+        self.assertEqual(self.robot._position[2],c)
+
+
 if __name__=="__main__":
     unittest.main()
