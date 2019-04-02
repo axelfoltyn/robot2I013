@@ -202,6 +202,12 @@ class RobotTest(unittest.TestCase):
 
     #def test_stop2(self):    pass
 
+    def test_update_acceleration(self):
+        self.robot.update_acceleration()
+        self.assertEqual(self.robot._vitesse,self.A)
+        self.assertEqual(self.robot._position[0],self.robot._vitesse*self.DX)
+        self.assertEqual(self.robot._position[1],self.robot._vitesse*self.DY)
+        self.assertEqual(self.robot._position[2],self.robot._vitesse*self.DZ)
 
 
 
