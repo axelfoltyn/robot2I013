@@ -219,6 +219,11 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot.dt_gauche,dt2+dt)
 
 
+    def test_get_distance(self):
+        res=self.robot.getdistance()
+        self.assertLessEqual(res,800)
+        self.assertLessEqual(0.5,res)
+
 
 
 if __name__=="__main__":
