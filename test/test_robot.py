@@ -194,6 +194,9 @@ class RobotTest(unittest.TestCase):
     def test_get_voltage(self):
         pass
 
+    def test_servo_rotate(self):
+        pass
+
 
 if __name__=="__main__":
     unittest.main()
