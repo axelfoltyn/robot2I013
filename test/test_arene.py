@@ -58,3 +58,7 @@ class TestArene(unittest.TestCase):
 
     def Test_boucle_actualiser(self):
         pass
+
+
+    def Test_update(self):
+        pass
