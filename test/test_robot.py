@@ -160,6 +160,11 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._position[1],pos2)
         self.assertEqual(self.robot._position[2],pos3)
 
+    def test_set_acceleration(self):
+        val=random.random()*100
+        self.robot.set_acceleration(val)
+        self.assertEqual(self.robot._acceleration,val)
+
 
 if __name__=="__main__":
     unittest.main()
