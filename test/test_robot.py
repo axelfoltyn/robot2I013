@@ -137,6 +137,11 @@ class RobotTest(unittest.TestCase):
         self.robot.set_min_acceleration(acc)
         self.assertEqual(self.robot._min_bruit_acceleration,acc)
 
+    def test_set_distance(self):
+        dist=random.random()*100
+        self.robot.set_distance(dist)
+        self.assertEqual(self.robot._max_distance,dist)
+
 
 if __name__=="__main__":
     unittest.main()
