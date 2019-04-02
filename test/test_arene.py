@@ -49,3 +49,9 @@ class TestArene(unittest.TestCase):
     def Test_ajout_Robot(self):
         self.arene.ajout_Robot(self.robot)
         self.assertEqual(self.arene.robot,self.robot)
+
+    def Test_ajout_Obstacle(self):
+        o=Obstacle()
+        self.arene.ajout_Obstacle(o)
+        self.obstacles.append(o)
+        self.assertEqual(self.arene._obstacles[len(self.arene._obstacles)-1],o)
