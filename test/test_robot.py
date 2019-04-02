@@ -151,6 +151,15 @@ class RobotTest(unittest.TestCase):
         l=len(self.robot._observers)
         self.assertFalse(self.robot._observers[l-1].arreter)
 
+    def test_set_position(self):
+        pos1=random.random()*100
+        pos2=random.random()*100
+        pos3=random.random()*100
+        self.robot.set_position(pos1,pos2,pos3)
+        self.assertEqual(self.robot._position[0],pos1)
+        self.assertEqual(self.robot._position[1],pos2)
+        self.assertEqual(self.robot._position[2],pos3)
+
 
 if __name__=="__main__":
     unittest.main()
