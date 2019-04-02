@@ -170,6 +170,15 @@ class RobotTest(unittest.TestCase):
         self.robot.set_vitesse(val)
         self.assertEqual(self.robot._vitesse,val)
 
+    def test_set_direction(self):
+        dir1=random.random()*100
+        dir2=random.random()*100
+        dir3=random.random()*100
+        self.robot.set_direction(dir1,dir2,dir3)
+        self.assertEqual(self.robot._direction[0],dir1)
+        self.assertEqual(self.robot._direction[1],dir2)
+        self.assertEqual(self.robot._direction[2],dir3)
+
 
 if __name__=="__main__":
     unittest.main()
