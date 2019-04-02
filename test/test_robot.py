@@ -210,6 +210,16 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._position[2],self.robot._vitesse*self.DZ)
 
 
+    def test_update_dt(self):
+        dt1=self.robot.dt_droit
+        dt2=self.robot.dt_gauche
+        dt=random.random()*100
+        self.robot.update_dt(dt)
+        self.assertEqual(self.robot.dt_droit,dt1+dt)
+        self.assertEqual(self.robot.dt_gauche,dt2+dt)
+
+
+
 
 if __name__=="__main__":
     unittest.main()
