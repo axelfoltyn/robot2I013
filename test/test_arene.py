@@ -62,3 +62,6 @@ class TestArene(unittest.TestCase):
 
     def Test_update(self):
         pass
+
+    def Test_proximite(self):
+        pass
