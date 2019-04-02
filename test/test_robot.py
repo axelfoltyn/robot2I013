@@ -142,6 +142,15 @@ class RobotTest(unittest.TestCase):
         self.robot.set_distance(dist)
         self.assertEqual(self.robot._max_distance,dist)
 
+    def test_add_obs(self):
+        class test_obs:
+            def __init__(self):
+                arreter = False
+        obs=test_obs()
+        self.robot.add_obs(obs)
+        l=len(self.robot._observers)
+        self.assertFalse(self.robot._observers[l-1].arreter)
+
 
 if __name__=="__main__":
     unittest.main()
