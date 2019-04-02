@@ -78,6 +78,12 @@ class RobotTest(unittest.TestCase):
         self.robot.set_motor_dps(MOTOR_LEFT,a)
         self.assertEqual(self.robot.DPS_Gauche,a)
 
+    def test_set_motor_dps_droit(self):
+        a=random.random()*100
+        self.robot.set_motor_dps(MOTOR_RIGHT,a)
+        self.assertEqual(self.robot.DPS_Droit,a)
+
+
 
 if __name__=="__main__":
     unittest.main()
