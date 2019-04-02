@@ -191,6 +191,8 @@ class RobotTest(unittest.TestCase):
     def test_set_led(self):
         pass
 
+    def test_get_voltage(self):
+        pass
 
 
 if __name__=="__main__":
