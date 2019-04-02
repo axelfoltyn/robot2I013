@@ -55,3 +55,6 @@ class TestArene(unittest.TestCase):
         self.arene.ajout_Obstacle(o)
         self.obstacles.append(o)
         self.assertEqual(self.arene._obstacles[len(self.arene._obstacles)-1],o)
+
+    def Test_boucle_actualiser(self):
+        pass
