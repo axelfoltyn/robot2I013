@@ -127,6 +127,11 @@ class RobotTest(unittest.TestCase):
         self.robot.set_max_bruit_proximite(val)
         self.assertEqual(self.robot._max_bruit_proximite,val)
 
+    def test_set_max_acceleration(self):
+        acc=random.random()*100
+        self.robot.set_max_acceleration(acc)
+        self.assertEqual(self.robot._max_bruit_acceleration,acc)
+
 
 if __name__=="__main__":
     unittest.main()
