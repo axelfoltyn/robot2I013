@@ -188,6 +188,10 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot._position[1],b)
         self.assertEqual(self.robot._position[2],c)
 
+    def test_set_led(self):
+        pass
+
+
 
 if __name__=="__main__":
     unittest.main()
