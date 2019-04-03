@@ -143,7 +143,7 @@ class StrategieFonceAmeliore:
     di=0.7
     _i=di
 
-    def __init__(self, robot, vitesse, distance): # !!!probleme quand on inverse distance et vitesse
+    def __init__(self, robot, distance, vitesse): # !!!probleme quand on inverse distance et vitesse
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
@@ -214,7 +214,7 @@ class StrategieCarreAmeliore:
         self._distance=distance
         self._vitesse=vitesse
         self._num_strat=0
-        self._strategie=[StrategieAvance(robot, distance,vitesse), StrategieTournerDroiteAmeliore(robot, 90, vitesse)]
+        self._strategie=[StrategieAvanceAmeliore(robot, distance,vitesse), StrategieTournerDroiteAmeliore(robot, 90, vitesse)]
         self._i=0
 
     def start(self):
@@ -240,3 +240,4 @@ class StrategieCarreAmeliore:
 
     def stop(self):
         return self._i>=4
+
