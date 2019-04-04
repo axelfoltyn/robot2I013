@@ -1,6 +1,9 @@
 import pyglet
 from pyglet.gl import *
 from pyglet.window import key
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
 import math
 import sys
 
