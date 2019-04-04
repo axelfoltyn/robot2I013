@@ -1,5 +1,8 @@
 import math
+<<<<<<< HEAD
 from colors import *
+=======
+>>>>>>> 7dd3ec9f553fc6e5c8e7c653fe304ee76c79b666
 
 class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
