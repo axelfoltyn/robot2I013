@@ -77,8 +77,8 @@ class Strategie_tourner_droite_ameliore:
             return False
 
 #strat=StrategieCarre(robot, 100, 10)
-#strat=StrategieFonce(robot, 100, 1)
-strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
+strat=StrategieFonce(robot, 20, 100)
+#strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
 
 strat.start()
 while not strat.stop():
