@@ -1,6 +1,7 @@
-import pyglet
-from pyglet.gl import *
-from pyglet.window import key
+#import pyglet
+#from pyglet.gl import *
+#from pyglet.window import key
+import OpenGL
 import math
 import sys
 
@@ -108,68 +109,68 @@ class Robot:
             self.pos[1] -= s
 
 
-class Window(pyglet.window.Window):
-
-
-    def push(self,pos,rot):
-        glPushMatrix()
-        rot = self.robot.rot
-        pos = self.robot.pos
-        glRotatef(-rot[0],1,0,0)
-        glRotatef(-rot[1],0,1,0)
-        glTranslatef(-pos[0], -pos[1], -pos[2])
-
-    def Projection(self):
-        glMatrixMode(GL_PROJECTION)
-        glLoadIdentity()
-
-    def View3D(self):
-        glMatrixMode(GL_MODELVIEW)
-        glLoadIdentity()
-
-    def active3d(self):
-        self.Projection()
-        gluPerspective(70,self.width/self.height,0.05,1000)
-        self.View3D()
-
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.set_minimum_size(667,667)
-
-        self.keys = key.KeyStateHandler()
-        self.push_handlers(self.keys)
-
-        self.model = View3D()
-        pyglet.clock.schedule(self.update)
-
-        self.robot = Robot((0.5,1.5,1.5),(-30,0))
-
-        #self.robot = Robot((robot_pos[0],robot_pos[1],robot_pos[2]),(0,0))
-
-    def setLock(self, state):
-        self.lock = state
-        self.set_exclusive_mouse(state)
-
-    lock = False
-    mouse_lock = property(lambda self:self.lock, setLock)
-
-
-    def quitter(self,KEY,MOD):
-        if KEY == key.ESCAPE :
-            self.close()
-        elif KEY == key.E:
-            self.mouse_lock = not self.mouse_lock
-
-    def update(self, dt):
-        self.robot.update(dt, self.keys)
-
-    def on_draw(self):
-        self.clear()
-        self.active3d()
-
-        self.push(self.robot.pos,self.robot.rot)
-        self.model.draw()
-        glPopMatrix()
+#class Window(pyglet.window.Window):
+#
+#
+#    def push(self,pos,rot):
+#        glPushMatrix()
+#        rot = self.robot.rot
+#        pos = self.robot.pos
+#        glRotatef(-rot[0],1,0,0)
+#        glRotatef(-rot[1],0,1,0)
+#        glTranslatef(-pos[0], -pos[1], -pos[2])
+#
+#    def Projection(self):
+#        glMatrixMode(GL_PROJECTION)
+#        glLoadIdentity()
+#
+#    def View3D(self):
+#        glMatrixMode(GL_MODELVIEW)
+#        glLoadIdentity()
+#
+#    def active3d(self):
+#        self.Projection()
+#        gluPerspective(70,self.width/self.height,0.05,1000)
+#        self.View3D()
+#
+#    def __init__(self,*args,**kwargs):
+#        super().__init__(*args,**kwargs)
+#        self.set_minimum_size(667,667)
+#
+#        self.keys = key.KeyStateHandler()
+#        self.push_handlers(self.keys)
+#
+#        self.model = View3D()
+#        pyglet.clock.schedule(self.update)
+#
+#        self.robot = Robot((0.5,1.5,1.5),(-30,0))
+#
+#        #self.robot = Robot((robot_pos[0],robot_pos[1],robot_pos[2]),(0,0))
+#
+#    def setLock(self, state):
+#        self.lock = state
+#        self.set_exclusive_mouse(state)
+#
+#    lock = False
+#    mouse_lock = property(lambda self:self.lock, setLock)
+#
+#
+#    def quitter(self,KEY,MOD):
+#        if KEY == key.ESCAPE :
+#            self.close()
+#        elif KEY == key.E:
+#            self.mouse_lock = not self.mouse_lock
+#
+#    def update(self, dt):
+#        self.robot.update(dt, self.keys)
+#
+#    def on_draw(self):
+#        self.clear()
+#        self.active3d()
+#
+#        self.push(self.robot.pos,self.robot.rot)
+#        self.model.draw()
+#        glPopMatrix()
 
 
 
