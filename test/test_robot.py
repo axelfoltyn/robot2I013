@@ -62,9 +62,9 @@ class RobotTest(unittest.TestCase):
         dx = self.DX
         dy = self.DY
 
-        self.assertEqual(self.robot._direction[0], self.robot._direction[0]+dx*math.cos(trad) - dy*math.sin(trad))
-        self.assertEqual(self.robot._direction[1], self.robot._direction[1]+self.DX*math.sin(trad) + self.DY*math.cos(trad))
-        self.assertEqual(self.robot._direction[2],  self.DZ)
+        self.assertEqual(self.robot.x, self.DX*math.cos(trad) - self.DY*math.sin(trad))
+        self.assertEqual(self.robot.y, self.DX*math.sin(trad) + self.DY*math.cos(trad))
+        self.assertEqual(self.robot.z,  self.DZ)
 
     def test_acceleration(self):
         a = random.random() * 100
