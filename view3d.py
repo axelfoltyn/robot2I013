@@ -1,7 +1,6 @@
-#import pyglet
-#from pyglet.gl import *
-#from pyglet.window import key
-import OpenGL
+import pyglet
+from pyglet.gl import *
+from pyglet.window import key
 import math
 import sys
 
@@ -39,9 +38,25 @@ class View3D:
             self.batch.add(4, GL_QUADS, self.top,    ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords)  # top
 
 
-    def __init__(self):
+    def add_block(self,x,y,z):
+
+        X, Y, Z = x+1, y+1, z+1
 
         tex_coords = ('t2f', (0, 0, 1, 0, 1, 1, 0, 1))
+
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)), tex_coords) # back
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)), tex_coords) # front
+
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)), tex_coords)  # left
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)), tex_coords)  # right
+
+        self.batch.add(4, GL_QUADS, self.bottom, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)), tex_coords)  # bottom
+        self.batch.add(4, GL_QUADS, self.top,    ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)), tex_coords)  # top
+
+
+
+    def __init__(self):
+
 
         self.top = self.get_tex('p.png')
         self.side = self.get_tex('t.png')
@@ -50,20 +65,43 @@ class View3D:
 
         self.batch = pyglet.graphics.Batch()
 
+        self.add_block(0, 0, -1)
+        self.add_block(0, 2, -1)
+        self.add_block(0, 0, -3)
+        self.add_block(0, 0, -5)
+        self.add_block(0, 0, -7)
+        self.add_block(0, 0, -9)
+        self.add_block(0, 0, -11)
+
+
+        self.add_block(2, 0, -1)
+        self.add_block(4, 0, -1)
+        self.add_block(6, 0, -1)
+        self.add_block(8, 0, -1)
+        self.add_block(10, 0, -1)
+
+        self.add_block(10, 0, -1)
+        self.add_block(10, 0, -3)
+        self.add_block(10, 0, -5)
+        self.add_block(10, 0, -7)
+        self.add_block(10, 0, -9)
+        self.add_block(10, 0, -11)
+
+        self.add_block(2, 0, -11)
+        self.add_block(4, 0, -11)
+        self.add_block(6, 0, -11)
+        self.add_block(8, 0, -11)
+        self.add_block(10, 0, -11)
+
+
+
+
+
+
+
     #    for i in self.arene._obstacles :
     #        self.afficher_obstacle_cube(i)
-        x,y,z = 0,0,-1
-        X,Y,Z = x+1,y+1,z+1
 
-
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)),tex_coords) # back
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)),tex_coords) # front
-
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)),tex_coords)  # left
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)),tex_coords)  # right
-
-        self.batch.add(4, GL_QUADS, self.bottom, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)),tex_coords)  # bottom
-        self.batch.add(4, GL_QUADS, self.top, ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords)  # top
 
 
     def draw(self):
@@ -109,68 +147,68 @@ class Robot:
             self.pos[1] -= s
 
 
-#class Window(pyglet.window.Window):
-#
-#
-#    def push(self,pos,rot):
-#        glPushMatrix()
-#        rot = self.robot.rot
-#        pos = self.robot.pos
-#        glRotatef(-rot[0],1,0,0)
-#        glRotatef(-rot[1],0,1,0)
-#        glTranslatef(-pos[0], -pos[1], -pos[2])
-#
-#    def Projection(self):
-#        glMatrixMode(GL_PROJECTION)
-#        glLoadIdentity()
-#
-#    def View3D(self):
-#        glMatrixMode(GL_MODELVIEW)
-#        glLoadIdentity()
-#
-#    def active3d(self):
-#        self.Projection()
-#        gluPerspective(70,self.width/self.height,0.05,1000)
-#        self.View3D()
-#
-#    def __init__(self,*args,**kwargs):
-#        super().__init__(*args,**kwargs)
-#        self.set_minimum_size(667,667)
-#
-#        self.keys = key.KeyStateHandler()
-#        self.push_handlers(self.keys)
-#
-#        self.model = View3D()
-#        pyglet.clock.schedule(self.update)
-#
-#        self.robot = Robot((0.5,1.5,1.5),(-30,0))
-#
-#        #self.robot = Robot((robot_pos[0],robot_pos[1],robot_pos[2]),(0,0))
-#
-#    def setLock(self, state):
-#        self.lock = state
-#        self.set_exclusive_mouse(state)
-#
-#    lock = False
-#    mouse_lock = property(lambda self:self.lock, setLock)
-#
-#
-#    def quitter(self,KEY,MOD):
-#        if KEY == key.ESCAPE :
-#            self.close()
-#        elif KEY == key.E:
-#            self.mouse_lock = not self.mouse_lock
-#
-#    def update(self, dt):
-#        self.robot.update(dt, self.keys)
-#
-#    def on_draw(self):
-#        self.clear()
-#        self.active3d()
-#
-#        self.push(self.robot.pos,self.robot.rot)
-#        self.model.draw()
-#        glPopMatrix()
+class Window(pyglet.window.Window):
+
+
+    def push(self,pos,rot):
+        glPushMatrix()
+        rot = self.robot.rot
+        pos = self.robot.pos
+        glRotatef(-rot[0],1,0,0)
+        glRotatef(-rot[1],0,1,0)
+        glTranslatef(-pos[0], -pos[1], -pos[2])
+
+    def Projection(self):
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+
+    def View3D(self):
+        glMatrixMode(GL_MODELVIEW)
+        glLoadIdentity()
+
+    def active3d(self):
+        self.Projection()
+        gluPerspective(70,self.width/self.height,0.05,1000)
+        self.View3D()
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.set_minimum_size(667,667)
+
+        self.keys = key.KeyStateHandler()
+        self.push_handlers(self.keys)
+
+        self.model = View3D()
+        pyglet.clock.schedule(self.update)
+
+        self.robot = Robot((0.5,1.5,1.5),(-30,0))
+
+        #self.robot = Robot((robot_pos[0],robot_pos[1],robot_pos[2]),(0,0))
+
+    def setLock(self, state):
+        self.lock = state
+        self.set_exclusive_mouse(state)
+
+    lock = False
+    mouse_lock = property(lambda self:self.lock, setLock)
+
+
+    def quitter(self,KEY,MOD):
+        if KEY == key.ESCAPE :
+            self.close()
+        elif KEY == key.E:
+            self.mouse_lock = not self.mouse_lock
+
+    def update(self, dt):
+        self.robot.update(dt, self.keys)
+
+    def on_draw(self):
+        self.clear()
+        self.active3d()
+
+        self.push(self.robot.pos,self.robot.rot)
+        self.model.draw()
+        glPopMatrix()
 
 
 
