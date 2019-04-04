@@ -1,5 +1,5 @@
 import math
-import colors
+from colors import *
 
 class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
@@ -68,7 +68,7 @@ class ObstacleRond(Obstacle):
 
 
 class ObstacleBalise(Obstacle):
-    def __init__(self,x,y,z=0,lo=0.0,la=0.0,haut=0.0,color1='green',color2='blue',color3='red',color4='yellow'):
+    def __init__(self,x,y,z=0,lo=0.0,la=0.0,haut=0.0,color1='0x00ff00',color2='0x0000ff',color3='0xff0000',color4='0xffff00'):
         self._x=x
         self._y=y
         self._z=z
@@ -99,6 +99,7 @@ class ObstacleBalise(Obstacle):
                 return self.color3
             else :
                 print("Cette coordonee n'existe pas (y est faux)")
+                return 1
         elif(x>self._x+self.lo/2) and (x<self._x+self.lo):
             if (y>self._y) and (y<self._y+self.la/2):
                 return self.color2
@@ -106,8 +107,10 @@ class ObstacleBalise(Obstacle):
                 return self.color4
             else :
                 print("Cette coordonee n'existe pas (y est faux)")
+                return 1
         else:
             print("Cette coordonee n'existe pas (x est faux)")
+            return 1
 
 
 
