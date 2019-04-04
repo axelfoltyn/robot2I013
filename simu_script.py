@@ -42,6 +42,7 @@ class StrategieCercle: # a terminer
 #strat=StrategieAvanceAmeliore(robot, 300, 100)
 
 
+
 #strat=StrategieCarre(robot, 50, 20)
 #strat=StrategieFonce(robot, 100, 1)
 #strat=Strategie_tourner_droite_ameliore(robot, 360, 100)

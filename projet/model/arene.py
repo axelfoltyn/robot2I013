@@ -81,9 +81,9 @@ class Arene:
     Fonction qui permet au robot de changer de direction de manière aleatoire
     lorsqu'il est trop proche d'un obstacle
     """
-        x_p = self._robot._position[0]
-        y_p = self._robot._position[1]
-        z_p = self._robot._position[2]
+        x_p = self._robot.x
+        y_p = self._robot.y
+        z_p = self._robot.z
         max = self._max_proximite #en cm
         res = 0.0
         while(res < max):
