@@ -232,16 +232,17 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot.angleg,dt2+dt*self.robot.DPS_Gauche)
 
 
-    #def test_get_distance(self):
-    #    res=self.robot.getdistance()
-    #    self.assertLessEqual(res,800)
-    #    self.assertLessEqual(0.5,res)
+    def test_get_distance(self):
+        res=self.robot.get_distance()
+        self.assertLessEqual(res,8000)
+        self.assertLessEqual(5,res)
 
     def test_fin(self):
         pass
 
     def test_proximite_bruit(self):
         ar=Arene()
+        ar._robot = self.robot
         res=self.robot.proximite_bruit(ar)
         self.assertLessEqual(res,ar.proximite()+self.robot._max_bruit_proximite)
         self.assertLessEqual(ar.proximite()+self.robot._min_bruit_proximite,res)
