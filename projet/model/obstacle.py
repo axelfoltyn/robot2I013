@@ -1,5 +1,4 @@
 import math
-import colors
 
 class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
