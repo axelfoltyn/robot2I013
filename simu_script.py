@@ -23,14 +23,15 @@ class StrategieCercle: # a terminer
         self._robot=robot
         self._rayon=rayon
         self._vitesse=vitesse
-        self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
+        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
+        self._target=self._rayon*2/self._robot.WHEEL_DIAMETER*3600
 
     def start(self):
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
     def update(self):
-            robotv.set_motor_dps(1,vitesse)
-            robotv.set_motor_dps(2,vitesse)
+            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,dps)
+            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,dps+self._rayon*10/self._robot.WHEEL_DIAMETER)
 
     def stop(self):
         return self._robot.get_motor_position()[0]>=self._target
