@@ -41,9 +41,25 @@ class View3D:
             self.batch.add(4, GL_QUADS, self.top,    ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords)  # top
 
 
-    def __init__(self):
+    def add_block(self,x,y,z):
+
+        X, Y, Z = x+1, y+1, z+1
 
         tex_coords = ('t2f', (0, 0, 1, 0, 1, 1, 0, 1))
+
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)), tex_coords) # back
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)), tex_coords) # front
+
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)), tex_coords)  # left
+        self.batch.add(4, GL_QUADS, self.side,   ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)), tex_coords)  # right
+
+        self.batch.add(4, GL_QUADS, self.bottom, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)), tex_coords)  # bottom
+        self.batch.add(4, GL_QUADS, self.top,    ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)), tex_coords)  # top
+
+
+
+    def __init__(self):
+
 
         self.top = self.get_tex('p.png')
         self.side = self.get_tex('t.png')
@@ -52,20 +68,43 @@ class View3D:
 
         self.batch = pyglet.graphics.Batch()
 
+        self.add_block(0, 0, -1)
+        self.add_block(0, 2, -1)
+        self.add_block(0, 0, -3)
+        self.add_block(0, 0, -5)
+        self.add_block(0, 0, -7)
+        self.add_block(0, 0, -9)
+        self.add_block(0, 0, -11)
+
+
+        self.add_block(2, 0, -1)
+        self.add_block(4, 0, -1)
+        self.add_block(6, 0, -1)
+        self.add_block(8, 0, -1)
+        self.add_block(10, 0, -1)
+
+        self.add_block(10, 0, -1)
+        self.add_block(10, 0, -3)
+        self.add_block(10, 0, -5)
+        self.add_block(10, 0, -7)
+        self.add_block(10, 0, -9)
+        self.add_block(10, 0, -11)
+
+        self.add_block(2, 0, -11)
+        self.add_block(4, 0, -11)
+        self.add_block(6, 0, -11)
+        self.add_block(8, 0, -11)
+        self.add_block(10, 0, -11)
+
+
+
+
+
+
+
     #    for i in self.arene._obstacles :
     #        self.afficher_obstacle_cube(i)
-        x,y,z = 0,0,-1
-        X,Y,Z = x+1,y+1,z+1
 
-
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)),tex_coords) # back
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)),tex_coords) # front
-
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)),tex_coords)  # left
-        self.batch.add(4, GL_QUADS, self.side, ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)),tex_coords)  # right
-
-        self.batch.add(4, GL_QUADS, self.bottom, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)),tex_coords)  # bottom
-        self.batch.add(4, GL_QUADS, self.top, ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords)  # top
 
 
     def draw(self):

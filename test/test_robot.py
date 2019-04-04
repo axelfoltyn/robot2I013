@@ -62,9 +62,9 @@ class RobotTest(unittest.TestCase):
         dx = self.DX
         dy = self.DY
 
-        self.assertEqual(self.robot._direction[0], self.robot._direction[0]+dx*math.cos(trad) - dy*math.sin(trad))
-        self.assertEqual(self.robot._direction[1], self.robot._direction[1]+self.DX*math.sin(trad) + self.DY*math.cos(trad))
-        self.assertEqual(self.robot._direction[2],  self.DZ)
+        self.assertAlmostEqual(self.robot._direction[0], self.DX*math.cos(trad) - self.DY*math.sin(trad))
+        self.assertAlmostEqual(self.robot._direction[1], self.DX*math.sin(trad) + self.DY*math.cos(trad))
+        self.assertAlmostEqual(self.robot._direction[2],  self.DZ)
 
     def test_acceleration(self):
         a = random.random() * 100
@@ -232,16 +232,17 @@ class RobotTest(unittest.TestCase):
         self.assertEqual(self.robot.angleg,dt2+dt*self.robot.DPS_Gauche)
 
 
-    #def test_get_distance(self):
-    #    res=self.robot.getdistance()
-    #    self.assertLessEqual(res,800)
-    #    self.assertLessEqual(0.5,res)
+    def test_get_distance(self):
+        res=self.robot.get_distance()
+        self.assertLessEqual(res,8000)
+        self.assertLessEqual(5,res)
 
     def test_fin(self):
         pass
 
     def test_proximite_bruit(self):
         ar=Arene()
+        ar._robot = self.robot
         res=self.robot.proximite_bruit(ar)
         self.assertLessEqual(res,ar.proximite()+self.robot._max_bruit_proximite)
         self.assertLessEqual(ar.proximite()+self.robot._min_bruit_proximite,res)
