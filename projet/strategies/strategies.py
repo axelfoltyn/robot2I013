@@ -116,22 +116,23 @@ class StrategieAvanceAmeliore:
         self._distance=distance
         self._vitesse=vitesse
         self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
+        self._vitessed=vitesse
 
     def start(self):
+        self._vitesse=self._vitessed
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
     def update(self):
         if self._vitesse>10:
             if self.dist():
                 self._vitesse=self._vitesse/2
-        else:
-            self._robot.avancer(self._vitesse)
+        self._robot.avancer(self._vitesse)
 
     def stop(self):
         return self._robot.get_motor_position()[0]>=self._target
 
     def dist(self):
-        if self._robot.get_motor_position()[0]>=self._target/(1-self._i):
+        if self._robot.get_motor_position()[0]>=self._target*(1-1/self._i):
             self._i=self._i+1
             return True
         else:
@@ -147,9 +148,10 @@ class StrategieFonceAmeliore:
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
+        self._vitessed=vitesse
 
     def start(self):
-        pass
+        self._vitesse=self._vitessed
 
     def update(self):
         if self._vitesse>10:
@@ -174,12 +176,13 @@ class StrategieTournerDroiteAmeliore:
         self._robot=robot
         self._angle=angle
         self._vitesse=vitesse
+        self._vitessed=vitesse
 
 
     def start(self):
-        print("reset2.0 :", self._robot.get_motor_position()[1])
+        self._vitesse=self._vitessed
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
-        print("reset2.0 :", self._robot.get_motor_position()[1])
+
 
 
     def update(self):
