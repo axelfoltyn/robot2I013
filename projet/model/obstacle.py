@@ -28,13 +28,14 @@ class Obstacle :
 
 class ObstacleCarre(Obstacle):
 
-    def __init__(self,x,y,z=0,lo=0.0,la=0.0):                 #Initialisation des arguments
+    def __init__(self,x,y,z=0,lo=0.0,la=0.0,couleur="black"):                 #Initialisation des arguments
         self._x=x
         self._y=y
         self._z=z
         self._lo=lo
         self._la=la
         self.name = 'C'
+        self.color=couleur
 
     def est_dans(self,x,y,z):                                       #On vérifie si le point de coordonées x,y,z se trouve dans l'obstacle
         x1=self._x                                                  #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
@@ -44,20 +45,25 @@ class ObstacleCarre(Obstacle):
         return x>=x1 and x<= x2 and y<=y1 and y>=y2                 #Si les coordonées de l'objet touchent le rectangle ou sont dedans
 
     def __str__(self):
-        return "C"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._lo)+" "+str(self._la)
+        return "C"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._lo)+" "+str(self._la)+" "+str(self.color)
+
+    def get_color(self):
+        return self.color
 
 class ObstacleRond(Obstacle):
-    def __init__(self,x,y,z=0,r=1.0):                               #Initialisation des arguments
+    def __init__(self,x,y,z=0,r=1.0,couleur="black"):                               #Initialisation des arguments
         self._x=x
         self._y=y
         self._z=z
         self._r=r
         self.name = 'R'
+        self.color=couleur
 
     def est_dans(self,x,y,z):                                       #On vérifie si l'objet de coordonées x,y,z se trouve dans l'obstacle
         return (x-self._x)**2+(y-self._y)**2 <= self._r**2          #On verifie si les coordonées du point se trouvent dans le cercle
 
     def __str__(self):
+
         return "O"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._r)
 
 
@@ -107,4 +113,3 @@ class ObstacleBalise(Obstacle):
 
     def __str__(self):
         return "B"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self.lo)+" "+str(self.la)+" "+str(self.color1)+" "+str(self.color2)+" "+str(self.color3)+" "+str(self.color4)
-
