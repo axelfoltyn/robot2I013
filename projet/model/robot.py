@@ -2,6 +2,7 @@ import math
 import numpy as np
 import random
 from .lecture import lecture
+from PIL import Image
 
 class RobotVirtuel:
 
@@ -129,6 +130,13 @@ class RobotVirtuel:
         self.set_led(self.LED_LEFT_BLINKER+self.LED_LEFT_EYE+self.LED_LEFT_BLINKER+self.LED_RIGHT_EYE+self.LED_WIFI,0,0,0)
 
     def get_image(self):
+        hauteur = 244
+        largeur = 244
+        img=Image.new("RGB",(largeur,hauteur))
+        for x in range(largeur):
+            for y in range(hauteur):
+                img.putpixel((x,y), (255, 0, 0))
+            pass
         pass
 
 
