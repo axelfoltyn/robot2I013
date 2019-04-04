@@ -23,15 +23,16 @@ class StrategieCercle: # a terminer
         self._robot=robot
         self._rayon=rayon
         self._vitesse=vitesse
-        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
-        self._target=self._rayon*2/self._robot.WHEEL_DIAMETER*3600
+        self._distance=self._rayon*20/self._robot.WHEEL_DIAMETER*360
+        self._target=(self._rayon*20-self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*360
+        self._dps=(vitesse*10/self._robot.WHEEL_CIRCUMFERENCE)*360
 
     def start(self):
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
     def update(self):
-            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,dps)
-            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,dps+self._rayon*10/self._robot.WHEEL_DIAMETER)
+            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps)
+            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps*(self._distance/self._target))
 
     def stop(self):
         return self._robot.get_motor_position()[0]>=self._target
@@ -47,7 +48,8 @@ class StrategieCercle: # a terminer
 #strat=StrategieCarre(robot, 50, 20)
 #strat=StrategieFonce(robot, 100, 1)
 #strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
-strat=StrategieCarreAmeliore(robot, 40, 20)
+#strat=StrategieCarreAmeliore(robot, 40, 20)
+strat=StrategieCercle(robot,100,100)
 strat.start()
 while not strat.stop():
     strat.update()

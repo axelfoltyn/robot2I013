@@ -1,5 +1,5 @@
 import math
-import colors
+#import colors
 
 class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
@@ -35,7 +35,7 @@ class ObstacleCarre(Obstacle):
         self._lo=lo
         self._la=la
         self.name = 'C'
-        self.color=couleur
+        #self.color=couleur
 
     def est_dans(self,x,y,z):                                       #On vérifie si le point de coordonées x,y,z se trouve dans l'obstacle
         x1=self._x                                                  #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
