@@ -1,4 +1,5 @@
 import math
+import colors
 
 class Obstacle :
     #les verifications se font par rapport au nom O = Obstacle rond et C = Obstacle Carre
@@ -58,3 +59,52 @@ class ObstacleRond(Obstacle):
 
     def __str__(self):
         return "O"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._r)
+
+
+class ObstacleBalise(Obstacle):
+    def __init__(self,x,y,z=0,lo=0.0,la=0.0,haut=0.0,color1='green',color2='blue',color3='red',color4='yellow'):
+        self._x=x
+        self._y=y
+        self._z=z
+        self.lo=lo
+        self.la=la
+        self.haut=haut
+        self.color1=color1
+        self.color2=color2
+        self.color3=color3
+        self.color4=color4
+
+
+    def est_dans(self,x,y,z):
+        x1=self._x
+        x2=self._x+self.lo
+        y1=self._y
+        y2=self._y+self.la
+        z1=self._z
+        z2=self._z=self.haut
+        return x>=x1 and x<=x2 and y<=y1 and y>=y2 and z>=z1 and z<=z2
+
+
+    def getColor(self,x,y,z):
+        if (x>self._x) and (x<self._x+self.lo/2):
+            if (y>self._y) and (y<self._y+self.la/2):
+                return self.color1
+            elif (y>self._y+self.la/2) and (y<self._y+self.lo):
+                return self.color3
+            else :
+                print("Cette coordonee n'existe pas (y est faux)")
+        elif(x>self._x+self.lo/2) and (x<self._x+self.lo):
+            if (y>self._y) and (y<self._y+self.la/2):
+                return self.color2
+            elif (y>self._y+self.la/2) and (y<self._y+self.lo):
+                return self.color4
+            else :
+                print("Cette coordonee n'existe pas (y est faux)")
+        else:
+            print("Cette coordonee n'existe pas (x est faux)")
+
+
+
+    def __str__(self):
+        return "B"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self.lo)+" "+str(self.la)+" "+str(self.color1)+" "+str(self.color2)+" "+str(self.color3)+" "+str(self.color4)
+
