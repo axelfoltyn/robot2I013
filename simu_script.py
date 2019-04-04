@@ -19,9 +19,9 @@ view.start()
 
 class StrategieCercle: # a terminer
 
-    def __init__(self, robot, diametre, vitesse):
+    def __init__(self, robot, rayon, vitesse):
         self._robot=robot
-        self._diametre=diametre
+        self._rayon=rayon
         self._vitesse=vitesse
         self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
 
