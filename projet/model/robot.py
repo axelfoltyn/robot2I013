@@ -135,7 +135,7 @@ class RobotVirtuel:
         img=Image.new("RGB",(largeur,hauteur))
         for x in range(largeur):
             for y in range(hauteur):
-                img.putpixel((x,y), hex(255))
+                img.putpixel((x,y), (255, 0, 0))
             pass
         pass
 
