@@ -349,4 +349,5 @@ class RobotVirtuel:
     @property
     def z(self): return self._position[2]
 
-    def set_color
+    def set_color(self,couleur):
+        self._color=couleur
