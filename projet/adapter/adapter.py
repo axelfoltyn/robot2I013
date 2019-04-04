@@ -20,23 +20,23 @@ class Adapter():
     def get_voltage(self):
         return self._robot.get_voltage()
 
-    def set_motor_dps(self, code, vitesse):      # code: -1=tourner_gauche 0=avancer 1=tourner_droite
-        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
-        if code==0:
-            self._robot.set_motor_dps(self.MOTOR_LEFT, dps*self._calibrage)
-            self._robot.set_motor_dps(self.MOTOR_RIGHT, dps/self._calibrage)
-        else:
-            self._robot.set_motor_dps(self.MOTOR_LEFT, code*dps*self._calibrage)
-            self._robot.set_motor_dps(self.MOTOR_RIGHT, -code*dps/self._calibrage)
+    def set_motor_dps(self, port, dps):
+        self._robot.set_motor_dps(self, port, dps)
 
     def avancer(self, vitesse):             # vitesse en cm/s
-        self.set_motor_dps(0,vitesse)
+        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
+        self._robot.set_motor_dps(self.MOTOR_LEFT, dps*self._calibrage)
+        self._robot.set_motor_dps(self.MOTOR_RIGHT, dps/self._calibrage)
 
     def tourner_gauche(self,vitesse):       # vitesse en cm/s
-        self.set_motor_dps(-1,vitesse)
+        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
+        self._robot.set_motor_dps(self.MOTOR_LEFT, -dps*self._calibrage)
+        self._robot.set_motor_dps(self.MOTOR_RIGHT, dps/self._calibrage)
 
     def tourner_droite(self,vitesse):       # vitesse en cm/s
-        self.set_motor_dps(1,vitesse)
+        dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
+        self._robot.set_motor_dps(self.MOTOR_LEFT, dps*self._calibrage)
+        self._robot.set_motor_dps(self.MOTOR_RIGHT, -dps/self._calibrage)
 
     def get_motor_position(self):
         return self._robot.get_motor_position()
