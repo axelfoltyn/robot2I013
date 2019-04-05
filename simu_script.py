@@ -19,12 +19,12 @@ view.start()
 
 class StrategieCercle: # a terminer
 
-    def __init__(self, robot, rayon, vitesse):
+    def __init__(self, robot, rayon, vitesse, angle):
         self._robot=robot
         self._rayon=rayon
         self._vitesse=vitesse
-        self._distance=self._rayon*20/self._robot.WHEEL_DIAMETER*360
-        self._target=(self._rayon*20-self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*360
+        self._distance=self._rayon*20/self._robot.WHEEL_DIAMETER*angle
+        self._target=(self._rayon*20-self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
         self._dps=(vitesse*10/self._robot.WHEEL_CIRCUMFERENCE)*360
 
     def start(self):
@@ -49,7 +49,7 @@ class StrategieCercle: # a terminer
 #strat=StrategieFonce(robot, 100, 1)
 #strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
 #strat=StrategieCarreAmeliore(robot, 40, 20)
-strat=StrategieCercle(robot,100,100)
+strat=StrategieCercle(robot,80,100,1440)
 strat.start()
 while not strat.stop():
     strat.update()
