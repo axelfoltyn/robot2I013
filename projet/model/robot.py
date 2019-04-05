@@ -4,6 +4,7 @@ import random
 from .lecture import lecture
 from PIL import Image
 
+
 class RobotVirtuel:
 
     WHEEL_BASE_WIDTH         = 117                        # distance (mm) de la roue gauche a la roue droite.
@@ -38,6 +39,9 @@ class RobotVirtuel:
         self._color="black"
 
         self._arene = lecture(text,self)
+
+        self.profondeur = 6
+        self.pas_pix = 0.1
 
 
     def set_led(self, led, red = 0, green = 0, blue = 0):
@@ -132,11 +136,23 @@ class RobotVirtuel:
     def get_image(self):
         hauteur = 244
         largeur = 244
-        img=Image.new("RGB",(largeur,hauteur))
+        #img=Image.new("RGB",(largeur,hauteur))
+        img = np.zeros([largeur,hauteur,3],dtype=np.uint8)
         for x in range(largeur):
             for y in range(hauteur):
-                img.putpixel((x,y), (255, 0, 0))
-            pass
+                xc = x * self.pas_pix
+                yc = (hauteur - y) * self.pas_pix
+                largeurc = largeur * self.pas_pix
+                hauteurc = hauteur * self.pas_pix
+                trad = math.radians(math.atan2(xc-largeurc/2, self.profondeur))
+                dir = [0, 0, 0]
+                dx = self._direction[0]
+                dy = self._direction[1]
+                dz = self._direction[2]
+                dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
+                dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
+                dir[2] = (yc - hauteurc/2 + dz)/2
+                #img.putpixel((x,y), (255, 0, 0))
         pass
 
 
