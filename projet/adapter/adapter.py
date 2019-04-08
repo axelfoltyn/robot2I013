@@ -3,6 +3,9 @@ class Adapter():
     def __init__(self, robot, calibrage=1):
         self._robot=robot
         self._calibrage=calibrage
+        self.WHEEL_DIAMETER=self._robot.WHEEL_DIAMETER
+        self.WHEEL_BASE_WIDTH=self._robot.WHEEL_BASE_WIDTH
+        self.WHEEL_CIRCUMFERENCE=self._robot.WHEEL_CIRCUMFERENCE
         self.WHEEL_BASE_CIRCUMFERENCE=self._robot.WHEEL_BASE_CIRCUMFERENCE
         self.WHEEL_CIRCUMFERENCE=self._robot.WHEEL_CIRCUMFERENCE
         #self.LED_LEFT_EYE=self._robot.LED_LEFT_EYE
@@ -21,7 +24,7 @@ class Adapter():
         return self._robot.get_voltage()
 
     def set_motor_dps(self, port, dps):
-        self._robot.set_motor_dps(self, port, dps)
+        self._robot.set_motor_dps(port, dps)
 
     def avancer(self, vitesse):             # vitesse en cm/s
         dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600

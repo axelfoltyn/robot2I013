@@ -29,7 +29,7 @@ def lecture(fichier,robot):
             robot.set_acceleration(float(arg[4]))
             robot.set_vitesse(float(arg[5]))
             robot.set_direction(float(arg[6]),float(arg[7]),float(arg[8]))
-            robot.set_color(arg[9])
+            #robot.set_color(arg[9])
 
         if 'C'==arg[0] :
             a.ajout_Obstacle(ObstacleCarre(float(arg[1]),float(arg[2]),float(arg[3]),lo=float(arg[4]),la=float(arg[5]),couleur=str(arg[6])))
