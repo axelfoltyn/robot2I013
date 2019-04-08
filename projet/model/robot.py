@@ -133,11 +133,34 @@ class RobotVirtuel:
         self.set_motor_dps(self.MOTOR_LEFT+self.MOTOR_RIGHT,0)
         self.set_led(self.LED_LEFT_BLINKER+self.LED_LEFT_EYE+self.LED_LEFT_BLINKER+self.LED_RIGHT_EYE+self.LED_WIFI,0,0,0)
 
+    def trad(self, hex_str):
+        if hex_str.startswith('#'):
+            hex_str = hex_str[1:]
+        return [int(hex_str[i:i + 2], 16) for i in range(0, len(hex_str), 2)]
+
+    def set_pixel(self, img, dir, x, y):
+        x_p = self.x
+        y_p = self.y
+        z_p = self.z
+        max = 100
+        rayon = 0.0
+        while(rayon < max):
+            if (x_p + dir[0]*rayon < 0 or x_p + dir[0]*rayon > self._arene._x or y_p + dir[1]*rayon < 0 or y_p + dir[1]*rayon > self._arene._y):
+                print("mur")
+                img[x][y] = [1,1,1]
+                return
+            for o in self._arene._obstacles:
+                if o.est_dans(x_p + dir[0]*rayon, y_p + dir[1]*rayon, z_p + dir[2]*rayon):
+                    img[x][y] = trad(o.getColor())
+                    return
+            rayon += 0.1
+
     def get_image(self):
         hauteur = 244
         largeur = 244
         #img=Image.new("RGB",(largeur,hauteur))
         img = np.zeros([largeur,hauteur,3],dtype=np.uint8)
+        print(img)
         for x in range(largeur):
             for y in range(hauteur):
                 xc = x * self.pas_pix
@@ -152,7 +175,9 @@ class RobotVirtuel:
                 dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
                 dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
                 dir[2] = (yc - hauteurc/2 + dz)/2
+                self.set_pixel(img, dir, x, y)
                 #img.putpixel((x,y), (255, 0, 0))
+        print(img)
         pass
 
 
