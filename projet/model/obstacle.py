@@ -27,7 +27,7 @@ class Obstacle :
 
 class ObstacleCarre(Obstacle):
 
-    def __init__(self,x,y,z=0,lo=0.0,la=0.0,couleur="black"):                 #Initialisation des arguments
+    def __init__(self,x,y,z=0,lo=0.0,la=0.0,couleur="blue"):                 #Initialisation des arguments
         self._x=x
         self._y=y
         self._z=z
@@ -50,7 +50,7 @@ class ObstacleCarre(Obstacle):
         return self.color
 
 class ObstacleRond(Obstacle):
-    def __init__(self,x,y,z=0,r=1.0,couleur="black"):                               #Initialisation des arguments
+    def __init__(self,x,y,z=0,r=1.0,couleur='red'):                               #Initialisation des arguments
         self._x=x
         self._y=y
         self._z=z
@@ -67,7 +67,7 @@ class ObstacleRond(Obstacle):
 
 
 class ObstacleBalise(Obstacle):
-    def __init__(self,x,y,z=0,lo=0.0,la=0.0,haut=0.0,color1='0x00ff00',color2='0x0000ff',color3='0xff0000',color4='0xffff00'):
+    def __init__(self,x,y,z=0,lo=0.0,la=0.0,haut=0.0,color1='blue',color2='red',color3='yellow',color4='green'):
         self._x=x
         self._y=y
         self._z=z
@@ -78,7 +78,6 @@ class ObstacleBalise(Obstacle):
         self.color2=color2
         self.color3=color3
         self.color4=color4
-
 
     def est_dans(self,x,y,z):
         x1=self._x
