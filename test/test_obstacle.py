@@ -11,7 +11,7 @@ class ObstacleTestCarre(unittest.TestCase):
         self.Z = int(random.random()* 10000)
         self.LO = int(random.random()* 10000)
         self.LA = int(random.random()* 10000)
-        self.COLOR = 0xff00ff
+        self.COLOR = 'blue'
         self.obstaclec = ObstacleCarre(self.X, self.Y, self.Z, self.LO, self.LA,self.COLOR)
 
     def test_cree(self):
@@ -43,7 +43,7 @@ class ObstacleTestRond(unittest.TestCase):
         self.Y = int(random.random()* 10000)
         self.Z = int(random.random()* 10000)
         self.R = int(random.random()* 10000)
-        self.COLOR = 0xff00ff
+        self.COLOR = 'red'
         self.obstacler = ObstacleRond(self.X, self.Y, self.Z, self.R,self.COLOR)
 
     def test_rond(self):
@@ -72,10 +72,10 @@ class ObstacleTestBalise(unittest.TestCase):
         self.LO= int(random.random()* 10000)
         self.LA= int(random.random()* 10000)
         self.HAUT= int(random.random()* 10000)
-        self.COLOR1='0xff0000'
-        self.COLOR2='0x00ff00'
-        self.COLOR3='0x0000ff'
-        self.COLOR4='0xffff00'
+        self.COLOR1='green'
+        self.COLOR2='yellow'
+        self.COLOR3='red'
+        self.COLOR4='blue'
         self.obstacleb=ObstacleBalise(self.X,self.Y,self.Z,self.LO,self.LA,self.HAUT,self.COLOR1,self.COLOR2,self.COLOR3,self.COLOR4)
 
     def test_cree(self):
