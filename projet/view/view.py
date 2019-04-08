@@ -6,6 +6,11 @@ import threading
 #from ..model import ObstacleCarre
 
 class View(threading.Thread):
+
+    red= 'red'
+    blue='blue'
+    black='black'
+    yellow='yellow'
     def __init__(self,arene):
         super(View,self).__init__()
         """
@@ -54,7 +59,10 @@ class View(threading.Thread):
                 y1 = self._y-obstacle._y
                 x2 = x1+obstacle._lo
                 y2 = y1+obstacle._la
-                self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "black"))
+                if obstacle.getColor()==self.yellow:
+                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "yellow"))
+                else:
+                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "red"))
             else:
                 print("L'obstacle n'existe pas")
         else:
@@ -63,7 +71,7 @@ class View(threading.Thread):
             r1 = obstacle._r
             x1=x0+(2*r1)
             y1=y0+(2*r1)
-            self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "black"))
+            self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
 
 
         ### faire attention a coordonnee y qui vaudra self._y - y !!! (pour avoir affichage a l'endroit)

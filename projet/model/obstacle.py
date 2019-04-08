@@ -24,6 +24,8 @@ class Obstacle :
     def __str__(self):
         return ""
 
+    def getColor(self):
+        pass
 
 class ObstacleCarre(Obstacle):
 
@@ -34,7 +36,7 @@ class ObstacleCarre(Obstacle):
         self._lo=lo
         self._la=la
         self.name = 'C'
-        #self.color=couleur
+        self.color=couleur
 
     def est_dans(self,x,y,z):                                       #On vérifie si le point de coordonées x,y,z se trouve dans l'obstacle
         x1=self._x                                                  #x1 ,x2 , y1 et y2 représentent les quatres points du rcetangle(Carre)
@@ -46,7 +48,7 @@ class ObstacleCarre(Obstacle):
     def __str__(self):
         return "C"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._lo)+" "+str(self._la)+" "+str(self.color)
 
-    def get_color(self):
+    def getColor(self):
         return self.color
 
 class ObstacleRond(Obstacle):
@@ -64,7 +66,8 @@ class ObstacleRond(Obstacle):
     def __str__(self):
 
         return "O"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self._r)+" "+str(self.color)
-
+    def getColor(self):
+        return self.color
 
 class ObstacleBalise(Obstacle):
     def __init__(self,x,y,z=0,lo=0.0,la=0.0,haut=0.0,color1='blue',color2='red',color3='yellow',color4='green'):
