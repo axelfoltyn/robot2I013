@@ -11,6 +11,9 @@ import sys
 class View3D:
 
     def get_tex(self,file):
+        """
+        Charge les textures pour les blocs
+        """
         tex = pyglet.image.load(file).texture
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
@@ -67,6 +70,7 @@ class View3D:
         self.bottom = self.get_tex('n.png')
 
         self.batch = pyglet.graphics.Batch()
+        #On Affiche un carre formé par des cubes.
 
         self.add_block(0, 0, -1)
         self.add_block(0, 2, -1)
@@ -108,6 +112,9 @@ class View3D:
 
 
     def draw(self):
+        """
+        Cette fonction permet d'afficher les polygones créés avec batch
+        """
         self.batch.draw()
 
 
@@ -118,6 +125,10 @@ class Robot:
         self.rot = list(rot)
 
     def mouse_motion(self, dx, dy):
+        """
+        Fonction qui devrais permettre au robot de tourner
+        Ne fonctionne pas pour l'instant
+        """
         dx/= 8
         dy/= 8
         self.rot[0] += dy
@@ -128,25 +139,29 @@ class Robot:
             self.rot[0] = -90
 
     def update(self,dt,keys):
+        """
+        Fonction qui permet au robot d'avancer
+        tout droit, en arriere, a droite, ou a gauche
+        """
         sens = 0.1
         s = dt*10
         rotY = -self.rot[1]/180*math.pi
         dx, dz = s*math.sin(rotY), math.cos(rotY)
-        if keys[key.Z]:
+        if keys[key.Z]:             #avance tout droit
             self.pos[0] += dx*sens
             self.pos[2] -= dz*sens
-        if keys[key.S]:
+        if keys[key.S]:             #avance en arriere
             self.pos[0] -= dx*sens
             self.pos[2] += dz*sens
-        if keys[key.Q]:
+        if keys[key.Q]:             #avance à gauche
             self.pos[0] -= dz*sens
             self.pos[2] -= dx*sens
-        if keys[key.D]:
+        if keys[key.D]:             #avance à droite
             self.pos[0] += dz*sens
             self.pos[2] += dx*sens
-        if keys[key.SPACE]:
+        if keys[key.SPACE]:         #augmente la hauteur
             self.pos[1] += s
-        if keys[key.LSHIFT]:
+        if keys[key.LSHIFT]:        #diminue la hauteur
             self.pos[1] -= s
 
 
@@ -154,6 +169,10 @@ class Window(pyglet.window.Window):
 
 
     def push(self,pos,rot):
+        """
+        Fonction qui va permettre de recalculer la position du robot
+        Utile pour l'update
+        """
         glPushMatrix()
         rot = self.robot.rot
         pos = self.robot.pos
@@ -177,18 +196,24 @@ class Window(pyglet.window.Window):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.set_minimum_size(667,667)
-
+        #fonctions qui permettent l'utilisation du clavier
         self.keys = key.KeyStateHandler()
         self.push_handlers(self.keys)
 
+        #necessaire pour l'update
         self.model = View3D()
         pyglet.clock.schedule(self.update)
 
+        #initialisation de la position du robot
         self.robot = Robot((0.5,1.5,1.5),(-30,0))
 
         #self.robot = Robot((robot_pos[0],robot_pos[1],robot_pos[2]),(0,0))
 
     def setLock(self, state):
+        """
+            Ne marche pas
+
+        """
         self.lock = state
         self.set_exclusive_mouse(state)
 
@@ -206,6 +231,9 @@ class Window(pyglet.window.Window):
         self.robot.update(dt, self.keys)
 
     def on_draw(self):
+        """
+        Cette fonction est l'équivalent de la fonction update de view
+        """
         self.clear()
         self.active3d()
 
