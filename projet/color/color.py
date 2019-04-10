@@ -1,4 +1,8 @@
 red= 'red'
+red_hex= '#ff0000'
 blue='blue'
+blue_hex= '#0000ff'
 black='black'
+black_hex= '#000000'
 yellow='yellow'
+yellow_hex= '#ffff00'
