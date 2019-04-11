@@ -3,7 +3,7 @@ from projet import RobotVirtuel as RobotV
 from projet import Adapter
 from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, StrategieCarreAmeliore
 from projet import lecture
-from projet import View
+from projet import View, View3D
 from threading import Thread
 
 robotv = RobotV()
