@@ -3,7 +3,7 @@ import numpy as np
 import random
 from .lecture import lecture
 from PIL import Image
-from ..color import *
+from ..color import color
 
 
 class RobotVirtuel:
@@ -148,7 +148,7 @@ class RobotVirtuel:
                 return
             for o in self._arene._obstacles:
                 if o.est_dans(x_p + dir[0]*rayon, y_p + dir[1]*rayon, z_p + dir[2]*rayon):
-                    img[x][y] = trad_str_to_rgb(o.getColor())
+                    img[x][y] = color.trad_str_to_rgb(o.getColor())
                     return
             rayon += 0.1
 
