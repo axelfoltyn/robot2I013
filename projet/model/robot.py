@@ -3,6 +3,7 @@ import numpy as np
 import random
 from .lecture import lecture
 from PIL import Image
+from ..color import *
 
 
 class RobotVirtuel:
@@ -133,25 +134,21 @@ class RobotVirtuel:
         self.set_motor_dps(self.MOTOR_LEFT+self.MOTOR_RIGHT,0)
         self.set_led(self.LED_LEFT_BLINKER+self.LED_LEFT_EYE+self.LED_LEFT_BLINKER+self.LED_RIGHT_EYE+self.LED_WIFI,0,0,0)
 
-    def trad(self, hex_str):
-        if hex_str.startswith('#'):
-            hex_str = hex_str[1:]
-        return [int(hex_str[i:i + 2], 16) for i in range(0, len(hex_str), 2)]
 
     def set_pixel(self, img, dir, x, y):
         x_p = self.x
         y_p = self.y
         z_p = self.z
-        max = 100
+        max = 1000
         rayon = 0.0
         while(rayon < max):
-            if (x_p + dir[0]*rayon < 0 or x_p + dir[0]*rayon > self._arene._x or y_p + dir[1]*rayon < 0 or y_p + dir[1]*rayon > self._arene._y):
-                print("mur")
+            if (x_p + dir[0]*rayon < 0 or x_p + dir[0]*rayon > self._arene._x \
+                or y_p + dir[1]*rayon < 0 or y_p + dir[1]*rayon > self._arene._y):
                 img[x][y] = [1,1,1]
                 return
             for o in self._arene._obstacles:
                 if o.est_dans(x_p + dir[0]*rayon, y_p + dir[1]*rayon, z_p + dir[2]*rayon):
-                    img[x][y] = trad(o.getColor())
+                    img[x][y] = trad_str_to_rgb(o.getColor())
                     return
             rayon += 0.1
 
@@ -160,7 +157,6 @@ class RobotVirtuel:
         largeur = 244
         #img=Image.new("RGB",(largeur,hauteur))
         img = np.zeros([largeur,hauteur,3],dtype=np.uint8)
-        print(img)
         for x in range(largeur):
             for y in range(hauteur):
                 xc = x * self.pas_pix
