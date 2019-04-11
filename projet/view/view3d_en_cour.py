@@ -10,7 +10,7 @@ from ..color import color
 import threading
 
 
-class View3D(threading.Thread, pyglet.window.Window):
+class View3D(pyglet.window.Window, threading.Thread):
 
     red= 'red'
     blue='blue'
