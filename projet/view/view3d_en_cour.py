@@ -1,11 +1,15 @@
+import pyglet
+from pyglet.gl import *
+from pyglet.window import key
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+import math
 import sys
-import time
-from tkinter import *
-from tkinter import messagebox
-import threading
 from ..color import color
 
-class View(threading.Thread):
+
+class View3D(threading.Thread, pyglet.window.Window):
 
     red= 'red'
     blue='blue'
@@ -26,23 +30,23 @@ class View(threading.Thread):
         self.arene = arene
 
     def run(self):
-        self._fenetre = Tk()
-        self._canvas = Canvas(self._fenetre, width = self._x, height = self._y, background = "grey")
-        self._canvas.pack()
-        self._Bouton_Quitter = Button(self._fenetre, text = "Quitter", command = self._fenetre.destroy) #creation du boutton quitter
-        self._Bouton_Quitter.pack()
-        self._fenetre.after(1,self.update_arene)
-        self._fenetre.mainloop()
+        self.batch = pyglet.graphics.Batch()
+        self.set_minimum_size(667,667)
+        pyglet.clock.schedule(self.update)
+
     def afficher_robot(self,robot):
         """
-        Cette fonction affiche le robot sur le canevas
+        mettre la cam comme il faut
         : param robot : robot a afficher
         """
-        x = robot._position[0]
-        y = self._y-robot._position[1]
-        dx = robot._direction[0]
-        dy = -robot._direction[1]
-        self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
+        glPushMatrix()
+        rot = self.robot._direction
+        pos = self.robot._position
+        glRotatef(-rot[0],1,0,0)
+        glRotatef(-rot[1],0,1,0)
+        glRotatef(-rot[2],0,0,1)
+        glTranslatef(-pos[0], -pos[1], -pos[2])
+
 
     def afficher_obstacle(self,obstacle):
         """
@@ -56,16 +60,24 @@ class View(threading.Thread):
         if obstacle.name == 'C':
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
-                y1 = self._y-obstacle._y
+                y1 = obstacle._y
                 x2 = x1+obstacle._lo
-                y2 = y1+obstacle._la
-                if obstacle.getColor()==self.yellow:
-                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "yellow"))
-                else:
-                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "red"))
+                y2 = y1-obstacle._la
+                z1 = obstacle._z
+                z2 = self.arene._z
+                couleur = color.trad_str_to_rgb(obstacle.getColor())
+                tex_coords = ('c3B', (couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2]))
+                self.batch.add(4, GL_QUADS, None, ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)),tex_coords) # back
+                self.batch.add(4, GL_QUADS, None, ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)),tex_coords) # front
+                self.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)),tex_coords)  # left
+                self.batch.add(4, GL_QUADS, None, ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)),tex_coords)  # right
+                self.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)),tex_coords)  # bottom
+                self.batch.add(4, GL_QUADS, None, ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords)  # top
+
             else:
                 print("L'obstacle n'existe pas")
         else:
+            pass
             x0 = obstacle._x - obstacle._r
             y0 = y0 - obstacle._r
             r1 = obstacle._r
@@ -74,17 +86,22 @@ class View(threading.Thread):
             self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
 
 
-        ### faire attention a coordonnee y qui vaudra self._y - y !!! (pour avoir affichage a l'endroit)
-
     def update_arene(self,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
-        self.clear()                   #On efface d'abord ce qui etait affiche precedemment
+        self.clear()
+        self.active3d()
+
         for i in self.arene._obstacles :              #On procède a l'affichage des obstacles
             self.afficher_obstacle(i)
-        self.afficher_robot(self.arene._robot)  #On affiche le robot
+        self.afficher_robot(self.robot)
+
+
         self.update(dt)
-        self._fenetre.after(5,self.update_arene)
+        glPopMatrix()
+
+
+
 
 
 
@@ -104,6 +121,7 @@ class View(threading.Thread):
         Cette fonction indique la fin de l'affichage
         : param b: booleen permattant de verifier si nous sommes a la fin du script
         """
+        pass
         if b:
             self._canvas.configure(background = "lime green")
             messagebox.showinfo("Fin du parcours","Le parcours vient de se terminer")
@@ -112,12 +130,8 @@ class View(threading.Thread):
             messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
         self._fenetre.mainloop()
 
-    #dt en s
+
     def update(self, dt=1):
-        self._canvas.pack()
-        #time.sleep(dt)
-        self._canvas.update()
-
-
+        self.batch.draw()
 
 
