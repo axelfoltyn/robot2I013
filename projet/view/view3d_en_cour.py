@@ -7,6 +7,7 @@ from OpenGL.GLU import *
 import math
 import sys
 from ..color import color
+import threading
 
 
 class View3D(threading.Thread, pyglet.window.Window):
