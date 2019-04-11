@@ -110,7 +110,7 @@ class View3D(threading.Thread, pyglet.window.Window):
                 Cette fonction supprime tous les elements affiches sur l'arene
                 """
                 for e in self._objets:
-                        self._canvas.delete(e)
+                        e.delete()
                 self._objets = []
 
 
