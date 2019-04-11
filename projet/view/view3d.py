@@ -6,7 +6,7 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 import math
 import sys
-
+import threading
 
 class View3D:
 
