@@ -17,7 +17,7 @@ class View3D(threading.Thread):
     black='black'
     yellow='yellow'
     def __init__(self,arene):
-        super(View,self).__init__()
+        super(View3D,self).__init__()
         """
         int * int -> View
         Cette fonction initialise la fenetre sur laquelle le robot va s'afficher
@@ -32,9 +32,9 @@ class View3D(threading.Thread):
         self.w = pyglet.window.Window()
 
     def run(self):
-        w.batch = pyglet.graphics.Batch()
-        w.set_minimum_size(667,667)
-        pyglet.clock.schedule(w.update)
+        self.w.batch = pyglet.graphics.Batch()
+        self.w.set_minimum_size(667,667)
+        pyglet.clock.schedule(self.update)
 
     def afficher_robot(self,robot):
         """
@@ -68,12 +68,12 @@ class View3D(threading.Thread):
                 z2 = self.arene._z
                 couleur = color.trad_str_to_rgb(obstacle.getColor())
                 tex_coords = ('c3B', (couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2]))
-                self._objets.append(w.batch.add(4, GL_QUADS, None, ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)),tex_coords)) # back
-                self._objets.append(w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)),tex_coords)) # front
-                self._objets.append(w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)),tex_coords))  # left
-                self._objets.append(w.batch.add(4, GL_QUADS, None, ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)),tex_coords))  # right
-                self._objets.append(w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)),tex_coords))  # bottom
-                self._objets.append(w.batch.add(4, GL_QUADS, None, ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords))  # top
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)),tex_coords)) # back
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)),tex_coords)) # front
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)),tex_coords))  # left
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)),tex_coords))  # right
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)),tex_coords))  # bottom
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords))  # top
 
             else:
                 print("L'obstacle n'existe pas")
@@ -90,8 +90,8 @@ class View3D(threading.Thread):
     def update_arene(self,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
-        w.clear()
-        w.active3d()
+        self.w.clear()
+        self.w.active3d()
 
         for i in self.arene._obstacles :              #On procède a l'affichage des obstacles
             self.afficher_obstacle(i)
@@ -133,6 +133,6 @@ class View3D(threading.Thread):
 
 
     def update(self, dt=1):
-        w.batch.draw()
+        self.w.batch.draw()
 
 
