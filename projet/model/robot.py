@@ -4,6 +4,7 @@ import random
 from .lecture import lecture
 from PIL import Image
 from ..color import color
+from threading import Thread
 
 
 class RobotVirtuel:
@@ -152,29 +153,59 @@ class RobotVirtuel:
                     return
             rayon += 0.1
 
+    def get_image_aux_y_sup(self, img, hauteur, largeur, x):
+        val = int(hauteur/2)
+        for y in range(val, hauteur):
+            xc = x * self.pas_pix
+            yc = (hauteur - y) * self.pas_pix
+            largeurc = largeur * self.pas_pix
+            hauteurc = hauteur * self.pas_pix
+            trad = math.radians(math.atan2(xc-largeurc/2, self.profondeur))
+            dir = [0, 0, 0]
+            dx = self._direction[0]
+            dy = self._direction[1]
+            dz = self._direction[2]
+            dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
+            dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
+            dir[2] = (yc - hauteurc/2 + dz)/2
+            self.set_pixel(img, dir, x, y)
+
+    def get_image_aux_y(self, img, hauteur, largeur, x):
+        #print(x)
+        val = int(hauteur/2)
+        for y in range(val):
+            xc = x * self.pas_pix
+            yc = (hauteur - y) * self.pas_pix
+            largeurc = largeur * self.pas_pix
+            hauteurc = hauteur * self.pas_pix
+            trad = math.radians(math.atan2(xc-largeurc/2, self.profondeur))
+            dir = [0, 0, 0]
+            dx = self._direction[0]
+            dy = self._direction[1]
+            dz = self._direction[2]
+            dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
+            dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
+            dir[2] = (yc - hauteurc/2 + dz)/2
+            self.set_pixel(img, dir, x, y)
+        a = Thread(target=self.get_image_aux_y_sup, args=(img, hauteur, largeur, x,))
+        a.start()
+        a.join()
+        #print(x)
+
     def get_image(self):
         hauteur = 244
         largeur = 244
+        thread_list = []
         #img=Image.new("RGB",(largeur,hauteur))
         img = np.zeros([largeur,hauteur,3],dtype=np.uint8)
         for x in range(largeur):
-            for y in range(hauteur):
-                xc = x * self.pas_pix
-                yc = (hauteur - y) * self.pas_pix
-                largeurc = largeur * self.pas_pix
-                hauteurc = hauteur * self.pas_pix
-                trad = math.radians(math.atan2(xc-largeurc/2, self.profondeur))
-                dir = [0, 0, 0]
-                dx = self._direction[0]
-                dy = self._direction[1]
-                dz = self._direction[2]
-                dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
-                dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
-                dir[2] = (yc - hauteurc/2 + dz)/2
-                self.set_pixel(img, dir, x, y)
-                #img.putpixel((x,y), (255, 0, 0))
+            thread_list.append(Thread(target=self.get_image_aux_y, args=(img, hauteur, largeur, x,)))
+            thread_list[-1].start()
+            #img.putpixel((x,y), (255, 0, 0))
+        for t in thread_list:
+            t.join()
         print(img)
-        pass
+        return img
 
 
     def update_dt(self, dt):
