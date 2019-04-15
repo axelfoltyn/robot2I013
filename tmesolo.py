@@ -167,3 +167,10 @@ class StrategieTour:
 
     def stop(self):
         return self._i>=5
+
+
+Q3.1
+    def divise(self,obs):
+        if(obs.name==DI):
+            if(o.est_dans(self._position[0],self._position[1],self._position[2])):
+                self.vitesse=self.vitesse/2

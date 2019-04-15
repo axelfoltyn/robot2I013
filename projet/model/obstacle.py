@@ -127,7 +127,7 @@ class ObstacleDivise(Obstacle):
         self._z=z
         self._lo=lo
         self._la=la
-        self.name = 'C'
+        self.name = 'DI'
         self.color=couleur
 
     def est_dans(self,x,y,z):                                       #On vérifie si le point de coordonées x,y,z se trouve dans l'obstacle
