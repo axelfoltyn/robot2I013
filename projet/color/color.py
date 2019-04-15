@@ -10,6 +10,9 @@ black_hex= '#000000'
 yellow='yellow'
 yellow_hex= '#ffff00'
 
+pink='pink'
+pink_hex='#ff1493'
+
 list_str= []
 list_hex= []
 list_str.append(red)

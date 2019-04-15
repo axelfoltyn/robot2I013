@@ -38,7 +38,7 @@ class RobotVirtuel:
         self._position = [0,0,0]                                  #initialiser lors de la lecture
         self._vitesse = 0                                         #initialiser lors de la lecture
         self._acceleration = 0                                    #initialiser lors de la lecture
-        self._color="black"
+        self._color="pink"
 
         self._arene = lecture(text,self)
 

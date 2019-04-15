@@ -4,6 +4,6 @@
 A x y z R O             #A=Arene Robot sera directement initialiser a lappelele
 R X Y Z A V DX DY DZ      #R=Robot
 
-#le premier caractere pour un obstacle sert a determiné se quil est 
+#le premier caractere pour un obstacle sert a determiné se quil est
 O X Y Z R             #O=Obstacle rond
 C X Y Z LO LA         #C=obstacle carré
