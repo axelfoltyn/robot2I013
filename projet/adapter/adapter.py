@@ -67,3 +67,6 @@ class Adapter():
 
     def update(self, dt):
         self._robot.update(dt)
+
+    @property
+    def pos(self): return self._robot._position

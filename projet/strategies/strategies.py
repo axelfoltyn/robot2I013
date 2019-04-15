@@ -302,6 +302,7 @@ class Strategie_triagle_equi_10:
         self._strategie[0].start()
 
     def update(self):
+        print("[x,y,z] = ", self._robot.pos)
         if self._strategie[self._num_strat].stop() and self._num_strat==0:
             self._robot.avancer(0)
             self._num_strat=1
@@ -338,6 +339,7 @@ class Strategie_poly_n:
         self._strategie[0].start()
 
     def update(self):
+        print("[x,y,z] = ", self._robot.pos)
         if self._strategie[self._num_strat].stop() and self._num_strat==0:
             self._robot.avancer(0)
             self._num_strat=1
