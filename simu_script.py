@@ -1,7 +1,7 @@
 import time
 from projet import RobotVirtuel as RobotV
 from projet import Adapter
-from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, StrategieCarreAmeliore, StrategieArcGauche, StrategieArcDroit, Strategie_triagle_equi_10
+from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, StrategieCarreAmeliore, StrategieArcGauche, StrategieArcDroit, Strategie_triagle_equi_10, Strategie_poly_n
 from projet import lecture
 from projet import View, View3D
 from threading import Thread
@@ -27,6 +27,7 @@ view.start()
 #strat=StrategieCarreAmeliore(robot, 40, 20)
 #strat=StrategieArcGauche(robot,50,50,360)
 strat = Strategie_triagle_equi_10(robot)
+strat = Strategie_poly_n(robot, 20)
 
 
 strat.start()

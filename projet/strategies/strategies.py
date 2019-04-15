@@ -1,5 +1,5 @@
 import time
-
+import math
 
 class StrategieAvance:
 
@@ -161,7 +161,7 @@ class StrategieFonceAmeliore:
         self._robot.avancer(self._vitesse)
 
     def dist(self):
-        print(self._robot.get_distance()/10.0, self._distance*(1+1/self._i))
+        #print(self._robot.get_distance()/10.0, self._distance*(1+1/self._i))
         return self._robot.get_distance()/10.0<=self._distance*(1+1/self._i)
 
     def stop(self):
@@ -186,7 +186,7 @@ class StrategieTournerDroiteAmeliore:
 
 
     def update(self):
-        print("v=", self._vitesse)
+        #print("v=", self._vitesse)
         if(self._vitesse>10):
             if(self.dist()):
                 self._vitesse = self._vitesse / 2
@@ -196,13 +196,13 @@ class StrategieTournerDroiteAmeliore:
     def stop(self):
 
         target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
-        print("tfvtftftftftftf", target, abs(self._robot.get_motor_position()[1]))
+        #print("tfvtftftftftftf", target, abs(self._robot.get_motor_position()[1]))
         return target<=abs(self._robot.get_motor_position()[1])
 
 
     def dist(self):
         target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
-        print("uhyfhdygxcjfh", abs(self._robot.get_motor_position()[1]),target*(1-1/self._i))
+        #print("uhyfhdygxcjfh", abs(self._robot.get_motor_position()[1]),target*(1-1/self._i))
         if (abs(self._robot.get_motor_position()[1])>=target*(1-1/self._i)):
             self._i=self._i*2
             return True
@@ -319,3 +319,39 @@ class Strategie_triagle_equi_10:
 
     def stop(self):
         return self._i>=3
+
+
+class Strategie_poly_n:
+
+    def __init__(self, robot, n):
+        self._robot=robot
+        self._distance=30/n
+        self._vitesse=5
+        self._num_strat=0
+        self._strategie=[StrategieAvanceAmeliore(robot, self._distance, self._vitesse), StrategieTournerDroiteAmeliore(robot, 180-(1.0*(n-2)*math.pi/n)*360/(2*math.pi), self._vitesse)]
+        self._i=0
+        self.n = n
+
+    def start(self):
+        self._i=0
+        self._num_strat=0
+        self._strategie[0].start()
+
+    def update(self):
+        if self._strategie[self._num_strat].stop() and self._num_strat==0:
+            self._robot.avancer(0)
+            self._num_strat=1
+            self._strategie[self._num_strat].start()
+            self._strategie[self._num_strat].update()
+        elif self._strategie[self._num_strat].stop() and self._num_strat==1:
+            self._robot.avancer(0)
+            self._i+=1
+            self._num_strat=0
+            if not self.stop():
+                self._strategie[self._num_strat].start()
+                self._strategie[self._num_strat].update()
+        else:
+            self._strategie[self._num_strat].update()
+
+    def stop(self):
+        return self._i>=self.n
