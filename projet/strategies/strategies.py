@@ -187,7 +187,7 @@ class StrategieTournerDroiteAmeliore:
 
     def update(self):
         #print("v=", self._vitesse)
-        if(self._vitesse>10):
+        if(self._vitesse>5):
             if(self.dist()):
                 self._vitesse = self._vitesse / 2
         self._robot.tourner_droite(self._vitesse)
@@ -357,3 +357,46 @@ class Strategie_poly_n:
 
     def stop(self):
         return self._i>=self.n
+
+class Strategie_tour_arene:
+
+    def __init__(self, robot):
+        self._robot=robot
+        self._distance=5
+        self._vitesse= 20
+        self._num_strat=0
+        self._strategie=[StrategieFonceAmeliore(robot, self._distance, self._vitesse), StrategieTournerDroiteAmeliore(robot, 90, 5)]
+        self._i=0
+        self.target = None
+
+    def start(self):
+        self._i=0
+        self._num_strat=0
+        self._strategie[0].start()
+
+    def update(self):
+        print("[x,y,z] = ", self._robot.pos)
+        if self._strategie[self._num_strat].stop() and self._num_strat==0:
+            self._robot.avancer(0)
+            self._num_strat=1
+            if self.target == None:
+                self.target = self._robot.pos.copy()
+            self._strategie[self._num_strat].start()
+            self._strategie[self._num_strat].update()
+        elif self._strategie[self._num_strat].stop() and self._num_strat==1:
+            self._robot.avancer(0)
+            self._i+=1
+            self._num_strat=0
+            if not self.stop():
+                self._strategie[self._num_strat].start()
+                self._strategie[self._num_strat].update()
+        else:
+            self._strategie[self._num_strat].update()
+
+    def arondi(self, tab1, tab2):
+        return abs(tab1[0] - tab2[0]) < 3 and abs(tab1[1] - tab2[1]) < 3 and abs(tab1[2] - tab2[2]) < 3
+
+    def stop(self):
+        if self.target == None:
+            return False
+        return self._i>=5 and self.arondi(self._robot.pos, self.target)

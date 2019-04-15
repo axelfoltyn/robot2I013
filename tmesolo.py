@@ -56,7 +56,7 @@ def q2_3():
     thread_affichage.start()
     view.start()
 
-    strat = Strategie_tour_arene(robot, 10)
+    strat = Strategie_tour_arene(robot)
 
     strat.start()
     while not strat.stop():
@@ -65,5 +65,5 @@ def q2_3():
     robot.finish()
 
 #q2_1()
-q2_2()
-#q2_3()
+#q2_2()
+q2_3()
