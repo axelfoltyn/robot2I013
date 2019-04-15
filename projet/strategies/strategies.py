@@ -284,3 +284,38 @@ class StrategieArcDroit:
 
     def stop(self):
         return self._robot.get_motor_position()[1]>=self._target
+
+
+class Strategie_triagle_equi_10:
+
+    def __init__(self, robot):
+        self._robot=robot
+        self._distance=10
+        self._vitesse=5
+        self._num_strat=0
+        self._strategie=[StrategieAvanceAmeliore(robot, self._distance, self._vitesse), StrategieTournerDroiteAmeliore(robot, 180-60, self._vitesse)]
+        self._i=0
+
+    def start(self):
+        self._i=0
+        self._num_strat=0
+        self._strategie[0].start()
+
+    def update(self):
+        if self._strategie[self._num_strat].stop() and self._num_strat==0:
+            self._robot.avancer(0)
+            self._num_strat=1
+            self._strategie[self._num_strat].start()
+            self._strategie[self._num_strat].update()
+        elif self._strategie[self._num_strat].stop() and self._num_strat==1:
+            self._robot.avancer(0)
+            self._i+=1
+            self._num_strat=0
+            if not self.stop():
+                self._strategie[self._num_strat].start()
+                self._strategie[self._num_strat].update()
+        else:
+            self._strategie[self._num_strat].update()
+
+    def stop(self):
+        return self._i>=3
