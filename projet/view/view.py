@@ -33,6 +33,8 @@ class View(threading.Thread):
         self._Bouton_Quitter.pack()
         self._fenetre.after(1,self.update_arene)
         self._fenetre.mainloop()
+
+
     def afficher_robot(self,robot):
         """
         Cette fonction affiche le robot sur le canevas
@@ -43,6 +45,7 @@ class View(threading.Thread):
         dx = robot._direction[0]
         dy = -robot._direction[1]
         self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx, fill = "#FF1493"))
+        self._canvas.create_oval(x, y, x+1, y+1,outline = "#606060")
 
     def afficher_obstacle(self,obstacle):
         """
