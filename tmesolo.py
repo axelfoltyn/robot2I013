@@ -81,11 +81,11 @@ def q2_3():
         time.sleep(0.01)
     robot.finish()
 
-#decomenter une seul fn pour tester (question 1.1 et 1.2 sont toujour visible)
+#decomenter une seul fn pour tester (question 1.1 et 1.2 sont toujour visible pour q2_1 q2_2 et q2_3)
 
 #q2_1()
 #q2_2()
-#q2_3()
+q2_3()
 
 #la question 3 ne peux etre fait rapidement car la methode pour que
 #l'obltacle interagisse avec le robot (le faire ralentir) et un gros changement
