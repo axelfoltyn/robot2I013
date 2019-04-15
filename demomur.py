@@ -29,7 +29,7 @@ view.start()
 # des erreurs de précision lors de la rotation sont présentes, celles-ci s'accroissent beaucoup lorsque le nombre de cotés est élevé
 #c'est pourquoi il faut nettement baisser la vitesse (surtout pour 20 cotés)
 
-#strat=StrategieContour(robot, 45, 100) # le robot virtuel est un poil plus long que le réel, sa tête frote un peu le mur du coup.
+strat=StrategieContour(robot, 45, 100) # le robot virtuel est un poil plus long que le réel, sa tête frote un peu le mur du coup.
 #pour ce qui est du robot réel la stratégie doit sûrement fonctionner à merveille.
 
 strat.start()

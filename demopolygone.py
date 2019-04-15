@@ -25,7 +25,7 @@ view.start()
 
 #strat=StrategieTriangleEq10(robot,10, 10) # 1 pixel = 1 cm
 
-#strat=StrategiePolygone(robot, 2, 8)
+strat=StrategiePolygone(robot, 2, 8)
 # des erreurs de précision lors de la rotation sont présentes, celles-ci s'accroissent beaucoup lorsque le nombre de cotés est élevé
 #c'est pourquoi il faut nettement baisser la vitesse (surtout pour 20 cotés)
 
