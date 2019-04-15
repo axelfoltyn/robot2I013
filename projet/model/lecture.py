@@ -4,7 +4,7 @@
 #retourne larene
 from .arene import Arene
 from ..view import View
-from .obstacle import ObstacleRond, ObstacleCarre
+#from .obstacle import ObstacleRond, ObstacleCarre
 
 
 

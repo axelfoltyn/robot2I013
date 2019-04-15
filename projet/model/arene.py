@@ -35,12 +35,12 @@ class Arene:
     """
         self._robot = robot
 
-    def ajout_Obstacle(self,obstacle):
+    #def ajout_Obstacle(self,obstacle):
         """
     Permet d'ajouter un obstacle a notre liste d'obstacle
     :param obstacle: obstacle a ajouter
     """
-        self._obstacles.append(obstacle)
+        #self._obstacles.append(obstacle)
 
 
     def boucle_actualiser(self, fps = 25):
