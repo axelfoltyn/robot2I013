@@ -427,3 +427,8 @@ class RobotVirtuel:
 
     def set_color(self,couleur):
         self._color=couleur
+
+    def divise(self,obs):
+        if(obs.name==DI):
+            if(o.est_dans(self._position[0],self._position[1],self._position[2])):
+                self.vitesse=self.vitesse/2

@@ -1,7 +1,7 @@
 import time
 from projet import RobotVirtuel as RobotV
 from projet import Adapter
-from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, StrategieCarreAmeliore, StrategieArcGauche, StrategieArcDroit
+from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, StrategieCarreAmeliore, StrategieArcGauche, StrategieArcDroit,StrategieTriangleEquilateral,StrategiePolygone,StrategieTour
 from projet import lecture
 from projet import View, View3D
 from threading import Thread
@@ -24,15 +24,27 @@ view.start()
 #strat=StrategieCarre(robot, 50, 20)
 #strat=StrategieFonce(robot, 100, 1)
 #strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
-#strat=StrategieCarreAmeliore(robot, 40, 20)
-strat=StrategieArcGauche(robot,50,50,360)
+strat=StrategieCarreAmeliore(robot, 40, 20)
+
+
+
+
+#strat=StrategieArcGauche(robot,50,50,360)
+#strat.start()
+
+
+#strat=StrategieTriangleEquilateral(robot,10,10)
+#strat=StrategiePolygone(robot,20,20)
+strat=StrategieTour(robot,60,5)
+
 strat.start()
+
 while not strat.stop():
     strat.update()
     time.sleep(0.01)
-strat=StrategieArcDroit(robot,50,50,360)
-strat.start()
-while not strat.stop():
-    strat.update()
-    time.sleep(0.01)
+#strat=StrategieArcDroit(robot,50,50,360)
+#strat.start()
+#while not strat.stop():
+#    strat.update()
+#    time.sleep(0.01)
 robot.finish()

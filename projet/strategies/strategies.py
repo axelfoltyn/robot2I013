@@ -1,4 +1,5 @@
 import time
+import math
 
 
 class StrategieAvance:
@@ -284,3 +285,109 @@ class StrategieArcDroit:
 
     def stop(self):
         return self._robot.get_motor_position()[1]>=self._target
+
+
+
+
+class StrategieTriangleEquilateral:
+    def __init__(self,robot,distance,vitesse):
+        self._robot=robot
+        self._distance=distance
+        self._vitesse=vitesse
+        self._num=0
+        self._strat=[StrategieAvanceAmeliore(robot,distance,vitesse),StrategieTournerDroiteAmeliore(robot,60,vitesse)]
+        self._i=0
+
+    def start(self):
+        self._i=0
+        self._num=0
+        self._strat[0].start()
+
+    def update(self):
+        if self._strat[self._num].stop() and self._num==0:
+            self._robot.avancer(0)
+            self._num=1
+            self._strat[self._num].start()
+            self._strat[self._num].update()
+        elif self._strat[self._num].stop() and self._num==1:
+            self._robot.avancer(0)
+            self._i+=1
+            self._num=0
+            if not self.stop():
+                self._strat[self._num].start()
+                self._strat[self._num].update()
+        else:
+            self._strat[self._num].update()
+
+    def stop(self):
+        return self._i>=3
+
+
+class StrategiePolygone:
+    def __init__(self,robot,vitesse,n):
+        self._robot=robot
+        self._distance=30/n
+        self._vitesse=vitesse
+        self._num=0
+        self._n=n
+        self._angle=((self._n-2)*math.degrees(math.pi))/self._n
+        self._strat=[StrategieAvanceAmeliore(robot,self._distance,vitesse),StrategieTournerDroiteAmeliore(robot,self._angle,vitesse)]
+        self._i=0
+
+    def start(self):
+        self._i=0
+        self._num=0
+        self._strat[0].start()
+
+    def update(self):
+        if self._strat[self._num].stop() and self._num==0:
+            self._robot.avancer(0)
+            self._num=1
+            self._strat[self._num].start()
+            self._strat[self._num].update()
+        elif self._strat[self._num].stop() and self._num==1:
+            self._robot.avancer(0)
+            self._i+=1
+            self._num=0
+            if not self.stop():
+                self._strat[self._num].start()
+                self._strat[self._num].update()
+        else:
+            self._strat[self._num].update()
+
+    def stop(self):
+        return self._i>=self._n
+
+class StrategieTour:
+    def __init__(self,robot,vitesse,distance):
+        self._robot=robot
+        self._distance=distance
+        self._vitesse=vitesse
+        self._vitessed=vitesse
+        self._num=0
+        self._strat=[StrategieFonceAmeliore(robot,self._distance,vitesse),StrategieTournerDroiteAmeliore(robot,90,vitesse)]
+        self._i=0
+
+    def start(self):
+        self._i=0
+        self._num=0
+        self._strat[0].start()
+
+    def update(self):
+        if self._strat[self._num].stop() and self._num==0:
+            self._robot.avancer(0)
+            self._num=1
+            self._strat[self._num].start()
+            self._strat[self._num].update()
+        elif self._strat[self._num].stop() and self._num==1:
+            self._robot.avancer(0)
+            self._i+=1
+            self._num=0
+            if not self.stop():
+                self._strat[self._num].start()
+                self._strat[self._num].update()
+        else:
+            self._strat[self._num].update()
+
+    def stop(self):
+        return self._i>=5
