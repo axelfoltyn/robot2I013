@@ -141,7 +141,7 @@ class StrategieAvanceAmeliore:
 
 class StrategieFonceAmeliore:
 
-    di=0.7
+    di=0.3
     _i=di
 
     def __init__(self, robot, distance, vitesse): # !!!probleme quand on inverse distance et vitesse
@@ -161,10 +161,11 @@ class StrategieFonceAmeliore:
         self._robot.avancer(self._vitesse)
 
     def dist(self):
-        print(self._robot.get_distance()/10.0, self._distance*(1+1/self._i))
+        #print(self._robot.get_distance()/10.0, self._distance*(1+1/self._i))
         return self._robot.get_distance()/10.0<=self._distance*(1+1/self._i)
 
     def stop(self):
+        print(self._robot.get_distance()/10.0,self._distance)
         return self._robot.get_distance()/10.0<=self._distance
 
 
