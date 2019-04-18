@@ -1,4 +1,5 @@
 import time
+from PIL import Image
 from robot2I013 import Robot2I013 as Robot
 from projet import Adapter
 from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, StrategieCarreAmeliore, StrategieArcGauche, StrategieArcDroit
@@ -8,6 +9,10 @@ calibrage=1.007 # defaut=1 , augmenter legerement pour devier vers la droite
 robot=Adapter(Robot(), calibrage)
 
 #VITESSE MAX = 20.9
+
+print(type(robot.get_image()))
+#img=Image.fromarray(robot.get_image()).convert('RGB')
+#img.save('image.jpg')
 
 strat=StrategieFonceAmeliore(robot, 2, 20)
 #strat=StrategieFonce(robot, 5, 20)
