@@ -3,9 +3,14 @@ import time
 from tkinter import *
 from tkinter import messagebox
 import threading
-#from ..model import Obstacle_carre
+from ..color import color
 
 class View(threading.Thread):
+
+    red= 'red'
+    blue='blue'
+    black='black'
+    yellow='yellow'
     def __init__(self,arene):
         super(View,self).__init__()
         """
@@ -38,6 +43,7 @@ class View(threading.Thread):
         dx = robot._direction[0]
         dy = -robot._direction[1]
         self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
+        self._canvas.create_oval(x, y, x, y, outline='#00fffc')
 
     def afficher_obstacle(self,obstacle):
         """
@@ -47,14 +53,17 @@ class View(threading.Thread):
         x0=obstacle._x
         y0=self._y-obstacle._y
         #si r est different de 0 alors cest un cercle sinon autre
-        #if isinstance(obstacle, Obstacle_carre):
+        #if isinstance(obstacle, ObstacleCarre):
         if obstacle.name == 'C':
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
                 y1 = self._y-obstacle._y
                 x2 = x1+obstacle._lo
                 y2 = y1+obstacle._la
-                self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "black"))
+                if obstacle.getColor()==self.yellow:
+                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "yellow"))
+                else:
+                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "red"))
             else:
                 print("L'obstacle n'existe pas")
         else:
@@ -63,7 +72,7 @@ class View(threading.Thread):
             r1 = obstacle._r
             x1=x0+(2*r1)
             y1=y0+(2*r1)
-            self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "black"))
+            self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
 
 
         ### faire attention a coordonnee y qui vaudra self._y - y !!! (pour avoir affichage a l'endroit)

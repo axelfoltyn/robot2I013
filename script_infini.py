@@ -1,8 +1,7 @@
 import time
 from random import *
 from tkinter import *
-
-from Projet import RobotVirtuel, Arene, Obstacle_carre, Obstacle_rond, lecture, ecriture2
+from projet import RobotVirtuel, Arene, ObstacleCarre, ObstacleRond, lecture, ecriture2
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene

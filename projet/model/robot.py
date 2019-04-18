@@ -2,6 +2,10 @@ import math
 import numpy as np
 import random
 from .lecture import lecture
+from PIL import Image
+from ..color import color
+from threading import Thread
+
 
 class RobotVirtuel:
 
@@ -34,8 +38,12 @@ class RobotVirtuel:
         self._position = [0,0,0]                                  #initialiser lors de la lecture
         self._vitesse = 0                                         #initialiser lors de la lecture
         self._acceleration = 0                                    #initialiser lors de la lecture
+        self._color="black"
 
         self._arene = lecture(text,self)
+
+        self.profondeur = 6
+        self.pas_pix = 0.1
 
 
     def set_led(self, led, red = 0, green = 0, blue = 0):
@@ -127,29 +135,103 @@ class RobotVirtuel:
     #    self.set_motor_dps(self.MOTOR_LEFT+self.MOTOR_RIGHT,0)
     #    self.set_led(self.LED_LEFT_BLINKER+self.LED_LEFT_EYE+self.LED_LEFT_BLINKER+self.LED_RIGHT_EYE+self.LED_WIFI,0,0,0)
 
+
+    def set_pixel(self, img, dir, x, y):
+        x_p = self.x
+        y_p = self.y
+        z_p = self.z
+        max = 1000
+        rayon = 0.0
+        while(rayon < max):
+            if (x_p + dir[0]*rayon < 0 or x_p + dir[0]*rayon > self._arene._x \
+                or y_p + dir[1]*rayon < 0 or y_p + dir[1]*rayon > self._arene._y):
+                img[x][y] = [1,1,1]
+                return
+            for o in self._arene._obstacles:
+                if o.est_dans(x_p + dir[0]*rayon, y_p + dir[1]*rayon, z_p + dir[2]*rayon):
+                    img[x][y] = color.trad_str_to_rgb(o.getColor())
+                    return
+            rayon += 0.1
+
+    def get_image_aux_y_sup(self, img, hauteur, largeur, x):
+        val = int(hauteur/2)
+        for y in range(val, hauteur):
+            xc = x * self.pas_pix
+            yc = (hauteur - y) * self.pas_pix
+            largeurc = largeur * self.pas_pix
+            hauteurc = hauteur * self.pas_pix
+            trad = math.radians(math.atan2(xc-largeurc/2, self.profondeur))
+            dir = [0, 0, 0]
+            dx = self._direction[0]
+            dy = self._direction[1]
+            dz = self._direction[2]
+            dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
+            dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
+            dir[2] = (yc - hauteurc/2 + dz)/2
+            self.set_pixel(img, dir, x, y)
+
+    def get_image_aux_y(self, img, hauteur, largeur, x):
+        #print(x)
+        val = int(hauteur/2)
+        for y in range(val):
+            xc = x * self.pas_pix
+            yc = (hauteur - y) * self.pas_pix
+            largeurc = largeur * self.pas_pix
+            hauteurc = hauteur * self.pas_pix
+            trad = math.radians(math.atan2(xc-largeurc/2, self.profondeur))
+            dir = [0, 0, 0]
+            dx = self._direction[0]
+            dy = self._direction[1]
+            dz = self._direction[2]
+            dir[0] = (dx*math.cos(trad) - dy*math.sin(trad) + dx) / 2
+            dir[1] = (dx*math.sin(trad) + dy*math.cos(trad) + dy) / 2
+            dir[2] = (yc - hauteurc/2 + dz)/2
+            self.set_pixel(img, dir, x, y)
+        a = Thread(target=self.get_image_aux_y_sup, args=(img, hauteur, largeur, x,))
+        a.start()
+        a.join()
+        #print(x)
+
     def get_image(self):
-        pass
+        hauteur = 244
+        largeur = 244
+        thread_list = []
+        #img=Image.new("RGB",(largeur,hauteur))
+        img = np.zeros([largeur,hauteur,3],dtype=np.uint8)
+        for x in range(largeur):
+            thread_list.append(Thread(target=self.get_image_aux_y, args=(img, hauteur, largeur, x,)))
+            thread_list[-1].start()
+            #img.putpixel((x,y), (255, 0, 0))
+        for t in thread_list:
+            t.join()
+        print(img)
+        return img
 
 
     def update_dt(self, dt):
         self.angleg += dt * self.DPS_Gauche
         self.angled += dt * self.DPS_Droit
 
+    def update_aux(self, dt):
+        self.update_dt(dt)
+        circonference_cm = self.WHEEL_CIRCUMFERENCE/10
+        if self.DPS_Gauche == self.DPS_Droit:
+            self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
+        elif self.DPS_Gauche == -self.DPS_Droit:
+            self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+        elif self.DPS_Gauche > 0 and  self.DPS_Droit > 0 and self.DPS_Gauche < self.DPS_Droit:
+            self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
+            self.tourner(dt * (self.DPS_Droit - self.DPS_Gauche) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+        elif self.DPS_Gauche > 0 and  self.DPS_Droit > 0 and  self.DPS_Gauche > self.DPS_Droit:
+            self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
+            self.tourner(-dt * (self.DPS_Gauche - self.DPS_Droit) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+
     def update(self, dt):
         dt_max = 0.2
-        circonference_cm = self.WHEEL_CIRCUMFERENCE/10
         if dt < dt_max:
-            self.update_dt(dt)
-            if self.DPS_Gauche == self.DPS_Droit:
-                self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
-            elif self.DPS_Gauche == -self.DPS_Droit:
-                self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+            self.update_aux(dt)
         else:
-            self.update_dt(dt_max)
-            if DPS_Droit == DPS_Gauche:
-                self.avancer(dt_max * DPS_Gauche * self.WHEEL_CIRCUMFERENCE / 360)
-            elif DPS_Gauche == -DPS_Droit:
-                self.tourner((dt - dt_max) * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
+            self.update_aux(dt_max)
             self.update(dt - dt_max)
 
     def fin(self):
@@ -342,3 +424,6 @@ class RobotVirtuel:
 
     @property
     def z(self): return self._position[2]
+
+    def set_color(self,couleur):
+        self._color=couleur

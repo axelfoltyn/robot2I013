@@ -1,6 +1,6 @@
 import time
 from tkinter import *
-from Projet import lecture
+from projet import lecture
 
 text="resources/fichier_test.txt"
 # Test lecture de fichier et initialisation de l'arene
