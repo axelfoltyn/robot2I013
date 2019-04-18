@@ -50,8 +50,8 @@ class View3D(threading.Thread):
         """
         print("afficher_robot")
         glPushMatrix()
-        rot = self.robot._direction
-        pos = self.robot._position
+        rot = robot._direction
+        pos = robot._position
         glRotatef(-rot[0],1,0,0)
         glRotatef(-rot[1],0,1,0)
         glRotatef(-rot[2],0,0,1)
@@ -78,19 +78,19 @@ class View3D(threading.Thread):
                 z2 = self.arene._z
                 couleur = color.trad_str_to_rgb(obstacle.getColor())
                 tex_coords = ('c3B', (couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2]))
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x2, y1, z1,  x1, y1, z1,  x1, y2, z1,  x2, y2, z1)),tex_coords)) # back
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x2, y2, z2,  x1, y2, z2)),tex_coords)) # front
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x1, y2, z2,  x1, y2, z1)),tex_coords))  # left
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z2,  x2, y1, z1,  x2, y2, z1,  x2, y2, z2)),tex_coords))  # right
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x2, y1, z1,  x2, y1, z2,  x1, y1, z2)),tex_coords))  # bottom
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y2, z2,  x2, y2, z2,  x2, y2, z1,  x1, y2, z1)),tex_coords))  # top
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x2, y1, z1,  x1, y1, z1,  x1, y2, z1,  x2, y2, z1)))) # back
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x2, y2, z2,  x1, y2, z2)))) # front
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x1, y2, z2,  x1, y2, z1))))  # left
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z2,  x2, y1, z1,  x2, y2, z1,  x2, y2, z2))))  # right
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x2, y1, z1,  x2, y1, z2,  x1, y1, z2))))  # bottom
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y2, z2,  x2, y2, z2,  x2, y2, z1,  x1, y2, z1))))  # top
 
             else:
                 print("L'obstacle n'existe pas")
         else:
             pass
-            #x0 = obstacle._x - obstacle._r
-            #y0 = y0 - obstacle._r
+            x0 = obstacle._x - obstacle._r
+            y0 = obstacle._y - obstacle._r
             #r1 = obstacle._r
             #x1=x0+(2*r1)
             #y1=y0+(2*r1)
@@ -116,11 +116,10 @@ class View3D(threading.Thread):
         print("update_arene", self.w)
         self.clear()
         self.active3d()
-        print("AAAAAAAAA")
 
         for i in self.arene._obstacles :              #On procède a l'affichage des obstacles
             self.afficher_obstacle(i)
-        self.afficher_robot(self.robot)
+        self.afficher_robot(self.arene._robot)  #On affiche le robot
 
 
         self.update(dt)
@@ -140,6 +139,7 @@ class View3D(threading.Thread):
         for e in self._objets:
                 e.delete()
         self._objets = []
+
         print("fin_clear")
 
 

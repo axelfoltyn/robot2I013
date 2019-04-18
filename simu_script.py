@@ -24,17 +24,12 @@ view3d.start()
 
 
 #strat=StrategieCarre(robot, 50, 20)
+#strat=StrategieCarreAmeliore(robot, 50, 20)
 #strat=StrategieFonce(robot, 100, 1)
 #strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
 #strat=StrategieCarreAmeliore(robot, 40, 20)
 strat=StrategieArcGauche(robot,50,50,360)
 
-strat.start()
-while not strat.stop():
-    strat.update()
-    time.sleep(0.01)
-
-strat=StrategieArcDroit(robot,50,50,360)
 strat.start()
 while not strat.stop():
     strat.update()
