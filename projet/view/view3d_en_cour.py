@@ -9,7 +9,7 @@ import sys
 from ..color import color
 import threading
 
-import pdb; pdb.set_trace()
+#import pdb; pdb.set_trace()
 
 class View3D(threading.Thread):
 
@@ -30,10 +30,11 @@ class View3D(threading.Thread):
         self._y = arene._y
         self._objets = []
         self.arene = arene
-        self.w = pyglet.window.Window(width = 667, height = 667, caption = ' view_3d ',resizable=False)
-        glClearColor(0.5,0.7,1,1)
+
 
     def run(self):
+        self.w = pyglet.window.Window(width = 667, height = 667, caption = ' view_3d ',resizable=False)
+        glClearColor(0.5,0.7,1,1)
         print("run")
         self.w.batch = pyglet.graphics.Batch()
         self.w.set_minimum_size(667,667)
@@ -103,6 +104,7 @@ class View3D(threading.Thread):
         print("update_arene", self.w)
         self.w.clear()
         self.w.active3d()
+        print("AAAAAAAAA")
 
         for i in self.arene._obstacles :              #On procède a l'affichage des obstacles
             self.afficher_obstacle(i)
