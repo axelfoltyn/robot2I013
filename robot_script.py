@@ -7,19 +7,23 @@ from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore, Strat
 calibrage=1.007 # defaut=1 , augmenter legerement pour devier vers la droite
 
 robot=Adapter(Robot(), calibrage)
-
+#time.sleep(1)
 #VITESSE MAX = 20.9
-
-print(type(robot.get_image()))
-#img=Image.fromarray(robot.get_image()).convert('RGB')
+var=robot.get_image()
+#print(var)
+#var2=[]
+#for i in var:
+#    for j in i:
+#        var2[i][j].append(var[-i][-j])
+#img=Image.fromarray(var2).convert('RGB')
 #img.save('image.jpg')
 
-strat=StrategieFonceAmeliore(robot, 2, 20)
+#strat=StrategieFonceAmeliore(robot, 2, 20)
 #strat=StrategieFonce(robot, 5, 20)
 #strat=StrategieFonceAmeliore(robot, 300, 40)
 #strat=StrategieArcGauche(robot,10,10,360*2)
-strat.start()
-while not strat.stop():
-    strat.update()
-    time.sleep(0.01)
-robot.stop()
+#strat.start()
+#while not strat.stop():
+#    strat.update()
+#    time.sleep(0.01)
+#robot.stop()
