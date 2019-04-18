@@ -29,20 +29,20 @@ class Adapter():
     def avancer(self, vitesse):             # vitesse en cm/s
         dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
         self._robot.set_motor_dps(self.MOTOR_LEFT, dps*self._calibrage)
-        self._robot.set_motor_dps(self.MOTOR_RIGHT, dps/self._calibrage)
+        self._robot.set_motor_dps(self.MOTOR_RIGHT, dps)
 
     def tourner_gauche(self,vitesse):       # vitesse en cm/s
         dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
         self._robot.set_motor_dps(self.MOTOR_LEFT, -dps*self._calibrage)
-        self._robot.set_motor_dps(self.MOTOR_RIGHT, dps/self._calibrage)
+        self._robot.set_motor_dps(self.MOTOR_RIGHT, dps)
 
     def tourner_droite(self,vitesse):       # vitesse en cm/s
         dps=(vitesse/self.WHEEL_CIRCUMFERENCE)*3600
         self._robot.set_motor_dps(self.MOTOR_LEFT, dps*self._calibrage)
-        self._robot.set_motor_dps(self.MOTOR_RIGHT, -dps/self._calibrage)
+        self._robot.set_motor_dps(self.MOTOR_RIGHT, -dps)
 
     def get_motor_position(self):
-        return self._robot.get_motor_position()
+        return (self._robot.get_motor_position()[0]*self._calibrage,self._robot.get_motor_position()[1])
 
     def offset_motor_encoder(self, port, offset):
         self._robot.offset_motor_encoder(port, offset)
