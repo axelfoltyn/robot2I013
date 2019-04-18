@@ -3,7 +3,7 @@ from robot2I013 import Robot2I013 as Robot
 from projet import Adapter
 from projet import StrategieCarre, StrategieFonce, StrategieFonceAmeliore
 
-calibrage=0.999 # defaut=1 , augmenter legerement pour devier vers la droite
+calibrage=1 # defaut=1 , augmenter legerement pour devier vers la droite
 
 robot=Adapter(Robot(), calibrage)
 
