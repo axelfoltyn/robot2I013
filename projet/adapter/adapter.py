@@ -42,7 +42,8 @@ class Adapter():
         self._robot.set_motor_dps(self.MOTOR_RIGHT, -dps)
 
     def get_motor_position(self):
-        return (self._robot.get_motor_position()[0]*self._calibrage,self._robot.get_motor_position()[1])
+        offset=self._robot.get_motor_position()
+        return (offset[0]/self._calibrage,offset[1])
 
     def offset_motor_encoder(self, port, offset):
         self._robot.offset_motor_encoder(port, offset)
