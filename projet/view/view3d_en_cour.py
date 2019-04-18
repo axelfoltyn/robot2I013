@@ -30,17 +30,17 @@ class View3D(threading.Thread):
         self._y = arene._y
         self._objets = []
         self.arene = arene
+        self.finish = False
 
 
     def run(self):
         self.w = pyglet.window.Window(width = 667, height = 667, caption = ' view_3d ',resizable=False)
         glClearColor(0.5,0.7,1,1)
-        print("run")
         self.w.batch = pyglet.graphics.Batch()
         self.w.set_minimum_size(667,667)
-        pyglet.clock.schedule(self.update_arene)
-        self.update_arene()
-        print("fin_run")
+        #pyglet.clock.schedule(self.update_arene)
+        while not self.finish:
+            self.update_arene()
 
 
     def afficher_robot(self,robot):
@@ -78,32 +78,44 @@ class View3D(threading.Thread):
                 z2 = self.arene._z
                 couleur = color.trad_str_to_rgb(obstacle.getColor())
                 tex_coords = ('c3B', (couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2]))
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (X, y, z,  x, y, z,  x, Y, z,  X, Y, z)),tex_coords)) # back
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, Z,  X, y, Z,  X, Y, Z,  x, Y, Z)),tex_coords)) # front
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  x, y, Z,  x, Y, Z,  x, Y, z)),tex_coords))  # left
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (X, y, Z,  X, y, z,  X, Y, z,  X, Y, Z)),tex_coords))  # right
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, y, z,  X, y, z,  X, y, Z,  x, y, Z)),tex_coords))  # bottom
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x, Y, Z,  X, Y, Z,  X, Y, z,  x, Y, z)),tex_coords))  # top
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x2, y1, z1,  x1, y1, z1,  x1, y2, z1,  x2, y2, z1)),tex_coords)) # back
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x2, y2, z2,  x1, y2, z2)),tex_coords)) # front
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x1, y2, z2,  x1, y2, z1)),tex_coords))  # left
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z2,  x2, y1, z1,  x2, y2, z1,  x2, y2, z2)),tex_coords))  # right
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x2, y1, z1,  x2, y1, z2,  x1, y1, z2)),tex_coords))  # bottom
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y2, z2,  x2, y2, z2,  x2, y2, z1,  x1, y2, z1)),tex_coords))  # top
 
             else:
                 print("L'obstacle n'existe pas")
         else:
             pass
-            x0 = obstacle._x - obstacle._r
-            y0 = y0 - obstacle._r
-            r1 = obstacle._r
-            x1=x0+(2*r1)
-            y1=y0+(2*r1)
-            self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
+            #x0 = obstacle._x - obstacle._r
+            #y0 = y0 - obstacle._r
+            #r1 = obstacle._r
+            #x1=x0+(2*r1)
+            #y1=y0+(2*r1)
+            #self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
         print("fin_afficher_robot")
 
+    def Projection(self):
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+
+    def view3d(self):
+        glMatrixMode(GL_MODELVIEW)
+        glLoadIdentity()
+
+    def active3d(self):
+        self.Projection()
+        gluPerspective(70,667/667,0.05,1000)
+        self.view3d()
 
     def update_arene(self,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
         print("update_arene", self.w)
-        self.w.clear()
-        self.w.active3d()
+        self.clear()
+        self.active3d()
         print("AAAAAAAAA")
 
         for i in self.arene._obstacles :              #On procède a l'affichage des obstacles

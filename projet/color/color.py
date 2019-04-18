@@ -31,7 +31,7 @@ def trad_hex_to_rgb(hex_str):
     return [int(hex_str[i:i + 2], 16) for i in range(0, len(hex_str), 2)]
 
 
-def trad_str_torgb(nom):
+def trad_str_to_rgb(nom):
     """
     prend la chaine de charactere et la transforme en list rgb
     et retourn 0,0,0 si n'existe pas
