@@ -9,12 +9,14 @@ from threading import Thread
 robotv = RobotV()
 
 view = View(robotv._arene)
-robotv._arene.add_obs(view)
+view3d = View3D(robotv._arene)
+
 robot = Adapter(robotv)
 
 thread_affichage = Thread(target=robotv._arene.boucle_actualiser, args=(25.,))
 thread_affichage.start()
 view.start()
+view3d.start()
 
 
 #strat=StrategieAvanceAmeliore(robot, 300, 100)
@@ -26,10 +28,12 @@ view.start()
 #strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
 #strat=StrategieCarreAmeliore(robot, 40, 20)
 strat=StrategieArcGauche(robot,50,50,360)
+
 strat.start()
 while not strat.stop():
     strat.update()
     time.sleep(0.01)
+
 strat=StrategieArcDroit(robot,50,50,360)
 strat.start()
 while not strat.stop():

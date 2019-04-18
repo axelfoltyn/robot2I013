@@ -9,6 +9,7 @@ import sys
 from ..color import color
 import threading
 
+import pdb; pdb.set_trace()
 
 class View3D(threading.Thread):
 
@@ -29,18 +30,24 @@ class View3D(threading.Thread):
         self._y = arene._y
         self._objets = []
         self.arene = arene
-        self.w = pyglet.window.Window()
+        self.w = pyglet.window.Window(width = 667, height = 667, caption = ' view_3d ',resizable=False)
+        glClearColor(0.5,0.7,1,1)
 
     def run(self):
+        print("run")
         self.w.batch = pyglet.graphics.Batch()
         self.w.set_minimum_size(667,667)
-        pyglet.clock.schedule(self.update)
+        pyglet.clock.schedule(self.update_arene)
+        self.update_arene()
+        print("fin_run")
+
 
     def afficher_robot(self,robot):
         """
         mettre la cam comme il faut
         : param robot : robot a afficher
         """
+        print("afficher_robot")
         glPushMatrix()
         rot = self.robot._direction
         pos = self.robot._position
@@ -48,6 +55,7 @@ class View3D(threading.Thread):
         glRotatef(-rot[1],0,1,0)
         glRotatef(-rot[2],0,0,1)
         glTranslatef(-pos[0], -pos[1], -pos[2])
+        print("fin_afficher_robot")
 
 
     def afficher_obstacle(self,obstacle):
@@ -58,6 +66,7 @@ class View3D(threading.Thread):
 
         #si r est different de 0 alors cest un cercle sinon autre
         #if isinstance(obstacle, ObstacleCarre):
+        print("afficher_obstacle")
         if obstacle.name == 'C':
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
@@ -85,11 +94,13 @@ class View3D(threading.Thread):
             x1=x0+(2*r1)
             y1=y0+(2*r1)
             self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
+        print("fin_afficher_robot")
 
 
     def update_arene(self,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
+        print("update_arene", self.w)
         self.w.clear()
         self.w.active3d()
 
@@ -100,6 +111,7 @@ class View3D(threading.Thread):
 
         self.update(dt)
         glPopMatrix()
+        print("fin_update_arene")
 
 
 
@@ -107,12 +119,14 @@ class View3D(threading.Thread):
 
 
     def clear(self):
-                """
-                Cette fonction supprime tous les elements affiches sur l'arene
-                """
-                for e in self._objets:
-                        e.delete()
-                self._objets = []
+        """
+        Cette fonction supprime tous les elements affiches sur l'arene
+        """
+        print("clear")
+        for e in self._objets:
+                e.delete()
+        self._objets = []
+        print("fin_clear")
 
 
 
@@ -122,6 +136,7 @@ class View3D(threading.Thread):
         Cette fonction indique la fin de l'affichage
         : param b: booleen permattant de verifier si nous sommes a la fin du script
         """
+        print("arret")
         pass
         if b:
             self._canvas.configure(background = "lime green")
@@ -133,6 +148,7 @@ class View3D(threading.Thread):
 
 
     def update(self, dt=1):
+        print("update")
         self.w.batch.draw()
 
 

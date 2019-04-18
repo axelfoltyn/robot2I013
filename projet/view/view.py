@@ -43,6 +43,7 @@ class View(threading.Thread):
         dx = robot._direction[0]
         dy = -robot._direction[1]
         self._objets.append(self._canvas.create_polygon(x+40*dx,y+40*dy,x+10*dy,y-10*dx,x-10*dy,y+10*dx))
+        self._canvas.create_oval(x, y, x, y, outline='#00fffc')
 
     def afficher_obstacle(self,obstacle):
         """
