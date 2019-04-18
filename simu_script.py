@@ -11,6 +11,8 @@ robotv = RobotV()
 view = View(robotv._arene)
 view3d = View3D(robotv._arene)
 
+robotv._arene.add_obs(view)
+robotv._arene.add_obs(view3d)
 robot = Adapter(robotv)
 
 thread_affichage = Thread(target=robotv._arene.boucle_actualiser, args=(25.,))

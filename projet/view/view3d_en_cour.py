@@ -34,11 +34,12 @@ class View3D(threading.Thread):
 
 
     def run(self):
+        self.batch = pyglet.graphics.Batch()
         self.w = pyglet.window.Window(width = 667, height = 667, caption = ' view_3d ',resizable=False)
         glClearColor(0.5,0.7,1,1)
         self.w.batch = pyglet.graphics.Batch()
         self.w.set_minimum_size(667,667)
-        #pyglet.clock.schedule(self.update_arene)
+        pyglet.clock.schedule(self.update_arene)
         while not self.finish:
             self.update_arene()
 
@@ -48,7 +49,6 @@ class View3D(threading.Thread):
         mettre la cam comme il faut
         : param robot : robot a afficher
         """
-        print("afficher_robot")
         glPushMatrix()
         rot = robot._direction
         pos = robot._position
@@ -56,7 +56,6 @@ class View3D(threading.Thread):
         glRotatef(-rot[1],0,1,0)
         glRotatef(-rot[2],0,0,1)
         glTranslatef(-pos[0], -pos[1], -pos[2])
-        print("fin_afficher_robot")
 
 
     def afficher_obstacle(self,obstacle):
@@ -67,7 +66,6 @@ class View3D(threading.Thread):
 
         #si r est different de 0 alors cest un cercle sinon autre
         #if isinstance(obstacle, ObstacleCarre):
-        print("afficher_obstacle")
         if obstacle.name == 'C':
             if (obstacle._lo != 0) and (obstacle._la != 0):
                 x1 = obstacle._x
@@ -77,13 +75,13 @@ class View3D(threading.Thread):
                 z1 = obstacle._z
                 z2 = self.arene._z
                 couleur = color.trad_str_to_rgb(obstacle.getColor())
-                tex_coords = ('c3B', (couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2]))
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x2, y1, z1,  x1, y1, z1,  x1, y2, z1,  x2, y2, z1)))) # back
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x2, y2, z2,  x1, y2, z2)))) # front
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x1, y2, z2,  x1, y2, z1))))  # left
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z2,  x2, y1, z1,  x2, y2, z1,  x2, y2, z2))))  # right
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x2, y1, z1,  x2, y1, z2,  x1, y1, z2))))  # bottom
-                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y2, z2,  x2, y2, z2,  x2, y2, z1,  x1, y2, z1))))  # top
+                tex_coords = ('c3B', (couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2], couleur[0], couleur[1], couleur[2]))
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x2, y1, z1,  x1, y1, z1,  x1, y2, z1,  x2, y2, z1)), tex_coords)) # back
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x2, y2, z2,  x1, y2, z2)), tex_coords)) # front
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x1, y1, z2,  x1, y2, z2,  x1, y2, z1)), tex_coords))  # left
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z2,  x2, y1, z1,  x2, y2, z1,  x2, y2, z2)), tex_coords))  # right
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y1, z1,  x2, y1, z1,  x2, y1, z2,  x1, y1, z2)), tex_coords))  # bottom
+                self._objets.append(self.w.batch.add(4, GL_QUADS, None, ('v3f', (x1, y2, z2,  x2, y2, z2,  x2, y2, z1,  x1, y2, z1)), tex_coords))  # top
 
             else:
                 print("L'obstacle n'existe pas")
@@ -91,11 +89,10 @@ class View3D(threading.Thread):
             pass
             x0 = obstacle._x - obstacle._r
             y0 = obstacle._y - obstacle._r
-            #r1 = obstacle._r
-            #x1=x0+(2*r1)
-            #y1=y0+(2*r1)
+            r1 = obstacle._r
+            x1=x0+(2*r1)
+            y1=y0+(2*r1)
             #self._objets.append(self._canvas.create_oval(x0, y0, x1, y1,fill = "blue"))
-        print("fin_afficher_robot")
 
     def Projection(self):
         glMatrixMode(GL_PROJECTION)
@@ -113,7 +110,6 @@ class View3D(threading.Thread):
     def update_arene(self,dt=1):
         """
         Affichage de l'arene et de ce que contient l'arène """
-        print("update_arene", self.w)
         self.clear()
         self.active3d()
 
@@ -124,7 +120,6 @@ class View3D(threading.Thread):
 
         self.update(dt)
         glPopMatrix()
-        print("fin_update_arene")
 
 
 
@@ -135,12 +130,9 @@ class View3D(threading.Thread):
         """
         Cette fonction supprime tous les elements affiches sur l'arene
         """
-        print("clear")
         for e in self._objets:
                 e.delete()
         self._objets = []
-
-        print("fin_clear")
 
 
 
@@ -162,7 +154,6 @@ class View3D(threading.Thread):
 
 
     def update(self, dt=1):
-        print("update")
         self.w.batch.draw()
 
 
