@@ -24,6 +24,7 @@ class View(threading.Thread):
         self._y = arene._y
         self._objets = []
         self.arene = arene
+        self.fini = False
 
     def run(self):
         self._fenetre = Tk()
@@ -85,7 +86,8 @@ class View(threading.Thread):
             self.afficher_obstacle(i)
         self.afficher_robot(self.arene._robot)  #On affiche le robot
         self.update(dt)
-        self._fenetre.after(5,self.update_arene)
+        if not self.fini:
+            self._fenetre.after(5,self.update_arene)
 
 
 
@@ -111,7 +113,7 @@ class View(threading.Thread):
         else:
             self._canvas.configure(background = "red")
             messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
-        self._fenetre.mainloop()
+        self.fini = True
 
     #dt en s
     def update(self, dt=1):
