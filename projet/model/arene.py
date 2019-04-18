@@ -99,5 +99,7 @@ class Arene:
         self._max_proximite=valeur
 
     def fin(self):
+        print(self._observers)
         for obs in self._observers:
-                obs.arret(True)
+            print("arreta")
+            obs.arret(True)

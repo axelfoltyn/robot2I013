@@ -42,6 +42,7 @@ class View3D(threading.Thread):
         pyglet.clock.schedule(self.update_arene)
         while not self.finish:
             self.update_arene()
+        pyglet.app.run()
 
 
     def afficher_robot(self,robot):
@@ -143,14 +144,7 @@ class View3D(threading.Thread):
         : param b: booleen permattant de verifier si nous sommes a la fin du script
         """
         print("arret")
-        pass
-        if b:
-            self._canvas.configure(background = "lime green")
-            messagebox.showinfo("Fin du parcours","Le parcours vient de se terminer")
-        else:
-            self._canvas.configure(background = "red")
-            messagebox.showwarning("Fin du parcours","Le robot s'est cogne")
-        self._fenetre.mainloop()
+        self.finish = True
 
 
     def update(self, dt=1):
