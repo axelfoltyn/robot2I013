@@ -221,10 +221,10 @@ class RobotVirtuel:
             self.tourner(dt * self.DPS_Droit * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
         elif self.DPS_Gauche > 0 and  self.DPS_Droit > 0 and self.DPS_Gauche < self.DPS_Droit:
             self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
-            self.tourner(dt * (self.DPS_Droit - self.DPS_Gauche) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE)/2)
+            self.tourner(dt * (self.DPS_Droit - self.DPS_Gauche) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
         elif self.DPS_Gauche > 0 and  self.DPS_Droit > 0 and  self.DPS_Gauche > self.DPS_Droit:
             self.avancer(dt * self.DPS_Gauche * circonference_cm / 360)
-            self.tourner(-dt * (self.DPS_Gauche - self.DPS_Droit) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE)/2)
+            self.tourner(-dt * (self.DPS_Gauche - self.DPS_Droit) * (self.WHEEL_CIRCUMFERENCE / self.WHEEL_BASE_CIRCUMFERENCE))
 
     def update(self, dt):
         dt_max = 0.2
