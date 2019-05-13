@@ -19,12 +19,24 @@ robot=Adapter(Robot(), calibrage)
 #img.save('image.jpg')
 
 
-strat=StrategieFonceAmeliore(robot, 2, 20)
+#strat=StrategieFonceAmeliore(robot, 2, 20)
 #strat=StrategieFonce(robot, 5, 20)
 #strat=StrategieFonceAmeliore(robot, 300, 40)
-#strat=StrategieArcDroit(robot,10,20,360)
-strat=StrategieArcGauche(robot,10,20,180)
-#strat=StrategieCarreAmeliore(robot, 20, 20)
+strat=StrategieArcDroit(robot,10,20,360)
+
+
+strat.start()
+while not strat.stop():
+    strat.update()
+    time.sleep(0.01)
+robot.stop()
+strat=StrategieArcGauche(robot,10,20,360)
+strat.start()
+while not strat.stop():
+    strat.update()
+    time.sleep(0.01)
+robot.stop()
+strat=StrategieCarreAmeliore(robot, 20, 20)
 strat.start()
 while not strat.stop():
     strat.update()
