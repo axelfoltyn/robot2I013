@@ -96,7 +96,7 @@ class Arene:
         return res
 
     def set_max_proximite(self,valeur):
-        self._max_proximite=valeur
+        self._max_proximite=valeur                  #Fonction qui test si le veleur donner est egale a la valuer max de proximite
 
     def fin(self):
         print(self._observers)
