@@ -74,9 +74,9 @@ class ObstacleBalise(Obstacle):
         self._x=x
         self._y=y
         self._z=z
-        self.lo=lo
-        self.la=la
-        self.haut=haut
+        self.lo=lo                                                                      #Initialisation des arguments
+        self.la=la                                                                      #avec pour obligationdavoir
+        self.haut=haut                                                                  #les couleurattribue
         self.color1=color1
         self.color2=color2
         self.color3=color3
@@ -84,8 +84,8 @@ class ObstacleBalise(Obstacle):
 
     def est_dans(self,x,y,z):
         x1=self._x
-        x2=self._x+self.lo
-        y1=self._y
+        x2=self._x+self.lo                                                              #nous verifions si la position
+        y1=self._y                                                                      #est bien sur la balise
         y2=self._y+self.la
         z1=self._z
         z2=self._z=self.haut
@@ -117,3 +117,8 @@ class ObstacleBalise(Obstacle):
 
     def __str__(self):
         return "B"+" "+str(self._x)+" "+str(self._y)+" "+str(self._z)+" "+str(self.lo)+" "+str(self.la)+" "+str(self.color1)+" "+str(self.color2)+" "+str(self.color3)+" "+str(self.color4)
+
+
+    #str retourne une façons particuliere
+    #une chaine de caractere
+    #pour lecriture.Envoie les donnees de la balise
