@@ -21,16 +21,11 @@ view.start()
 view3d.start()
 
 
-#strat=StrategieAvanceAmeliore(robot, 300, 100)
-
-
-
-#strat=StrategieCarre(robot, 50, 20)
-#strat=StrategieCarreAmeliore(robot, 50, 20)
-#strat=StrategieFonce(robot, 100, 1)
-#strat=Strategie_tourner_droite_ameliore(robot, 360, 100)
-#strat=StrategieCarreAmeliore(robot, 40, 20)
-strat=StrategieArcDroit(robot,40,20,360)
+#strat=StrategieCarre(robot, 50, 10)
+#strat=StrategieCarreAmeliore(robot, 50, 40)
+#strat=StrategieFonce(robot, 1, 100)
+#strat=StrategieFonceAmeliore(robot, 2, 20)
+strat=StrategieArcDroit(robot,40,50,360)
 
 strat.start()
 while not strat.stop():
