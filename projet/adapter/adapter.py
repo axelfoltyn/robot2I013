@@ -65,6 +65,3 @@ class Adapter():
     def finish(self):
         self._robot.stop()
         self._robot.fin()
-
-    def update(self, dt):
-        self._robot.update(dt)
