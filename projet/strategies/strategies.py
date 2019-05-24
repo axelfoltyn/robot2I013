@@ -5,9 +5,9 @@ class StrategieAvance:
 
     def __init__(self, robot, distance, vitesse):
         self._robot=robot
-        self._distance=distance
-        self._vitesse=vitesse
-        self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
+        self._distance=distance                                                                             #on initialise avec le robot et on lui donne une distance a parcourir
+        self._vitesse=vitesse                                                                               #avec une vitesse donner. Pour cela on donne un angle a faire aux roues
+        self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600                                    #puis elle met a zero les roues a la fin.#puis elle met a zero les roues a la fin.
 
     def start(self):
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
@@ -22,9 +22,9 @@ class StrategieAvance:
 class StrategieTournerDroite:
 
     def __init__(self, robot, angle, vitesse):
-        self._robot=robot
-        self._angle=angle
-        self._vitesse=vitesse
+        self._robot=robot                                                                                      #on initialise avec le robot et on lui donne un angle a tourne vers la droite
+        self._angle=angle                                                                                      # avec une vitesse donner.on donne a la roue droite un angle negatif et on donne
+        self._vitesse=vitesse                                                                                  # a la roue gauche un angle positif a tourner. ainsi le robot tourne sur place vers la droite.
         self._target=self._angle*self._robot.WHEEL_BASE_CIRCUMFERENCE/self._robot.WHEEL_CIRCUMFERENCE
 
     def start(self):
@@ -40,9 +40,9 @@ class StrategieTournerDroite:
 class StrategieTournerGauche:
 
     def __init__(self, robot, angle, vitesse):
-        self._robot=robot
-        self._angle=angle
-        self._vitesse=vitesse
+        self._robot=robot                                                                                         # cette strategie realise la meme chose que StraegieTournerDroite sauf que
+        self._angle=angle                                                                                         # la roue gauche prend un agle negatif a realiser et la roue droite un angle
+        self._vitesse=vitesse                                                                                     # positif a realise.
         self._target=self._angle*self._robot.WHEEL_BASE_CIRCUMFERENCE/self._robot.WHEEL_CIRCUMFERENCE
 
     def start(self):
@@ -59,8 +59,8 @@ class StrategieCarre:
 
     def __init__(self, robot, distance, vitesse):
         self._robot=robot
-        self._distance=distance
-        self._vitesse=vitesse
+        self._distance=distance                                                                                     #on initialise avec le robot et une distance a parcourir.
+        self._vitesse=vitesse                                                                                       #il realise 4 fois la distance donner a une vitesse canstante donner.
         self._num_strat=0
         self._strategie=[StrategieAvance(robot, distance,vitesse), StrategieTournerDroite(robot, 90, vitesse)]
         self._i=0
@@ -70,8 +70,8 @@ class StrategieCarre:
         self._num_strat=0
         self._strategie[0].start()
 
-    def update(self):
-        if self._strategie[self._num_strat].stop() and self._num_strat==0:
+    def update(self):                                                                                               #elle parcoure une distance a une vitesse donner.
+        if self._strategie[self._num_strat].stop() and self._num_strat==0:                                          #elle s'arrete lorsque la distance est atteint.
             self._robot.avancer(0)
             self._num_strat=1
             self._strategie[self._num_strat].start()
@@ -93,8 +93,8 @@ class StrategieCarre:
 class StrategieFonce:
 
     def __init__(self, robot, distance, vitesse):
-        self._robot=robot
-        self._distance=distance
+        self._robot=robot                                                                                               #elle realise une distance a une vitesse donner.
+        self._distance=distance                                                                                         #au fur et a mesure que la distance est parcouru la vitesse diminue egalement.
         self._vitesse=vitesse
 
     def start(self):
@@ -112,8 +112,8 @@ class StrategieAvanceAmeliore:
     _i=2
 
     def __init__(self, robot, distance, vitesse):
-        self._robot=robot
-        self._distance=distance
+        self._robot=robot                                                                                                 #le robot parcour la distance et une vitesse donner.
+        self._distance=distance                                                                                           #au fur et a mesure que la distance diminu la vitesse diminue egalement.
         self._vitesse=vitesse
         self._target=self._distance/self._robot.WHEEL_CIRCUMFERENCE*3600
         self._vitessed=vitesse
