@@ -24,6 +24,8 @@ plusieurs possibilités :
 
 #cloner le dossier git
 >>>git clone <@git>
+#cloner le dossier git sur la branch <nom_branch>
+>>>git clone --single-branch --branch <nom_branch> <@git>
 
 #aller dans ce dossier
 >>>cd <nom_dossier>
