@@ -181,6 +181,7 @@ class StrategieTournerDroiteAmeliore:
 
 
     def start(self):
+        self._i=2
         self._vitesse=self._vitessed
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
 
@@ -188,7 +189,7 @@ class StrategieTournerDroiteAmeliore:
 
     def update(self):
         print("v=", self._vitesse)
-        if(self._vitesse>10):
+        if(self._vitesse>3):
             if(self.dist()):
                 self._vitesse = self._vitesse / 2
         self._robot.tourner_droite(self._vitesse)
@@ -237,6 +238,7 @@ class StrategieCarreAmeliore:
             self._i+=1
             self._num_strat=0
             if not self.stop():
+                print("rentre")
                 self._strategie[self._num_strat].start()
                 self._strategie[self._num_strat].update()
         else:
@@ -249,39 +251,37 @@ class StrategieArcGauche:
 
     def __init__(self, robot, rayon, vitesse, angle):
         self._robot=robot
-        self._rayon=rayon
-        self._vitesse=vitesse
-        self._distance=self._rayon*20/self._robot.WHEEL_DIAMETER*angle
-        self._target=(self._rayon*20-self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
+        self._diametre=rayon*20
         self._dps=(vitesse*10/self._robot.WHEEL_CIRCUMFERENCE)*360
+        self._target=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
+        self._coeff=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/(self._diametre-self._robot.WHEEL_BASE_WIDTH)
 
     def start(self):
-        self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
 
     def update(self):
-            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps)
-            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps*(self._distance/self._target))
+            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps/self._coeff)
+            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps)
 
     def stop(self):
-        return self._robot.get_motor_position()[0]>=self._target
+        return self._robot.get_motor_position()[1]>=self._target
 
 
 class StrategieArcDroit:
 
     def __init__(self, robot, rayon, vitesse, angle):
         self._robot=robot
-        self._rayon=rayon
-        self._vitesse=vitesse
-        self._distance=self._rayon*20/self._robot.WHEEL_DIAMETER*angle
-        self._target=(self._rayon*20-self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
+        self._diametre=rayon*20
         self._dps=(vitesse*10/self._robot.WHEEL_CIRCUMFERENCE)*360
+        self._target=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
+        self._coeff=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/(self._diametre-self._robot.WHEEL_BASE_WIDTH)
 
     def start(self):
-        self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
+        self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
     def update(self):
-            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps)
-            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps*(self._distance/self._target))
+            self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps)
+            self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps/self._coeff)
 
     def stop(self):
-        return self._robot.get_motor_position()[1]>=self._target
+        return self._robot.get_motor_position()[0]>=self._target
