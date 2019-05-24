@@ -4,4 +4,4 @@ from .model import RobotVirtuel, Arene, Obstacle, ObstacleCarre, ObstacleRond,Ob
 try:
     from .view import View, View3D
 except Exception as e:
-    print("pyglet pas disponi")
+    pass
