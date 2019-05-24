@@ -103,7 +103,10 @@ class Adapter():
         """ Arrete le robot lorsque la fonction est terminer"""
         self._robot.stop()
         self._robot.fin()
+<<<<<<< HEAD
 
     def update(self, dt):
         """met a jour le robot"""
         self._robot.update(dt)
+=======
+>>>>>>> 6376d6946f35959e643cef8ee0c131e8c32b8a49
