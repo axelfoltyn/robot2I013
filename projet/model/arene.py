@@ -99,7 +99,5 @@ class Arene:
         self._max_proximite=valeur                  #Fonction qui test si le veleur donner est egale a la valuer max de proximite
 
     def fin(self):
-        print(self._observers)
         for obs in self._observers:
-            print("arreta")
             obs.arret(True)

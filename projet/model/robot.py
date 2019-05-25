@@ -171,7 +171,6 @@ class RobotVirtuel:
             self.set_pixel(img, dir, x, y)
 
     def get_image_aux_y(self, img, hauteur, largeur, x):
-        #print(x)
         val = int(hauteur/2)
         for y in range(val):
             xc = x * self.pas_pix
@@ -190,7 +189,6 @@ class RobotVirtuel:
         a = Thread(target=self.get_image_aux_y_sup, args=(img, hauteur, largeur, x,))
         a.start()
         a.join()
-        #print(x)
 
     def get_image(self):
         hauteur = 244
@@ -204,7 +202,6 @@ class RobotVirtuel:
             #img.putpixel((x,y), (255, 0, 0))
         for t in thread_list:
             t.join()
-        print(img)
         return img
 
 

@@ -161,11 +161,9 @@ class StrategieFonceAmeliore:
         self._robot.avancer(self._vitesse)
 
     def dist(self):
-        #print(self._robot.get_distance()/10.0, self._distance*(1+1/self._i))
         return self._robot.get_distance()/10.0<=self._distance*(1+1/self._i)
 
     def stop(self):
-        print(self._robot.get_distance()/10.0,self._distance)
         return self._robot.get_distance()/10.0<=self._distance
 
 
@@ -188,7 +186,6 @@ class StrategieTournerDroiteAmeliore:
 
 
     def update(self):
-        print("v=", self._vitesse)
         if(self._vitesse>3):
             if(self.dist()):
                 self._vitesse = self._vitesse / 2
@@ -198,13 +195,11 @@ class StrategieTournerDroiteAmeliore:
     def stop(self):
 
         target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
-        print("tfvtftftftftftf", target, abs(self._robot.get_motor_position()[1]))
         return target<=abs(self._robot.get_motor_position()[1])
 
 
     def dist(self):
         target=self._angle/self._robot.WHEEL_CIRCUMFERENCE*self._robot.WHEEL_BASE_CIRCUMFERENCE
-        print("uhyfhdygxcjfh", abs(self._robot.get_motor_position()[1]),target*(1-1/self._i))
         if (abs(self._robot.get_motor_position()[1])>=target*(1-1/self._i)):
             self._i=self._i*2
             return True
@@ -238,7 +233,6 @@ class StrategieCarreAmeliore:
             self._i+=1
             self._num_strat=0
             if not self.stop():
-                print("rentre")
                 self._strategie[self._num_strat].start()
                 self._strategie[self._num_strat].update()
         else:

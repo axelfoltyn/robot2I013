@@ -143,7 +143,6 @@ class View3D(threading.Thread):
         Cette fonction indique la fin de l'affichage
         : param b: booleen permattant de verifier si nous sommes a la fin du script
         """
-        print("arret")
         self.finish = True
 
 
