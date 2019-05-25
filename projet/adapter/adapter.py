@@ -29,7 +29,7 @@ class Adapter():
         self._robot.set_led(led, red, green, blue)
 
     def get_voltage(self):
-        """ retourne batteri voltage """
+        """ retourne le voltage de la batterie """
         return self._robot.get_voltage()
 
     def set_motor_dps(self, port, dps):
