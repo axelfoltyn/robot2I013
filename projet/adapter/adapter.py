@@ -36,7 +36,7 @@ class Adapter():
         self._robot.set_motor_dps(port, dps)
 
     def avancer(self, vitesse):             # vitesse en cm/s
-    """
+        """
         Fixe la vitesse d'un moteur en nombre de degres par seconde
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: la vitesse cible en nombre de degres par seconde
@@ -91,7 +91,7 @@ class Adapter():
         self._robot.servo_rotate(position)
 
     def stop(self):
-         """ Arrete le robot """
+        """ Arrete le robot """
         self._robot.stop()
 
     def get_image(self):
