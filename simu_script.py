@@ -21,10 +21,10 @@ view.start()
 view3d.start()
 
 
-strat1=StrategieCarreAmeliore(robot, 50, 40)
-strat2=StrategieArcGauche(robot,40,50,360)
-strat3=StrategieArcDroit(robot,40,50,360)
-strat4=StrategieFonceAmeliore(robot, 2, 100)
+strat1=StrategieCarreAmeliore(robot, 100, 40)
+strat2=StrategieArcGauche(robot,50,50,360)
+strat3=StrategieArcDroit(robot,50,50,360)
+strat4=StrategieFonceAmeliore(robot, 2, 50)
 strats=[strat1,strat2,strat3,strat4]
 
 for strat in strats:

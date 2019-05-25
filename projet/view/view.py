@@ -7,10 +7,10 @@ from ..color import color
 
 class View(threading.Thread):
 
-    red= 'red'
-    blue='blue'
-    black='black'
-    yellow='yellow'
+    red= 'red\n'
+    blue='blue\n'
+    black='black\n'
+    yellow='yellow\n'
     def __init__(self,arene):
         super(View,self).__init__()
         """
@@ -63,8 +63,10 @@ class View(threading.Thread):
                 y2 = y1+obstacle._la
                 if obstacle.getColor()==self.yellow:
                     self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "yellow"))
-                else:
+                elif obstacle.getColor()==self.red:
                     self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "red"))
+                else:
+                    self._objets.append(self._canvas.create_rectangle(x1, y1, x2, y2,fill = "black"))
             else:
                 print("L'obstacle n'existe pas")
         else:
