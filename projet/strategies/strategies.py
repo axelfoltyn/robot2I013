@@ -259,7 +259,7 @@ class StrategieArcGauche:
 
     def stop(self):
         return self._robot.get_motor_position()[1]>=self._target
-
+  
 
 class StrategieArcDroit:
 
