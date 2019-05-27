@@ -22,9 +22,9 @@ class StrategieAvance:
 class StrategieTournerDroite:
 
     def __init__(self, robot, angle, vitesse):
-        self._robot=robot                                                                                      #on initialise avec le robot et on lui donne un angle a tourne vers la droite
-        self._angle=angle                                                                                      # avec une vitesse donner.on donne a la roue droite un angle negatif et on donne
-        self._vitesse=vitesse                                                                                  # a la roue gauche un angle positif a tourner. ainsi le robot tourne sur place vers la droite.
+        self._robot=robot                                                                                    #on initialise avec le robot et on lui donne un angle a tourne vers la droite
+        self._angle=angle                                                                                    #avec une vitesse donner.on donne a la roue droite un angle negatif et on donne
+        self._vitesse=vitesse                                                                                #a la roue gauche un angle positif a tourner. ainsi le robot tourne sur place vers la droite.
         self._target=self._angle*self._robot.WHEEL_BASE_CIRCUMFERENCE/self._robot.WHEEL_CIRCUMFERENCE
 
     def start(self):
@@ -171,22 +171,22 @@ class StrategieTournerDroiteAmeliore:
 
     _i=2
 
-    def __init__(self, robot, angle, vitesse):
+    def __init__(self, robot, angle, vitesse):              #On initialise le robot en lui donnant un angle et une vitesse
         self._robot=robot
         self._angle=angle
         self._vitesse=vitesse
         self._vitessed=vitesse
 
 
-    def start(self):
+    def start(self):                                           # On attribue aux roues du robot l'angle de rotation
         self._i=2
         self._vitesse=self._vitessed
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
 
 
 
-    def update(self):
-        if(self._vitesse>3):
+    def update(self):                   #Tant que la vitesse est supérieure à 3 on diminue la _vitesse
+        if(self._vitesse>3):            #Jusqu'à obtenir une vitesse suffisemment petite pour ne pas rencontrer de problèmes
             if(self.dist()):
                 self._vitesse = self._vitesse / 2
         self._robot.tourner_droite(self._vitesse)
@@ -209,7 +209,7 @@ class StrategieTournerDroiteAmeliore:
 
 class StrategieCarreAmeliore:
 
-    def __init__(self, robot, distance, vitesse):
+    def __init__(self, robot, distance, vitesse):       #On initialise la classe avec un robot une distance (coté du carré) et une _vitesse
         self._robot=robot
         self._distance=distance
         self._vitesse=vitesse
@@ -217,8 +217,8 @@ class StrategieCarreAmeliore:
         self._strategie=[StrategieAvanceAmeliore(robot, distance,vitesse), StrategieTournerDroiteAmeliore(robot, 90, vitesse)]
         self._i=0
 
-    def start(self):
-        self._i=0
+    def start(self):                                #On indique petit à petit à quelle étape nous nous trouvons
+        self._i=0                                   #Cela nous permet alors de savoir combien de coté il nous reste à faire
         self._num_strat=0
         self._strategie[0].start()
 
@@ -243,17 +243,17 @@ class StrategieCarreAmeliore:
 
 class StrategieArcGauche:
 
-    def __init__(self, robot, rayon, vitesse, angle):
+    def __init__(self, robot, rayon, vitesse, angle):           #On initialise la classe avec un robot, un rayon, une vitesse, et un angle de rotation
         self._robot=robot
         self._diametre=rayon*20
         self._dps=(vitesse*10/self._robot.WHEEL_CIRCUMFERENCE)*360
         self._target=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
         self._coeff=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/(self._diametre-self._robot.WHEEL_BASE_WIDTH)
 
-    def start(self):
+    def start(self):                                            #On attribue aux roues du robot l'angle de rotation
         self._robot.offset_motor_encoder(self._robot.MOTOR_RIGHT, self._robot.get_motor_position()[1])
 
-    def update(self):
+    def update(self):                                           #On fait évoluer la roue droite plus vite que la roue gauche
             self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps/self._coeff)
             self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps)
 
@@ -263,17 +263,17 @@ class StrategieArcGauche:
 
 class StrategieArcDroit:
 
-    def __init__(self, robot, rayon, vitesse, angle):
+    def __init__(self, robot, rayon, vitesse, angle):       #On initialise la classe avec un robot, un rayon, une vitesse, et un angle de rotation
         self._robot=robot
         self._diametre=rayon*20
         self._dps=(vitesse*10/self._robot.WHEEL_CIRCUMFERENCE)*360
         self._target=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/self._robot.WHEEL_DIAMETER*angle
         self._coeff=(self._diametre+self._robot.WHEEL_BASE_WIDTH)/(self._diametre-self._robot.WHEEL_BASE_WIDTH)
 
-    def start(self):
+    def start(self):                                #On attribue aux roues du robot l'angle de rotation
         self._robot.offset_motor_encoder(self._robot.MOTOR_LEFT, self._robot.get_motor_position()[0])
 
-    def update(self):
+    def update(self):                                   #On fait évoluer la roue gauche plus vite que la roue droite
             self._robot.set_motor_dps(self._robot.MOTOR_LEFT,self._dps)
             self._robot.set_motor_dps(self._robot.MOTOR_RIGHT,self._dps/self._coeff)
 
