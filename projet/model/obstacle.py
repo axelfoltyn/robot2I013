@@ -93,8 +93,8 @@ class ObstacleBalise(Obstacle):
 
 
     def getColor(self,x,y,z):
-        if (x>self._x) and (x<self._x+self.lo/2):
-            if (y>self._y) and (y<self._y+self.la/2):
+        if (x>self._x) and (x<self._x+self.lo/2):                                           #nous vérifions la position dans l'obstacle de la coordonées
+            if (y>self._y) and (y<self._y+self.la/2):                                       #puis on retourne la couleur en fonction de la position dans l'obstacle
                 return self.color1
             elif (y>self._y+self.la/2) and (y<self._y+self.lo):
                 return self.color3
