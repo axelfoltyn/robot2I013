@@ -3,22 +3,23 @@ from projet import RobotVirtuel as RobotV
 from projet import Adapter
 from projet import StrategieCarreAmeliore, StrategieArcGauche, StrategieArcDroit, StrategieFonceAmeliore
 from projet import lecture
-from projet import View, View3D
+from projet import View
+#from projet import View3D
 from threading import Thread
 
 robotv = RobotV()
 
 view = View(robotv._arene)
-view3d = View3D(robotv._arene)
+#view3d = View3D(robotv._arene)
 
 robotv._arene.add_obs(view)
-robotv._arene.add_obs(view3d)
+#robotv._arene.add_obs(view3d)
 robot = Adapter(robotv)
 
 thread_affichage = Thread(target=robotv._arene.boucle_actualiser, args=(25.,))
 thread_affichage.start()
 view.start()
-view3d.start()
+#view3d.start()
 
 
 strat1=StrategieCarreAmeliore(robot, 100, 40)
